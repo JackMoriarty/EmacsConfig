@@ -221,6 +221,7 @@
 (when (display-graphic-p) (toggle-scroll-bar -1)) ; 图形界面时关闭滚动条
 
 (savehist-mode 1)                            ; 打开 Buffer 历史记录保存
+(setq-default display-fill-column-indicator-column 80) 
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ; 增加ruler
 (global-hl-line-mode t)                      ; 高亮当前行
 (show-paren-mode 1)
