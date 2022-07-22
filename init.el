@@ -173,6 +173,14 @@
 		  (require 'lsp-pyright)
 		  (lsp-deferred))))
 
+; ananconda 环境管理
+(use-package pyvenv
+  :ensure t
+  :config
+  (setenv "WORKON_HOME" "~/.conda/envs")
+  (setq python-shell-interpreter "python3")
+  (pyvenv-mode t))
+
 ; 项目管理
 (use-package projectile
   :ensure t
@@ -238,7 +246,7 @@
   (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
       (comment-or-uncomment-region (line-beginning-position) (line-end-position))
     (comment-dwim arg)))
-(global-set-key (kbd "C-;") 'comment-line-improve) ;注释快捷键
+(global-set-key (kbd "C-x c") 'comment-line-improve) ;注释快捷键
 
 (provide 'init)
 ;;; init.el ends here
@@ -250,7 +258,7 @@
  '(custom-safe-themes
    '("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default))
  '(package-selected-packages
-   '(magit vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
+   '(pyvenv magit vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
