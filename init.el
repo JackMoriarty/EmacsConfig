@@ -254,7 +254,7 @@
   (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
       (comment-or-uncomment-region (line-beginning-position) (line-end-position))
     (comment-dwim arg)))
-(global-set-key (kbd "C-x c") 'comment-line-improve) ;注释快捷键
+(global-set-key (kbd "M-;") 'comment-line-improve) ;注释快捷键
 
 (provide 'init)
 ;;; init.el ends here
