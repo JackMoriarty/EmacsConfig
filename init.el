@@ -6,7 +6,7 @@
  '(custom-safe-themes
    '("24168c7e083ca0bbc87c68d3139ef39f072488703dcdd82343b8cab71c0f62a7" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "171d1ae90e46978eb9c342be6658d937a83aaa45997b1d7af7657546cae5985b" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default))
  '(package-selected-packages
-   '(cuda-mode monokai-pro-theme atom-one-dark-theme highlight-indentation pyvenv magit vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
+   '(vterm-toggle cuda-mode monokai-pro-theme atom-one-dark-theme highlight-indentation pyvenv magit vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -44,6 +44,24 @@
 ; 安装vterm
 (use-package vterm
   :ensure t)
+; 安装vterm-toggle
+(use-package vterm-toggle
+  :ensure t
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (add-to-list 'display-buffer-alist
+               '((lambda (buffer-or-name _)
+                   (let ((buffer (get-buffer buffer-or-name)))
+                     (with-current-buffer buffer
+                       (or (equal major-mode 'vterm-mode)
+                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                ;;(display-buffer-reuse-window display-buffer-in-direction)
+                ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                ;;(direction . bottom)
+                ;;(dedicated . t) ;dedicated is supported in emacs27
+                (reusable-frames . visible)
+                (window-height . 0.3))))
 
 ; 安装ivy
 (use-package counsel
