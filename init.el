@@ -6,7 +6,7 @@
  '(custom-safe-themes
    '("24168c7e083ca0bbc87c68d3139ef39f072488703dcdd82343b8cab71c0f62a7" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "171d1ae90e46978eb9c342be6658d937a83aaa45997b1d7af7657546cae5985b" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default))
  '(package-selected-packages
-   '(vterm-toggle cuda-mode monokai-pro-theme atom-one-dark-theme highlight-indentation pyvenv magit vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package))
+   '(yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme atom-one-dark-theme highlight-indentation pyvenv magit vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package))
  '(vterm-toggle-fullscreen-p nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -187,10 +187,11 @@
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l"
 	lsp-file-watch-threshold 500)
-  :hook 
+  :hook
   (lsp-mode . lsp-enable-which-key-integration) ; which-key integration
   :commands (lsp lsp-deferred)
   :config
+  (setq lsp-completion-provider :none) ;; 阻止 lsp 重新设置 company-backend 而覆盖我们 yasnippet 的设置
   (setq lsp-headerline-breadcrumb-enable t))
 (use-package lsp-ui
   :ensure t
@@ -219,6 +220,18 @@
   (python-mode . (lambda ()
 		  (require 'lsp-pyright)
 		  (lsp-deferred))))
+
+;; yasnippet 代码片段模板
+(use-package yasnippet
+  :ensure t
+  :init
+  (yas-reload-all)
+  :hook
+  (prog-mode . yas-minor-mode))
+
+(use-package yasnippet-snippets
+  :ensure t
+  :after yasnippet)
 
 ; ananconda 环境管理
 (use-package pyvenv
