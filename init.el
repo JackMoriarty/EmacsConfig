@@ -298,6 +298,12 @@
   (setq beacon-color "#EE1F25")
   (setq beacon-blink-duration 1.0))
 
+; 高亮当前列
+(use-package vline
+  :ensure t
+  :hook
+  (prog-mode . vline-mode))
+
 ;; 编辑器配置
 (electric-pair-mode t)                       ; 自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode) ; 编程模式下，光标在括号上时高亮另一个括号
