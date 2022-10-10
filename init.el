@@ -163,6 +163,7 @@
   (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择).
   (setq company-selection-wrap-around t)
   (setq company-transformers '(company-sort-by-occurrence))) ; 根据选择的频率进行排序
+
 ; AI 自动补全，需要M-x company-tabnine-install-binary安装服务程序
 (use-package company-tabnine
   :ensure t
@@ -181,8 +182,7 @@
   :ensure t
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l"
-	lsp-file-watch-threshold 500)
+  (setq lsp-keymap-prefix "C-c l")
   :hook
   (lsp-mode . lsp-enable-which-key-integration) ; which-key integration
   :commands (lsp lsp-deferred)
