@@ -331,6 +331,11 @@
     (comment-dwim arg)))
 (global-set-key (kbd "M-;") 'comment-line-improve) ;注释快捷键
 
+(defun open-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+(global-set-key (kbd "<f2>") 'open-init-file) ; 快捷打开配置文件
+
 (provide 'init)
 ;;; init.el ends here
 (custom-set-faces
