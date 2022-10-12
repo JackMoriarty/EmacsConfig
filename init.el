@@ -6,7 +6,7 @@
  '(custom-safe-themes
    '("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "b9e9ba5aeedcc5ba8be99f1cc9301f6679912910ff92fdf7980929c2fc83ab4d" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default))
  '(package-selected-packages
-   '(color-theme-sanityinc-solarized symon bazel magit xhair yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
+   '(smart-mode-line-powerline-theme color-theme-sanityinc-solarized symon bazel magit xhair yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
 
 ;;; emacs 配置文件
 ;; 配置镜像
@@ -31,6 +31,8 @@
   :ensure t)
 
 ; 安装smart-mode-line
+(use-package smart-mode-line-powerline-theme
+  :ensure t)
 (use-package smart-mode-line
   :ensure t
   :init (sml/setup))
