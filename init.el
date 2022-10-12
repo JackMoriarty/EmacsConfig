@@ -306,7 +306,11 @@
   :ensure t)
 (use-package xhair
   :ensure t
-  :bind ("<f1>" . xhair-mode))
+  :config
+  (setq xhair-face nil)
+  :bind ("<f1>" . xhair-mode)
+  :hook
+  (prog-mode . xhair-mode))
 
 ;; 编辑器配置
 (load-theme 'sanityinc-solarized-light 1)    ; 配置主题
