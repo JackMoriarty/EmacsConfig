@@ -300,6 +300,7 @@
   :ensure t)
 (use-package xhair
   :ensure t
+  :bind ("<f1>" . xhair-mode)
   :hook
   (prog-mode . xhair-mode))
 
