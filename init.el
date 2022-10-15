@@ -308,6 +308,8 @@
 
 ;; 编辑器配置
 (load-theme 'sanityinc-solarized-light 1)    ; 配置主题
+(set-frame-font
+ "-CTDB-FiraCode Nerd Font Mono-normal-normal-normal-*-27-*-*-*-m-0-iso10646-1") ;配置字体
 (electric-pair-mode t)                       ; 自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode) ; 编程模式下，光标在括号上时高亮另一个括号
 (column-number-mode t)                       ; 在 Mode line 上显示列号
