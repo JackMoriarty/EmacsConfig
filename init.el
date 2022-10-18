@@ -289,11 +289,11 @@
   :ensure t)
 
 ; 缩进对齐线
-(use-package highlight-indentation
-  :ensure t
-  :hook
-  (python-mode . highlight-indentation-mode)
-  (python-mode . highlight-indentation-current-column-mode))
+;; (use-package highlight-indentation
+;;   :ensure t
+;;   :hook
+;;   (python-mode . highlight-indentation-mode)
+;;   (python-mode . highlight-indentation-current-column-mode))
 
 ; 高亮当前行列
 (use-package vline
