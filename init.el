@@ -304,16 +304,11 @@
 ;;   (python-mode . highlight-indentation-mode)
 ;;   (python-mode . highlight-indentation-current-column-mode))
 
-; 高亮当前行列
+; 高亮当前列
 (use-package vline
-  :ensure t)
-(use-package xhair
   :ensure t
   :config
-  (setq xhair-face nil)
-  :bind ("<f1>" . xhair-mode)
-  :hook
-  (prog-mode . xhair-mode))
+  :bind ("<f1>" . vline-mode))
 
 ;; 编辑器配置
 (load-theme 'sanityinc-solarized-light 1)    ; 配置主题
