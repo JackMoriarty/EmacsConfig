@@ -183,9 +183,9 @@
   (setq company-transformers '(company-sort-by-occurrence))) ; 根据选择的频率进行排序
 
 ; AI 自动补全，需要M-x company-tabnine-install-binary安装服务程序
-(use-package company-tabnine
-  :ensure t
-  :init (add-to-list 'company-backends #'company-tabnine))
+; (use-package company-tabnine
+;   :ensure t
+;   :init (add-to-list 'company-backends #'company-tabnine))
 
 ; 语法检查
 (use-package flycheck
