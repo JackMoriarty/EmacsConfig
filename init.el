@@ -79,7 +79,8 @@
   :bind(("C-c t" . 'vterm-toggle)))
 ; 安装mult-vterm
 (use-package multi-vterm
-  :ensure t)
+  :ensure t
+  :bind(("C-c n t" . 'multi-vterm)))
 
 ; 安装ivy
 (use-package counsel
