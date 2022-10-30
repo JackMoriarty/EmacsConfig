@@ -76,7 +76,7 @@
                 ;;(dedicated . t) ;dedicated is supported in emacs27
                 (reusable-frames . visible)
                 (window-height . 0.3)))
-  :bind(("C-t" . 'vterm-toggle)))
+  :bind(("C-c t" . 'vterm-toggle)))
 ; 安装mult-vterm
 (use-package multi-vterm
   :ensure t)
