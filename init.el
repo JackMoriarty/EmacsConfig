@@ -67,10 +67,11 @@
 	(gts-noprompt-picker)
         :engines
 	(list
-	 (gts-bing-engine)
-	 (gts-google-engine)
-	 (gts-google-rpc-engine))
+	 ;; (gts-google-engine)
+	 ;; (gts-google-rpc-engine)
+	 (gts-bing-engine))
         :render
+	;; (gts-posframe-pop-render)
 	(gts-buffer-render))))
 
 ; 安装vterm
