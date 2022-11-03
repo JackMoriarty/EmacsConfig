@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(airline-themes powerline ox-gfm grip-mode go-translate multi-vterm docker-tramp solarized-theme vline yaml-mode protobuf-mode smart-mode-line-powerline-theme bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
+   '(atom-one-dark-theme airline-themes powerline ox-gfm grip-mode go-translate multi-vterm docker-tramp solarized-theme vline yaml-mode protobuf-mode smart-mode-line-powerline-theme bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
 
 ;;; emacs 配置文件
 ;; 配置镜像
@@ -20,6 +20,10 @@
 
 ; 安装monokai主题
 (use-package monokai-pro-theme
+  :ensure t)
+
+; 安装onedark主题
+(use-package atom-one-dark-theme
   :ensure t)
 
 ; 安装solarized 主题
@@ -357,7 +361,7 @@
   :bind ("<f1>" . vline-mode))
 
 ;; 编辑器配置
-(load-theme 'solarized-gruvbox-light t)    ; 配置主题
+(load-theme 'atom-one-dark t)    ; 配置主题
 (load-theme 'airline-onedark t)
 (set-frame-font
  "-CTDB-FiraCode Nerd Font Mono-normal-normal-normal-*-27-*-*-*-m-0-iso10646-1") ;配置字体
