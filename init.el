@@ -43,6 +43,12 @@
 (use-package yaml-mode
   :ensure t)
 
+; 安装markdown-mode, 需要安装pandoc
+(use-package markdown-mode
+  :ensure t
+  :config
+  (setq markdown-command "pandoc"))
+
 ; 安装protobuf-mode
 (use-package protobuf-mode
   :ensure t)
