@@ -77,6 +77,7 @@
 ;安装go-translate翻译插件
 (use-package go-translate
   :ensure t
+  :bind(("C-t" . 'gts-do-translate))
   :config
   (setq gts-buffer-window-config
 	'((display-buffer-reuse-window display-buffer-in-side-window)
