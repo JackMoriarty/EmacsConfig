@@ -358,6 +358,7 @@
 (use-package vline
   :ensure t
   :config
+  (set-face-attribute 'vline nil :background "dimgray")
   :bind ("<f1>" . vline-mode))
 
 ;; 编辑器配置
