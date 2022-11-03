@@ -65,6 +65,10 @@
 (use-package go-translate
   :ensure t
   :config
+  (setq gts-buffer-window-config
+	'((display-buffer-reuse-window display-buffer-in-side-window)
+	  (side . bottom)))
+  (setq gts-buffer-follow-p t)
   (setq gts-translate-list '(("en" "zh")))
   (setq gts-default-translator
        (gts-translator
