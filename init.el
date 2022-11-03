@@ -52,6 +52,16 @@
   (setq grip-preview-use-webkit t) ; 使用emacs内置浏览器, 必须添加了--with-xwidgets编译选项
   :hook ((markdown-mode org-mode) . grip-mode))
 
+; 安装认证
+; 认证文件是~/.autoinfo
+; 格式为machine YOURMACHINE login YOU password PASSWORD port PORT
+(use-package auth-source
+  :ensure t
+  :config
+  (let ((credential (auth-source-user-and-password "api.github.com")))
+  (setq grip-github-user (car credential)
+        grip-github-password (cadr credential))))
+
 ; 安装protobuf-mode
 (use-package protobuf-mode
   :ensure t)
