@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(comment-tags atom-one-dark-theme airline-themes powerline ox-gfm grip-mode go-translate multi-vterm docker-tramp solarized-theme vline yaml-mode protobuf-mode smart-mode-line-powerline-theme bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
+   '(highlight-doxygen comment-tags atom-one-dark-theme airline-themes powerline ox-gfm grip-mode go-translate multi-vterm docker-tramp solarized-theme vline yaml-mode protobuf-mode smart-mode-line-powerline-theme bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
 
 ;;; emacs 配置文件
 ;; 配置镜像
@@ -364,6 +364,12 @@
 ; 高亮注释(TODO, FIXME等)
 (use-package comment-tags
   :ensure t)
+
+; 高亮doxygen
+(use-package highlight-doxygen
+  :ensure t
+  :hook
+  (prog-mode . highlight-doxygen-mode))
 
 ;; 编辑器配置
 (load-theme 'atom-one-dark t)    ; 配置主题
