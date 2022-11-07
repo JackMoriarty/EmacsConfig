@@ -383,6 +383,7 @@
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ; 增加ruler
 (setq display-time-24hr-format t) ; 使用24小时制
 (display-time-mode t) ; 显示时间及CPU负载
+(setq battery-mode-line-format "[%b%p|%L]") ; 设置电池显示格式
 (display-battery-mode t) ; 显示电池电量
 (global-hl-line-mode t)                      ; 高亮当前行
 (show-paren-mode 1)
