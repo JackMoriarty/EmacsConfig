@@ -386,7 +386,6 @@
 (setq battery-mode-line-format "[%b%p|%L]") ; 设置电池显示格式
 (display-battery-mode t) ; 显示电池电量
 (global-hl-line-mode t)                      ; 高亮当前行
-(show-paren-mode 1)
 (setq show-paren-style 'expression)          ; 匹配括号高亮
 (defun comment-line-improve (&optional arg)
   (interactive)
