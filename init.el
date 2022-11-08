@@ -363,7 +363,9 @@
 
 ; 高亮注释(TODO, FIXME等)
 (use-package comment-tags
-  :ensure t)
+  :ensure t
+  :hook
+  (prog-mode . comment-tags-mode))
 
 ; 高亮doxygen
 (use-package highlight-doxygen
