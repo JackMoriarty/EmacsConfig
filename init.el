@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(highlight-doxygen comment-tags atom-one-dark-theme airline-themes powerline ox-gfm grip-mode go-translate multi-vterm docker-tramp solarized-theme vline yaml-mode protobuf-mode smart-mode-line-powerline-theme bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
+   '(highlight-doxygen comment-tags atom-one-dark-theme airline-themes powerline go-translate multi-vterm docker-tramp solarized-theme vline yaml-mode protobuf-mode smart-mode-line-powerline-theme bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
 
 ;;; emacs 配置文件
 ;; 配置镜像
@@ -43,25 +43,6 @@
 ; 安装yaml-mode
 (use-package yaml-mode
   :ensure t)
-
-; 安装grip-mode及ox-gfm, 预览markdown, 需要pip install grip
-(use-package ox-gfm
-  :ensure t)
-(use-package grip-mode
-  :ensure t
-  :config
-  (setq grip-preview-use-webkit t) ; 使用emacs内置浏览器, 必须添加了--with-xwidgets编译选项
-  :hook ((markdown-mode org-mode) . grip-mode))
-
-; 安装认证
-; 认证文件是~/.autoinfo
-; 格式为machine YOURMACHINE login YOU password PASSWORD port PORT
-(use-package auth-source
-  :ensure t
-  :config
-  (let ((credential (auth-source-user-and-password "api.github.com")))
-  (setq grip-github-user (car credential)
-        grip-github-password (cadr credential))))
 
 ; 安装protobuf-mode
 (use-package protobuf-mode
