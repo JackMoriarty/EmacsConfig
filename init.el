@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(highlight-doxygen comment-tags atom-one-dark-theme airline-themes powerline go-translate multi-vterm docker-tramp solarized-theme vline yaml-mode protobuf-mode smart-mode-line-powerline-theme bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
+   '(super-save highlight-doxygen comment-tags atom-one-dark-theme airline-themes powerline go-translate multi-vterm docker-tramp solarized-theme vline yaml-mode protobuf-mode smart-mode-line-powerline-theme bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll smart-mode-line mwim ace-window amx counsel use-package)))
 
 ;;; emacs 配置文件
 ;; 配置镜像
@@ -353,6 +353,13 @@
   :ensure t
   :hook
   (prog-mode . highlight-doxygen-mode))
+
+; 自动保存
+(use-package super-save
+  :ensure t
+  :config
+  (super-save-mode +1)
+  (setq super-save-auto-save-when-idle t))
 
 ;; 编辑器配置
 (load-theme 'atom-one-dark t)    ; 配置主题
