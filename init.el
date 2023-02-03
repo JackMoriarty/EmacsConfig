@@ -361,6 +361,19 @@
   (super-save-mode +1)
   (setq super-save-auto-save-when-idle t))
 
+; 词典
+(use-package fanyi
+  :ensure t
+  :custom
+  (fanyi-providers '(;; 海词
+                     fanyi-haici-provider
+                     ;; 有道同义词词典
+                     fanyi-youdao-thesaurus-provider
+                     ;; Etymonline
+                     fanyi-etymon-provider
+                     ;; Longman
+                     fanyi-longman-provider)))
+
 ;; 编辑器配置
 (load-theme 'atom-one-dark t)    ; 配置主题
 (load-theme 'airline-onedark t)
