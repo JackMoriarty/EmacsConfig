@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(fanyi super-save highlight-doxygen comment-tags atom-one-dark-theme airline-themes powerline go-translate multi-vterm docker-tramp solarized-theme vline yaml-mode protobuf-mode bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll mwim ace-window amx counsel use-package)))
+   '(fanyi super-save highlight-doxygen comment-tags atom-one-dark-theme airline-themes powerline go-translate docker-tramp solarized-theme vline yaml-mode protobuf-mode bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll mwim ace-window amx counsel use-package)))
 
 ;;; emacs 配置文件
 ;; 配置镜像
@@ -102,10 +102,6 @@
                 (reusable-frames . visible)
                 (window-height . 0.3)))
   :bind(("C-c t" . 'vterm-toggle)))
-; 安装mult-vterm
-(use-package multi-vterm
-  :ensure t
-  :bind(("C-c n t" . 'multi-vterm)))
 
 ; 安装ivy
 (use-package counsel
