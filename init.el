@@ -376,7 +376,7 @@
 
 ;; 编辑器配置
 (load-theme 'atom-one-dark t)    ; 配置主题
-(load-theme 'airline-onedark t)
+(load-theme 'airline-google_dark t)
 (set-frame-font
  "-CTDB-FiraCode Nerd Font Mono-normal-normal-normal-*-27-*-*-*-m-0-iso10646-1") ;配置字体
 (electric-pair-mode t)                       ; 自动补全括号
