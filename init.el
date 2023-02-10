@@ -229,8 +229,7 @@
   :ensure t
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l"
-	lsp-enable-file-watchers nil)
+  (setq lsp-keymap-prefix "C-c l")
   :hook
   (lsp-mode . lsp-enable-which-key-integration) ; which-key integration
   :commands (lsp lsp-deferred)
