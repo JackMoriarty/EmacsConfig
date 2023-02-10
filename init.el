@@ -34,9 +34,7 @@
 (use-package dracula-theme
   :ensure t)
 
-(use-package powerline
-  :ensure t)
-
+; 安装airline主题
 (use-package airline-themes
   :ensure t)
 
