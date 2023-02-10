@@ -30,6 +30,10 @@
 (use-package solarized-theme
   :ensure t)
 
+; 安装dracula-theme 主题
+(use-package dracula-theme
+  :ensure t)
+
 (use-package powerline
   :ensure t)
 
@@ -371,7 +375,7 @@
                      fanyi-longman-provider)))
 
 ;; 编辑器配置
-(load-theme 'atom-one-dark t)    ; 配置主题
+(load-theme 'dracula t)    ; 配置主题
 (load-theme 'airline-google_dark t)
 (set-frame-font
  "-CTDB-FiraCode Nerd Font Mono-normal-normal-normal-*-27-*-*-*-m-0-iso10646-1") ;配置字体
