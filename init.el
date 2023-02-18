@@ -366,8 +366,6 @@
                      fanyi-longman-provider)))
 
 ;; 编辑器配置
-(set-frame-font
- "-CTDB-FiraCode Nerd Font Mono-normal-normal-normal-*-27-*-*-*-m-0-iso10646-1") ;配置字体
 (electric-pair-mode t)                       ; 自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode) ; 编程模式下，光标在括号上时高亮另一个括号
 (column-number-mode t)                       ; 在 Mode line 上显示列号
@@ -409,4 +407,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "FiraCode Nerd Font Mono" :foundry "CTDB" :slant normal :weight normal :height 90 :width normal)))))
