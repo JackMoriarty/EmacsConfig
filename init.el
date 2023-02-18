@@ -57,6 +57,10 @@
 (use-package protobuf-mode
   :ensure t)
 
+; 安装markdown-mode
+(use-package markdown-mode
+  :ensure t)
+
 ; 安装bazel 
 (use-package bazel
   :ensure t)
