@@ -382,7 +382,6 @@
 (setq display-time-24hr-format t) ; 使用24小时制
 (setq display-time-day-and-date t) ; 显示日期
 (display-time-mode t) ; 显示时间及CPU负载
-(setq battery-mode-line-format "[BAT:%p%%%]") ; 设置电池显示格式
 (display-battery-mode t) ; 显示电池电量
 (global-hl-line-mode t)                      ; 高亮当前行
 (setq show-paren-style 'expression)          ; 匹配括号高亮
