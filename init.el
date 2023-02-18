@@ -20,7 +20,7 @@
 
 ; 安装icon, 运行M-x all-the-icons-install-fonts安装字体
 (use-package all-the-icons
-  :ensure t)
+  :if (display-graphic-p))
 
 ; 安装doom主题
 (use-package doom-themes
