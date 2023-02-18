@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(fanyi super-save highlight-doxygen comment-tags atom-one-dark-theme airline-themes powerline go-translate docker-tramp solarized-theme vline yaml-mode protobuf-mode bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode monokai-pro-theme highlight-indentation pyvenv vterm monokai-theme undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company-tabnine company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll mwim ace-window amx counsel use-package)))
+   '(doom-themes doom-modeline fanyi super-save highlight-doxygen comment-tags go-translate docker-tramp vline yaml-mode protobuf-mode bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode pyvenv vterm undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll mwim ace-window amx counsel use-package)))
 
 ;;; emacs 配置文件
 ;; 配置镜像
@@ -18,25 +18,27 @@
 (eval-when-compile
   (require 'use-package))
 
-; 安装monokai主题
-(use-package monokai-pro-theme
-  :ensure t)
+; 安装doom主题
+(use-package doom-themes
+  :ensure t
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-dracula t)
 
-; 安装onedark主题
-(use-package atom-one-dark-theme
-  :ensure t)
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; for treemacs users
+  ;; (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+  ;; (doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 
-; 安装solarized 主题
-(use-package solarized-theme
-  :ensure t)
-
-; 安装dracula-theme 主题
-(use-package dracula-theme
-  :ensure t)
-
-; 安装airline主题
-(use-package airline-themes
-  :ensure t)
+; 安装doom modeline
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
 
 ; 安装cuda-mode
 (use-package cuda-mode
@@ -211,11 +213,6 @@
   (setq company-selection-wrap-around t)
   (setq company-transformers '(company-sort-by-occurrence))) ; 根据选择的频率进行排序
 
-; AI 自动补全，需要M-x company-tabnine-install-binary安装服务程序
-; (use-package company-tabnine
-;   :ensure t
-;   :init (add-to-list 'company-backends #'company-tabnine))
-
 ; 语法检查
 (use-package flycheck
   :ensure t
@@ -325,13 +322,6 @@
 (use-package magit
   :ensure t)
 
-; 缩进对齐线
-;; (use-package highlight-indentation
-;;   :ensure t
-;;   :hook
-;;   (python-mode . highlight-indentation-mode)
-;;   (python-mode . highlight-indentation-current-column-mode))
-
 ; 高亮当前列
 (use-package vline
   :ensure t
@@ -372,8 +362,6 @@
                      fanyi-longman-provider)))
 
 ;; 编辑器配置
-(load-theme 'dracula t)    ; 配置主题
-(load-theme 'airline-google_dark t)
 (set-frame-font
  "-CTDB-FiraCode Nerd Font Mono-normal-normal-normal-*-27-*-*-*-m-0-iso10646-1") ;配置字体
 (electric-pair-mode t)                       ; 自动补全括号
