@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(disable-mouse ligature all-the-icons doom-themes doom-modeline fanyi super-save highlight-doxygen comment-tags go-translate docker-tramp vline yaml-mode protobuf-mode bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode pyvenv vterm undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll mwim ace-window amx counsel use-package)))
+   '(dracula-theme disable-mouse ligature all-the-icons doom-themes doom-modeline fanyi super-save highlight-doxygen comment-tags go-translate docker-tramp vline yaml-mode protobuf-mode bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode pyvenv vterm undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll mwim ace-window amx counsel use-package)))
 
 ;;; emacs 配置文件
 ;; 配置镜像
@@ -22,6 +22,12 @@
 (use-package all-the-icons
   :ensure t
   :if (display-graphic-p))
+
+; 安装dracula主题
+;; (use-package dracula-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'dracula t))
 
 ; 安装doom主题
 (use-package doom-themes
