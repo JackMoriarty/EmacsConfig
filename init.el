@@ -129,6 +129,7 @@
   (setq ivy-use-virtual-buffers t)
   (setq search-default-mode #'char-fold-to-regexp)
   (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-use-selectable-prompt t)
   :bind
   (("C-s" . 'swiper)
    ("C-x b" . 'ivy-switch-buffer)
