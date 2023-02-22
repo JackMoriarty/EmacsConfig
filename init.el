@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(highlight-indent-guides dracula-theme disable-mouse ligature all-the-icons doom-themes doom-modeline fanyi super-save highlight-doxygen comment-tags go-translate docker-tramp vline yaml-mode protobuf-mode bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode pyvenv vterm undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll mwim ace-window amx counsel use-package)))
+   '(company-box highlight-indent-guides dracula-theme disable-mouse ligature all-the-icons doom-themes doom-modeline fanyi super-save highlight-doxygen comment-tags go-translate docker-tramp vline yaml-mode protobuf-mode bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode pyvenv vterm undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll mwim ace-window amx counsel use-package)))
 
 ;;; emacs 配置文件
 ;; 配置镜像
@@ -229,6 +229,12 @@
   (setq company-show-numbers t)                              ;; 给选项编号(按快捷键M-1, M-2等等来进行选择)
   (setq company-selection-wrap-around t)
   (setq company-transformers '(company-sort-by-occurrence))) ;; 根据选择的频率进行排序
+
+;; company 图标
+(use-package company-box
+  :ensure t
+  :if window-system
+  :hook (company-mode . company-box-mode))
 
 ;; 语法检查
 (use-package flycheck
