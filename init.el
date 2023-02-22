@@ -443,7 +443,7 @@
 (display-time-mode t)                                                 ;; 显示时间及CPU负载
 (display-battery-mode t)                                              ;; 显示电池电量
 (global-hl-line-mode t)                                               ;; 高亮当前行
-(setq show-paren-style 'expression)                                   ;; 匹配括号高亮
+(setq show-paren-style 'mixed)                                        ;; 匹配括号高亮模式
 (setq confirm-kill-emacs 'yes-or-no-p)                                ;; emacs退出前确认
 (defun comment-line-improve (&optional arg)
   (interactive)
