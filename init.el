@@ -254,9 +254,17 @@
 (use-package lsp-ui
   :ensure t
   :config
+  ;; lsp-ui-sideline
+  (setq lsp-ui-sideline-show-diagnostics t)
+  (setq lsp-ui-sideline-show-hover t)
+  (setq lsp-ui-sideline-show-code-actions t)
+  ;; lsp-ui-peek
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-  (setq lsp-ui-doc-position 'at-point))
+  ;; lsp-ui-doc
+  (setq lsp-ui-doc-position 'at-point)
+  (setq lsp-ui-doc-show-with-cursor t)
+  (setq lsp-ui-doc-show-with-mouse nil))
 
 (use-package lsp-ivy
   :ensure t
