@@ -465,6 +465,10 @@
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f2>") 'open-init-file)                         ;; 快捷打开配置文件
 
+(global-set-key (kbd "C-S-c") 'clipboard-kill-ring-save)              ;; 复制到系统剪贴板
+(global-set-key (kbd "C-S-v") 'clipboard-yank)                        ;; 从系统剪贴板粘贴
+(global-set-key (kbd "C-S-x") 'clipboard-kill-region)                 ;; 剪切到系统剪贴板
+
 (provide 'init)
 ;;; init.el ends here
 (custom-set-faces
