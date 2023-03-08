@@ -41,7 +41,7 @@
   (doom-themes-visual-bell-config)
   ;; for treemacs users
   (if (display-graphic-p)
-      (progn (setq doom-themes-treemacs-theme "doom-atom") ;; use "doom-colors" for less minimal icon theme
+      (progn (setq doom-themes-treemacs-theme "doom-colors") ;; use "doom-colors" for less minimal icon theme
       (doom-themes-treemacs-config)))
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
