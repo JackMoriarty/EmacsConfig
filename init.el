@@ -484,5 +484,5 @@
  ;; If there is more than one, they won't work right.
  ;; '(hl-line ((t (:extend t :background "#444759"))))
  ;; '(ivy-current-match ((t (:extend t :background "#444759"))))
- ;; '(region ((t (:extend t :background "#b990f3"))))
+ ;; '(region ((t (:extend t :background "black"))))
  '(default ((t (:family "FiraCode Nerd Font Mono" :foundry "CTDB" :slant normal :weight normal :height 90 :width normal)))))
