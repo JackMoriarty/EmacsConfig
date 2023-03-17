@@ -482,7 +482,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ ;; '(company-tooltip-selection ((t (:background "#444759"))))
  ;; '(hl-line ((t (:extend t :background "#444759"))))
  ;; '(ivy-current-match ((t (:extend t :background "#444759"))))
- ;; '(region ((t (:extend t :background "black"))))
+ ;; '(lsp-ui-peek-highlight ((t (:inherit lsp-ui-peek-header :background "pink" :foreground "purple" :box (1 . 1)))))
+ ;; '(lsp-ui-peek-list ((t (:background "black"))))
+ ;; '(lsp-ui-peek-peek ((t (:background "black"))))
+ ;; '(region ((t (:extend t :background "yellow"))))
  '(default ((t (:family "FiraCode Nerd Font Mono" :foundry "CTDB" :slant normal :weight normal :height 90 :width normal)))))
