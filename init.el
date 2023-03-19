@@ -458,6 +458,10 @@
 (display-battery-mode t)                                              ;; 显示电池电量
 (global-hl-line-mode t)                                               ;; 高亮当前行
 (setq show-paren-style 'mixed)                                        ;; 匹配括号高亮模式
+(set-face-attribute 'default nil :font (font-spec :family "FiraCode" :size 22)) ;; 设置默认字体
+(set-fontset-font t 'unicode (font-spec :family "Noto Color Emoji" :size 22))   ;; 设置emoji字体
+(set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Microsoft YaHei" :size 22)) ;; 设置中文字体
+(set-fringe-style 16)                                                 ;; 设置fringe(左右提示符号宽度)
 (setq confirm-kill-emacs 'yes-or-no-p)                                ;; emacs退出前确认
 (defun comment-line-improve (&optional arg)
   (interactive)
@@ -489,4 +493,4 @@
  ;; '(lsp-ui-peek-list ((t (:background "black"))))
  ;; '(lsp-ui-peek-peek ((t (:background "black"))))
  ;; '(region ((t (:extend t :background "yellow"))))
- '(default ((t (:family "FiraCode Nerd Font Mono" :foundry "CTDB" :slant normal :weight normal :height 90 :width normal)))))
+)
