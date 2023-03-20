@@ -233,7 +233,7 @@
 ;; company 图标
 (use-package company-box
   :ensure t
-  :if window-system
+  :if (display-graphic-p)
   :hook (company-mode . company-box-mode))
 
 ;; 语法检查
@@ -447,7 +447,6 @@
 (add-hook 'prog-mode-hook #'hs-minor-mode)                            ;; 编程模式下, 可以折叠代码块
 (add-hook 'prog-mode-hook #'linum-mode)                               ;; 编程模式下, 显示行号
 (tool-bar-mode -1)                                                    ;; 关闭 Tool bar
-(when (display-graphic-p) (toggle-scroll-bar -1))                     ;; 图形界面时关闭滚动条
 (global-set-key (kbd "M-/") 'hippie-expand)                           ;; 文本展开
 (savehist-mode 1)                                                     ;; 打开 Buffer 历史记录保存
 (setq-default display-fill-column-indicator-column 80) 
@@ -458,10 +457,6 @@
 (display-battery-mode t)                                              ;; 显示电池电量
 (global-hl-line-mode t)                                               ;; 高亮当前行
 (setq show-paren-style 'mixed)                                        ;; 匹配括号高亮模式
-(set-face-attribute 'default nil :font (font-spec :family "FiraCode" :size 22)) ;; 设置默认字体
-(set-fontset-font t 'unicode (font-spec :family "Noto Color Emoji" :size 22))   ;; 设置emoji字体
-(set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Microsoft YaHei" :size 22)) ;; 设置中文字体
-(set-fringe-style 16)                                                 ;; 设置fringe(左右提示符号宽度)
 (setq confirm-kill-emacs 'yes-or-no-p)                                ;; emacs退出前确认
 (defun comment-line-improve (&optional arg)
   (interactive)
@@ -478,6 +473,15 @@
 (global-set-key (kbd "C-S-c") 'clipboard-kill-ring-save)              ;; 复制到系统剪贴板
 (global-set-key (kbd "C-S-v") 'clipboard-yank)                        ;; 从系统剪贴板粘贴
 (global-set-key (kbd "C-S-x") 'clipboard-kill-region)                 ;; 剪切到系统剪贴板
+
+;; GUI模式下的特殊设置
+(if (display-graphic-p) (progn
+    (set-face-attribute 'default nil :font (font-spec :family "FiraCode Nerd Font Mono" :size 22)) ;; 设置默认字体
+    (set-fontset-font t 'unicode (font-spec :family "Noto Color Emoji" :size 22))   ;; 设置emoji字体
+    (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Microsoft YaHei" :size 22)) ;; 设置中文字体
+    (set-fringe-style 16)                                             ;; 设置fringe(左右提示符号宽度)
+    (toggle-scroll-bar -1)))                                          ;; 图形界面时关闭滚动条
+
 
 (provide 'init)
 ;;; init.el ends here
