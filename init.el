@@ -33,15 +33,16 @@
   :ensure t
   :config
   ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t                         ;; if nil, bold is universally disabled
-        doom-themes-enable-italic t)                      ;; if nil, italics is universally disabled
+  (setq doom-themes-enable-bold t    ;; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ;; if nil, italics is universally disabled
   (load-theme 'doom-dracula t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
   ;; for treemacs users
   (if (display-graphic-p)
-      (progn (setq doom-themes-treemacs-theme "doom-colors") ;; use "doom-colors" for less minimal icon theme
+      ;; use "doom-colors" for less minimal icon theme
+      (progn (setq doom-themes-treemacs-theme "doom-colors")
       (doom-themes-treemacs-config)))
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
@@ -113,12 +114,11 @@
                    (let ((buffer (get-buffer buffer-or-name)))
                      (with-current-buffer buffer
                        (or (equal major-mode 'vterm-mode)
-                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                           (string-prefix-p
+			    vterm-buffer-name (buffer-name buffer))))))
                  (display-buffer-reuse-window display-buffer-at-bottom)
                 ;;(display-buffer-reuse-window display-buffer-in-direction)
-                ;;display-buffer-in-direction/direction/dedicated is added in emacs27
                 ;;(direction . bottom)
-                ;;(dedicated . t) ;dedicated is supported in emacs27
                 (reusable-frames . visible)
                 (window-height . 0.3)))
   :bind(("C-c t" . 'vterm-toggle)))
@@ -143,7 +143,8 @@
    ("C-c v" . 'ivy-push-view)
    ("C-c s" . 'ivy-switch-view)
    ("C-c V" . 'ivy-pop-view)
-   ("C-x C-@" . 'counsel-mark-ring) ;; 在某些终端上 C-x C-SPC 会被映射为 C-x C-@, 比如在 macOS 上, 所以要手动设置
+   ;; 在某些终端上 C-x C-SPC 会被映射为 C-x C-@, 比如在 macOS 上, 所以要手动设置
+   ("C-x C-@" . 'counsel-mark-ring)
    ("C-x C-SPC" . 'counsel-mark-ring)
    ("C-c g" . 'counsel-git)
    ("C-c j" . 'counsel-git-grep)
@@ -223,10 +224,10 @@
   :ensure t
   :init (global-company-mode)
   :config
-  (setq company-minimum-prefix-length 1)                     ;; 只需敲 1 个字母就开始进行自动补全
+  (setq company-minimum-prefix-length 1) ;; 只需敲 1 个字母就开始进行自动补全
   (setq company-tooltip-align-annotations t)
   (setq company-idle-delay 0.0)
-  (setq company-show-numbers t)                              ;; 给选项编号(按快捷键M-1, M-2等等来进行选择)
+  (setq company-show-numbers t) ;; 给选项编号(按快捷键M-1, M-2等等来进行选择)
   (setq company-selection-wrap-around t)
   (setq company-transformers '(company-sort-by-occurrence))) ;; 根据选择的频率进行排序
 
@@ -254,7 +255,8 @@
   (lsp-mode . lsp-enable-which-key-integration) ;; which-key integration
   :commands (lsp lsp-deferred)
   :config
-  (setq lsp-completion-provider :none)          ;; 阻止 lsp 重新设置 company-backend 而覆盖我们 yasnippet 的设置
+  ;; 阻止 lsp 重新设置 company-backend 而覆盖我们 yasnippet 的设置
+  (setq lsp-completion-provider :none)
   (setq lsp-headerline-breadcrumb-enable t))
 
 (use-package lsp-ui
@@ -265,8 +267,10 @@
   (setq lsp-ui-sideline-show-hover t)
   (setq lsp-ui-sideline-show-code-actions t)
   ;; lsp-ui-peek
-  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+  (define-key lsp-ui-mode-map
+    [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map
+    [remap xref-find-references] #'lsp-ui-peek-find-references)
   ;; lsp-ui-doc
   (setq lsp-ui-doc-position 'at-point)
   (setq lsp-ui-doc-show-with-cursor t)
@@ -278,7 +282,7 @@
 
 ;; 代码分析 LSP C/C++后端，需要安装llvm
 (use-package c++-mode
-  :functions 			;; suppress warnings
+  :functions ;; suppress warnings
   c-toggle-hungry-state
   :hook
   (c-mode . lsp-deferred)
@@ -437,51 +441,52 @@
   (prog-mode . highlight-indent-guides-mode))
 
 ;; 编辑器配置
-(add-hook 'prog-mode-hook #'electric-pair-mode)                       ;; 编程模式下自动补全括号
-(add-hook 'prog-mode-hook #'show-paren-mode)                          ;; 编程模式下, 光标在括号上时高亮另一个括号
-(add-hook 'prog-mode-hook #'whitespace-mode)                          ;; 编程模式下, 显示空格符号
-(add-hook 'prog-mode-hook #'hs-minor-mode)                            ;; 编程模式下, 可以折叠代码块
-(add-hook 'prog-mode-hook #'linum-mode)                               ;; 编程模式下, 显示行号
-(column-number-mode t)                                                ;; 在 Mode line 上显示列号
-(global-auto-revert-mode t)                                           ;; 当另一程序修改了文件时, 让 Emacs 及时刷新 Buffer
-(delete-selection-mode t)                                             ;; 选中文本后输入文本会替换文本（更符合我们习惯了的其它编辑器的逻辑）
-(setq inhibit-startup-message t)                                      ;; 关闭启动 Emacs 时的欢迎界面
-(setq make-backup-files nil)                                          ;; 关闭文件自动备份
-(tool-bar-mode -1)                                                    ;; 关闭 Tool bar
-(global-set-key (kbd "M-/") 'hippie-expand)                           ;; 文本展开
-(savehist-mode 1)                                                     ;; 打开 Buffer 历史记录保存
-(setq-default display-fill-column-indicator-column 80) 
-(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)       ;; 增加ruler
-(setq display-time-24hr-format t)                                     ;; 使用24小时制
-(setq display-time-day-and-date t)                                    ;; 显示日期
-(display-time-mode t)                                                 ;; 显示时间及CPU负载
-(display-battery-mode t)                                              ;; 显示电池电量
-(global-hl-line-mode t)                                               ;; 高亮当前行
-(setq show-paren-style 'mixed)                                        ;; 匹配括号高亮模式
-(setq confirm-kill-emacs 'yes-or-no-p)                                ;; emacs退出前确认
+(add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号
+(add-hook 'prog-mode-hook #'show-paren-mode)   ;; 编程模式下, 光标在括号上时高亮另一个括号
+(add-hook 'prog-mode-hook #'whitespace-mode)   ;; 编程模式下, 显示空格符号
+(add-hook 'prog-mode-hook #'hs-minor-mode)     ;; 编程模式下, 可以折叠代码块
+(add-hook 'prog-mode-hook #'linum-mode)        ;; 编程模式下, 显示行号
+(column-number-mode t)                         ;; 在 Mode line 上显示列号
+(global-auto-revert-mode t) ;; 当另一程序修改了文件时, 让 Emacs 及时刷新 Buffer
+(delete-selection-mode t)   ;; 选中文本后输入文本会替换文本(更符合我们习惯了的其它编辑器的逻辑)
+(setq inhibit-startup-message t)               ;; 关闭启动 Emacs 时的欢迎界面
+(setq make-backup-files nil)                   ;; 关闭文件自动备份
+(tool-bar-mode -1)                             ;; 关闭 Tool bar
+(global-set-key (kbd "M-/") 'hippie-expand)    ;; 文本展开
+(savehist-mode 1)                              ;; 打开 Buffer 历史记录保存
+(setq-default display-fill-column-indicator-column 80)
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
+(setq display-time-24hr-format t)              ;; 使用24小时制
+(setq display-time-day-and-date t)             ;; 显示日期
+(display-time-mode t)                          ;; 显示时间及CPU负载
+(display-battery-mode t)                       ;; 显示电池电量
+(global-hl-line-mode t)                        ;; 高亮当前行
+(setq show-paren-style 'mixed)                 ;; 匹配括号高亮模式
+(setq confirm-kill-emacs 'yes-or-no-p)         ;; emacs退出前确认
 (defun comment-line-improve (&optional arg)
   (interactive)
   (if (not (region-active-p))
-      (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+      (comment-or-uncomment-region
+       (line-beginning-position) (line-end-position))
     (comment-dwim arg)))
-(global-set-key (kbd "M-;") 'comment-line-improve)                    ;;注释快捷键
+(global-set-key (kbd "M-;") 'comment-line-improve) ;;注释快捷键
 
 (defun open-init-file()
   (interactive)
   (find-file "~/.emacs.d/init.el"))
-(global-set-key (kbd "<f2>") 'open-init-file)                         ;; 快捷打开配置文件
+(global-set-key (kbd "<f2>") 'open-init-file)  ;; 快捷打开配置文件
 
-(global-set-key (kbd "C-S-c") 'clipboard-kill-ring-save)              ;; 复制到系统剪贴板
-(global-set-key (kbd "C-S-v") 'clipboard-yank)                        ;; 从系统剪贴板粘贴
-(global-set-key (kbd "C-S-x") 'clipboard-kill-region)                 ;; 剪切到系统剪贴板
+(global-set-key (kbd "C-S-c") 'clipboard-kill-ring-save) ;; 复制到系统剪贴板
+(global-set-key (kbd "C-S-v") 'clipboard-yank)           ;; 从系统剪贴板粘贴
+(global-set-key (kbd "C-S-x") 'clipboard-kill-region)    ;; 剪切到系统剪贴板
 
 ;; GUI模式下的特殊设置
 (if (display-graphic-p) (progn
     (set-face-attribute 'default nil :font (font-spec :family "FiraCode Nerd Font Mono" :size 22)) ;; 设置默认字体
     (set-fontset-font t 'unicode (font-spec :family "Noto Color Emoji" :size 22))   ;; 设置emoji字体
     (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Microsoft YaHei" :size 22)) ;; 设置中文字体
-    (set-fringe-style 16)                                             ;; 设置fringe(左右提示符号宽度)
-    (toggle-scroll-bar -1)))                                          ;; 图形界面时关闭滚动条
+    (set-fringe-style 16)                      ;; 设置fringe(左右提示符号宽度)
+    (toggle-scroll-bar -1)))                   ;; 图形界面时关闭滚动条
 
 
 (provide 'init)
