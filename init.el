@@ -452,9 +452,6 @@
 (add-hook 'prog-mode-hook #'hs-minor-mode)     ;; 编程模式下, 可以折叠代码块
 (add-hook 'prog-mode-hook #'linum-mode)        ;; 编程模式下, 显示行号
 (add-hook 'prog-mode-hook #'whitespace-mode)   ;; 编程模式下显示多余空格
-(setq whitespace-style '(face trailing tabs spaces lines newline
-			      missing-newline-at-eof empty indentation
-			      space-after-tab space-before-tab tab-mark))
 ;; (add-hook 'before-save-hook 'whitespace-cleanup) ;; 保存前删除行尾空格
 (column-number-mode t)                         ;; 在 Mode line 上显示列号
 (global-auto-revert-mode t) ;; 当另一程序修改了文件时, 让 Emacs 及时刷新 Buffer
@@ -490,27 +487,29 @@
 (global-set-key (kbd "C-S-v") 'clipboard-yank)           ;; 从系统剪贴板粘贴
 (global-set-key (kbd "C-S-x") 'clipboard-kill-region)    ;; 剪切到系统剪贴板
 
-;; GUI模式下的特殊设置
-(if (display-graphic-p) (progn
-    (set-face-attribute 'default nil :font (font-spec :family "FiraCode Nerd Font Mono" :size 22)) ;; 设置默认字体
-    (set-fontset-font t 'unicode (font-spec :family "Noto Color Emoji" :size 22))   ;; 设置emoji字体
-    (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Microsoft YaHei" :size 22)) ;; 设置中文字体
-    (set-fringe-style 16)                      ;; 设置fringe(左右提示符号宽度)
-    (toggle-scroll-bar -1)))                   ;; 图形界面时关闭滚动条
+(if (display-graphic-p)
+    (progn
+    ;; GUI模式下的特殊设置
+      (set-face-attribute 'default nil :font (font-spec :family "FiraCode Nerd Font Mono" :size 22)) ;; 设置默认字体
+      (set-fontset-font t 'unicode (font-spec :family "Noto Color Emoji" :size 22)) ;; 设置emoji字体
+      (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Microsoft YaHei" :size 22)) ;; 设置中文字体
+      (set-fringe-style 16)                      ;; 设置fringe(左右提示符号宽度)
+      (toggle-scroll-bar -1))                    ;; 图形界面时关闭滚动条
+  (progn
+    ;; TTY模式下的特殊设置
+    (set-face-attribute 'company-tooltip-selection nil :background "#444759")
+    (set-face-attribute 'hl-line nil :extend t :background "#444759")
+    (set-face-attribute 'ivy-current-match nil :extend t :background "#444759")
+    (set-face-attribute 'lsp-ui-peek-highlight nil
+			:inherit 'lsp-ui-peek-header :background "pink"
+			:foreground "purple" :box t)
+    (set-face-attribute 'lsp-ui-peek-list nil :background "black")
+    (set-face-attribute 'lsp-ui-peek-peek nil :background "black")
+    (set-face-attribute 'region nil :extend t :background "yellow")
+    (setq whitespace-style '(face trailing tabs spaces lines newline
+				   missing-newline-at-eof empty indentation
+				   space-after-tab space-before-tab tab-mark))))
 
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- ;; '(company-tooltip-selection ((t (:background "#444759"))))
- ;; '(hl-line ((t (:extend t :background "#444759"))))
- ;; '(ivy-current-match ((t (:extend t :background "#444759"))))
- ;; '(lsp-ui-peek-highlight ((t (:inherit lsp-ui-peek-header :background "pink" :foreground "purple" :box (1 . 1)))))
- ;; '(lsp-ui-peek-list ((t (:background "black"))))
- ;; '(lsp-ui-peek-peek ((t (:background "black"))))
- ;; '(region ((t (:extend t :background "yellow"))))
-)
