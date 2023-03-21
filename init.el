@@ -9,7 +9,7 @@
 ;;; emacs 配置文件
 ;; 配置镜像
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+			 ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 (package-initialize)
 
 ;; 插件配置
@@ -34,7 +34,7 @@
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ;; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ;; if nil, italics is universally disabled
+	doom-themes-enable-italic t) ;; if nil, italics is universally disabled
   (load-theme 'doom-dracula t)
 
   ;; Enable flashing mode-line on errors
@@ -68,7 +68,7 @@
 (use-package markdown-mode
   :ensure t)
 
-;; 安装bazel 
+;; 安装bazel
 (use-package bazel
   :ensure t)
 
@@ -88,15 +88,15 @@
   (setq gts-translate-list '(("en" "zh")))
   (setq gts-default-translator
        (gts-translator
-        :picker
+	:picker
 	;; (gts-prompt-picker)
 	(gts-noprompt-picker)
-        :engines
+	:engines
 	(list
 	 ;; (gts-google-engine)
 	 (gts-google-rpc-engine)
 	 (gts-bing-engine))
-        :render
+	:render
 	;; (gts-posframe-pop-render)
 	(gts-buffer-render))))
 
@@ -110,17 +110,17 @@
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist
-               '((lambda (buffer-or-name _)
-                   (let ((buffer (get-buffer buffer-or-name)))
-                     (with-current-buffer buffer
-                       (or (equal major-mode 'vterm-mode)
-                           (string-prefix-p
+	       '((lambda (buffer-or-name _)
+		   (let ((buffer (get-buffer buffer-or-name)))
+		     (with-current-buffer buffer
+		       (or (equal major-mode 'vterm-mode)
+			   (string-prefix-p
 			    vterm-buffer-name (buffer-name buffer))))))
-                 (display-buffer-reuse-window display-buffer-at-bottom)
-                ;;(display-buffer-reuse-window display-buffer-in-direction)
-                ;;(direction . bottom)
-                (reusable-frames . visible)
-                (window-height . 0.3)))
+		 (display-buffer-reuse-window display-buffer-at-bottom)
+		;;(display-buffer-reuse-window display-buffer-in-direction)
+		;;(direction . bottom)
+		(reusable-frames . visible)
+		(window-height . 0.3)))
   :bind(("C-c t" . 'vterm-toggle)))
 
 ;; 安装ivy
@@ -339,12 +339,12 @@
   ;; (treemacs-tag-follow-mode)
   :bind
   (:map global-map
-        ("M-0"       . treemacs-select-window)
-        ("C-x t 1"   . treemacs-delete-other-windows)
-        ("C-x t t"   . treemacs)
-        ("C-x t B"   . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag))
+	("M-0"       . treemacs-select-window)
+	("C-x t 1"   . treemacs-delete-other-windows)
+	("C-x t t"   . treemacs)
+	("C-x t B"   . treemacs-bookmark)
+	("C-x t C-t" . treemacs-find-file)
+	("C-x t M-t" . treemacs-find-tag))
   (:map treemacs-mode-map
 	("/" . treemacs-advanced-helpful-hydra)))
 
@@ -397,18 +397,18 @@
   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
   ;; Enable all Cascadia Code ligatures in programming modes
   (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-                                       "\\\\" "://"))
+				       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+				       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+				       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+				       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+				       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+				       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+				       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+				       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+				       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+				       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+				       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+				       "\\\\" "://"))
   ;; Enables ligature checks globally in all buffers. You can also do it
   ;; per mode with `ligature-mode'.
   (global-ligature-mode t))
@@ -418,13 +418,13 @@
   :ensure t
   :custom
   (fanyi-providers '(;; 海词
-                     fanyi-haici-provider
-                     ;; 有道同义词词典
-                     fanyi-youdao-thesaurus-provider
-                     ;; Etymonline
-                     fanyi-etymon-provider
-                     ;; Longman
-                     fanyi-longman-provider)))
+		     fanyi-haici-provider
+		     ;; 有道同义词词典
+		     fanyi-youdao-thesaurus-provider
+		     ;; Etymonline
+		     fanyi-etymon-provider
+		     ;; Longman
+		     fanyi-longman-provider)))
 
 ;; 关闭鼠标
 (use-package disable-mouse
@@ -443,7 +443,6 @@
 ;; 编辑器配置
 (add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode)   ;; 编程模式下, 光标在括号上时高亮另一个括号
-(add-hook 'prog-mode-hook #'whitespace-mode)   ;; 编程模式下, 显示空格符号
 (add-hook 'prog-mode-hook #'hs-minor-mode)     ;; 编程模式下, 可以折叠代码块
 (add-hook 'prog-mode-hook #'linum-mode)        ;; 编程模式下, 显示行号
 (add-hook 'before-save-hook 'whitespace-cleanup) ;; 保存前删除行尾空格
@@ -477,6 +476,7 @@
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f2>") 'open-init-file)  ;; 快捷打开配置文件
 
+(global-set-key (kbd "<f4>") 'whitespace-mode)
 (global-set-key (kbd "C-S-c") 'clipboard-kill-ring-save) ;; 复制到系统剪贴板
 (global-set-key (kbd "C-S-v") 'clipboard-yank)           ;; 从系统剪贴板粘贴
 (global-set-key (kbd "C-S-x") 'clipboard-kill-region)    ;; 剪切到系统剪贴板
