@@ -506,7 +506,7 @@
     (set-face-attribute 'lsp-ui-peek-list nil :background "black")
     (set-face-attribute 'lsp-ui-peek-peek nil :background "black")
     (set-face-attribute 'region nil :extend t :background "yellow")
-    (setq whitespace-style '(face trailing tabs spaces lines newline
+    (setq whitespace-style '(face trailing tabs spaces newline
 				   missing-newline-at-eof empty indentation
 				   space-after-tab space-before-tab tab-mark))))
 
