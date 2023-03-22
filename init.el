@@ -494,7 +494,11 @@
       (set-fontset-font t 'unicode (font-spec :family "Noto Color Emoji" :size 22)) ;; 设置emoji字体
       (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Microsoft YaHei" :size 22)) ;; 设置中文字体
       (set-fringe-style 16)                      ;; 设置fringe(左右提示符号宽度)
-      (toggle-scroll-bar -1))                    ;; 图形界面时关闭滚动条
+      (toggle-scroll-bar -1)                     ;; 图形界面时关闭滚动条
+      (setq whitespace-style '(face trailing tabs spaces newline
+				    missing-newline-at-eof empty indentation
+				    space-after-tab space-before-tab space-mark
+				    tab-mark newline-mark)))
   (progn
     ;; TTY模式下的特殊设置
     (set-face-attribute 'company-tooltip-selection nil :background "#444759")
