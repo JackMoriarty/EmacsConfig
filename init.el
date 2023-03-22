@@ -93,8 +93,8 @@
 	(gts-noprompt-picker)
 	:engines
 	(list
-	 ;; (gts-google-engine)
-	 (gts-google-rpc-engine)
+	 (gts-google-engine)
+	 ;; (gts-google-rpc-engine)
 	 (gts-bing-engine))
 	:render
 	;; (gts-posframe-pop-render)
