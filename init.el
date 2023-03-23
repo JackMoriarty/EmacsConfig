@@ -466,8 +466,7 @@
 (add-hook 'prog-mode-hook #'linum-mode)        ;; 编程模式下, 显示行号
 (add-hook 'prog-mode-hook #'whitespace-mode)   ;; 编程模式下显示多余空格
 (setq whitespace-style '(face trailing tabs spaces newline missing-newline-at-eof
-			      empty indentation space-after-tab space-before-tab
-			      tab-mark))
+			      empty space-after-tab space-before-tab tab-mark))
 ;; (add-hook 'before-save-hook 'whitespace-cleanup) ;; 保存前删除行尾空格
 (column-number-mode t)                         ;; 在 Mode line 上显示列号
 (global-auto-revert-mode t) ;; 当另一程序修改了文件时, 让 Emacs 及时刷新 Buffer
