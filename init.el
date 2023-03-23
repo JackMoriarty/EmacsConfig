@@ -360,6 +360,20 @@
 (use-package magit
   :ensure t)
 
+;; blamer
+(use-package blamer
+  :ensure t
+  :defer 20
+  :custom
+  (blamer-idle-time 0.3)
+  (blamer-min-offset 70)
+  :custom-face
+  (blamer-face ((t :foreground "#7a88cf"
+                    :background nil
+                    :italic t)))
+  :config
+  (global-blamer-mode 1))
+
 ;; 高亮当前列
 (use-package vline
   :ensure t
