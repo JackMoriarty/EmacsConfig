@@ -364,8 +364,15 @@
 (use-package blamer
   :ensure t
   :custom
+  ;; (blamer-author-formatter "  ✎ %s ")
+  ;; (blamer-commit-formatter " ● %s")
+  ;; (blamer-datetime-formatter "[%s]")
+  (blamer-entire-formatter "      %s")
   (blamer-idle-time 0.3)
-  (blamer-min-offset 70)
+  (blamer-max-commit-message-length 50)
+  (blamer-min-offset 6)
+  (blamer-self-author-name "You")
+  (blamer-type 'visual)
   :custom-face
   (blamer-face ((t :foreground "#7a88cf"
                     :background nil
