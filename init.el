@@ -263,9 +263,9 @@
   :ensure t
   :config
   ;; lsp-ui-sideline
-  (setq lsp-ui-sideline-show-diagnostics t)
-  (setq lsp-ui-sideline-show-hover t)
-  (setq lsp-ui-sideline-show-code-actions t)
+  ;; (setq lsp-ui-sideline-show-diagnostics t)
+  ;; (setq lsp-ui-sideline-show-hover t)
+  ;; (setq lsp-ui-sideline-show-code-actions t)
   ;; lsp-ui-peek
   (define-key lsp-ui-mode-map
     [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
