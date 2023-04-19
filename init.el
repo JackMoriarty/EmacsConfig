@@ -521,7 +521,7 @@
   (progn
     ;; TTY模式下的特殊设置
     (set-face-attribute 'company-tooltip-selection nil :background "#444759")
-    (set-face-attribute 'hl-line nil :extend t :background "#444759")
+    ;; (set-face-attribute 'hl-line nil :extend t :background "#444759")
     (set-face-attribute 'ivy-current-match nil :extend t :background "#444759")
     (set-face-attribute 'lsp-ui-peek-highlight nil
 			:inherit 'lsp-ui-peek-header :background "pink"
