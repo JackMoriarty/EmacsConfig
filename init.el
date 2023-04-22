@@ -485,9 +485,9 @@
 (savehist-mode 1)                              ;; 打开 Buffer 历史记录保存
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
-(setq display-time-24hr-format t)              ;; 使用24小时制
-(setq display-time-day-and-date t)             ;; 显示日期
-(display-time-mode t)                          ;; 显示时间及CPU负载
+;; (setq display-time-24hr-format t)              ;; 使用24小时制
+;; (setq display-time-day-and-date t)             ;; 显示日期
+;; (display-time-mode t)                          ;; 显示时间及CPU负载
 (display-battery-mode t)                       ;; 显示电池电量
 (global-hl-line-mode t)                        ;; 高亮当前行
 (setq show-paren-style 'mixed)                 ;; 匹配括号高亮模式
