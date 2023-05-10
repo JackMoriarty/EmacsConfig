@@ -9,7 +9,7 @@
 ;;; emacs 配置文件
 ;; 配置镜像
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-			 ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
+                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 (package-initialize)
 
 ;; 插件配置
@@ -83,23 +83,23 @@
   :bind(("C-t" . 'gts-do-translate))
   :config
   (setq gts-buffer-window-config
-	'((display-buffer-reuse-window display-buffer-in-side-window)
-	  (side . bottom)))
+        '((display-buffer-reuse-window display-buffer-in-side-window)
+          (side . bottom)))
   (setq gts-buffer-follow-p t)
   (setq gts-translate-list '(("en" "zh")))
   (setq gts-default-translator
-       (gts-translator
-	:picker
-	;; (gts-prompt-picker)
-	(gts-noprompt-picker)
-	:engines
-	(list
-	 (gts-google-engine)
-	 ;; (gts-google-rpc-engine)
-	 (gts-bing-engine))
-	:render
-	;; (gts-posframe-pop-render)
-	(gts-buffer-render))))
+        (gts-translator
+         :picker
+         ;; (gts-prompt-picker)
+         (gts-noprompt-picker)
+         :engines
+         (list
+          (gts-google-engine)
+          ;; (gts-google-rpc-engine)
+          (gts-bing-engine))
+         :render
+         ;; (gts-posframe-pop-render)
+         (gts-buffer-render))))
 
 ;; 安装vterm
 (use-package vterm
@@ -111,17 +111,17 @@
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist
-	       '((lambda (buffer-or-name _)
-		   (let ((buffer (get-buffer buffer-or-name)))
-		     (with-current-buffer buffer
-		       (or (equal major-mode 'vterm-mode)
-			   (string-prefix-p
-			    vterm-buffer-name (buffer-name buffer))))))
-		 (display-buffer-reuse-window display-buffer-at-bottom)
-		;;(display-buffer-reuse-window display-buffer-in-direction)
-		;;(direction . bottom)
-		(reusable-frames . visible)
-		(window-height . 0.3)))
+               '((lambda (buffer-or-name _)
+                   (let ((buffer (get-buffer buffer-or-name)))
+                     (with-current-buffer buffer
+                       (or (equal major-mode 'vterm-mode)
+                           (string-prefix-p
+                            vterm-buffer-name (buffer-name buffer))))))
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 ;;(display-buffer-reuse-window display-buffer-in-direction)
+                 ;;(direction . bottom)
+                 (reusable-frames . visible)
+                 (window-height . 0.3)))
   :bind(("C-c t" . 'vterm-toggle)))
 
 ;; 安装ivy
@@ -205,8 +205,8 @@
   (setq dashboard-projects-backend 'projectile)          ;; 支持projectile
   (setq dashboard-startup-banner 'logo)                  ;; 也可以自定义图片
   (setq dashboard-items '((recents  . 10)                ;; 显示多少个最近文件
-			  (bookmarks . 10)               ;; 显示多少个最近书签
-			  (projects . 5)))               ;; 显示多少个最近项目
+                          (bookmarks . 10)               ;; 显示多少个最近书签
+                          (projects . 5)))               ;; 显示多少个最近项目
   (dashboard-setup-startup-hook))
 
 ;; 高亮光标下相同词语
@@ -258,7 +258,7 @@
   :config
   ;; 阻止 lsp 重新设置 company-backend 而覆盖我们 yasnippet 的设置
   (setq lsp-completion-provider :none)
-  (setq lsp-headerline-breadcrumb-enable t))
+  (setq lsp-headerline-breadcrumb-enable nil))
 
 (use-package lsp-ui
   :ensure t
@@ -296,8 +296,8 @@
   :config
   :hook
   (python-mode . (lambda ()
-		  (require 'lsp-pyright)
-		  (lsp-deferred))))
+                   (require 'lsp-pyright)
+                   (lsp-deferred))))
 
 ;; yasnippet 代码片段模板
 (use-package yasnippet
@@ -340,14 +340,14 @@
   ;; (treemacs-tag-follow-mode)
   :bind
   (:map global-map
-	("M-0"       . treemacs-select-window)
-	("C-x t 1"   . treemacs-delete-other-windows)
-	("C-x t t"   . treemacs)
-	("C-x t B"   . treemacs-bookmark)
-	("C-x t C-t" . treemacs-find-file)
-	("C-x t M-t" . treemacs-find-tag))
+        ("M-0"       . treemacs-select-window)
+        ("C-x t 1"   . treemacs-delete-other-windows)
+        ("C-x t t"   . treemacs)
+        ("C-x t B"   . treemacs-bookmark)
+        ("C-x t C-t" . treemacs-find-file)
+        ("C-x t M-t" . treemacs-find-tag))
   (:map treemacs-mode-map
-	("/" . treemacs-advanced-helpful-hydra)))
+        ("/" . treemacs-advanced-helpful-hydra)))
 
 (use-package treemacs-projectile
   :ensure t
@@ -376,8 +376,8 @@
   (blamer-type 'visual)
   :custom-face
   (blamer-face ((t :foreground "#7a88cf"
-                    :background nil
-                    :italic t)))
+                   :background nil
+                   :italic t)))
   :config
   (global-blamer-mode 1))
 
@@ -418,18 +418,18 @@
   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
   ;; Enable all Cascadia Code ligatures in programming modes
   (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
-				       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
-				       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
-				       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
-				       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
-				       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
-				       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
-				       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
-				       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
-				       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
-				       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
-				       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
-				       "\\\\" "://"))
+                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                       "\\\\" "://"))
   ;; Enables ligature checks globally in all buffers. You can also do it
   ;; per mode with `ligature-mode'.
   (global-ligature-mode t))
@@ -439,13 +439,13 @@
   :ensure t
   :custom
   (fanyi-providers '(;; 海词
-		     fanyi-haici-provider
-		     ;; 有道同义词词典
-		     fanyi-youdao-thesaurus-provider
-		     ;; Etymonline
-		     fanyi-etymon-provider
-		     ;; Longman
-		     fanyi-longman-provider)))
+                     fanyi-haici-provider
+                     ;; 有道同义词词典
+                     fanyi-youdao-thesaurus-provider
+                     ;; Etymonline
+                     fanyi-etymon-provider
+                     ;; Longman
+                     fanyi-longman-provider)))
 
 ;; 关闭鼠标
 ;; (use-package disable-mouse
@@ -474,7 +474,7 @@
 (add-hook 'prog-mode-hook #'linum-mode)        ;; 编程模式下, 显示行号
 (add-hook 'prog-mode-hook #'whitespace-mode)   ;; 编程模式下显示多余空格
 (setq whitespace-style '(face trailing tabs spaces newline missing-newline-at-eof
-			      empty space-after-tab space-before-tab tab-mark))
+                              empty space-after-tab space-before-tab tab-mark))
 ;; (add-hook 'before-save-hook 'whitespace-cleanup) ;; 保存前删除行尾空格
 (column-number-mode t)                         ;; 在 Mode line 上显示列号
 (global-auto-revert-mode t) ;; 当另一程序修改了文件时, 让 Emacs 及时刷新 Buffer
@@ -511,6 +511,14 @@
 (global-set-key (kbd "C-S-v") 'clipboard-yank)           ;; 从系统剪贴板粘贴
 (global-set-key (kbd "C-S-x") 'clipboard-kill-region)    ;; 剪切到系统剪贴板
 
+;; 显示当前路径到minibuffer, 并将完整路径复制到剪贴板
+(defun show-file-name ()
+  "Show the full path file name in the minibuffer."
+  (interactive)
+  (let ((name (buffer-file-name)))
+    (kill-new name)
+    (message name)))
+
 (if (display-graphic-p)
     (progn
     ;; GUI模式下的特殊设置
@@ -526,8 +534,8 @@
     ;; (set-face-attribute 'hl-line nil :extend t :background "#444759")
     (set-face-attribute 'ivy-current-match nil :extend t :background "#444759")
     (set-face-attribute 'lsp-ui-peek-highlight nil
-			:inherit 'lsp-ui-peek-header :background "pink"
-			:foreground "purple" :box t)
+                        :inherit 'lsp-ui-peek-header :background "pink"
+                        :foreground "purple" :box t)
     (set-face-attribute 'lsp-ui-peek-list nil :background "black")
     (set-face-attribute 'lsp-ui-peek-peek nil :background "black")
     (set-face-attribute 'region nil :extend t :background "yellow")))
