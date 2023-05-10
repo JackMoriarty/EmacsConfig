@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(blamer ws-butler company-box highlight-indent-guides dracula-theme disable-mouse ligature all-the-icons doom-themes doom-modeline fanyi super-save highlight-doxygen comment-tags go-translate docker-tramp vline yaml-mode protobuf-mode bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode pyvenv vterm undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll mwim ace-window amx counsel use-package)))
+   '(markdown-mode blamer ws-butler company-box highlight-indent-guides dracula-theme disable-mouse ligature all-the-icons doom-themes doom-modeline fanyi super-save highlight-doxygen comment-tags go-translate docker-tramp vline yaml-mode protobuf-mode bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode pyvenv vterm undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll mwim ace-window amx counsel use-package)))
 
 ;;; emacs 配置文件
 ;; 配置镜像
@@ -20,7 +20,8 @@
 
 ;; 安装icon, 运行M-x all-the-icons-install-fonts安装字体
 (use-package all-the-icons
-  :if (display-graphic-p))
+  :if (display-graphic-p)
+  :ensure t)
 
 ;; 安装dracula主题
 ;; (use-package dracula-theme
@@ -533,3 +534,9 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
