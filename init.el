@@ -468,6 +468,22 @@
   :hook
   (prog-mode . ws-butler-mode))
 
+;; eaf配置, 需要手动拉取包
+;; 1. git clone --depth=1 -b master https://github.com/emacs-eaf/emacs-application-framework.git ~/.emacs.d/site-lisp/emacs-application-framework/
+;; 2. ./install-eaf.py
+(use-package eaf
+  :if (file-exists-p "~/.emacs.d/site-lisp/emacs-application-framework")
+  :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
+  :custom
+  ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
+  (eaf-browser-continue-where-left-off t)
+  (eaf-browser-enable-adblocker t)
+  (browse-url-browser-function 'eaf-open-browser)
+  :config
+  (require 'eaf-browser)
+  (require 'eaf-jupyter)
+  (require 'eaf-markdown-previewer))
+
 ;; 编辑器配置
 (add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode)   ;; 编程模式下, 光标在括号上时高亮另一个括号
