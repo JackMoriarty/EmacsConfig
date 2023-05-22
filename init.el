@@ -557,7 +557,7 @@
                         :foreground "purple" :box t)
     (set-face-attribute 'lsp-ui-peek-list nil :background "black")
     (set-face-attribute 'lsp-ui-peek-peek nil :background "black")
-    (set-face-attribute 'region nil :extend t :background "yellow")))
+    (set-face-attribute 'region nil :extend t :background "#444759")))
 
 (provide 'init)
 ;;; init.el ends here
