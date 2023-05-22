@@ -276,7 +276,8 @@
     [remap xref-find-references] #'lsp-ui-peek-find-references)
   ;; lsp-ui-doc
   (setq lsp-ui-doc-position 'at-point)
-  (setq lsp-ui-doc-show-with-cursor t)
+  (if (display-graphic-p)
+      (setq lsp-ui-doc-show-with-cursor t))
   (setq lsp-ui-doc-show-with-mouse nil))
 
 (use-package lsp-ivy
