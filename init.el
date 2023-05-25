@@ -31,13 +31,14 @@
 ;;   (load-theme 'dracula t))
 
 ;; 安装doom主题
+;; 终端下配置环境变量`export COLORTERM=truecolor`
 (use-package doom-themes
   :ensure t
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ;; if nil, bold is universally disabled
 	doom-themes-enable-italic t) ;; if nil, italics is universally disabled
-  (load-theme 'doom-dracula t)
+  (load-theme 'doom-one t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -545,19 +546,7 @@
       (set-fontset-font t 'unicode (font-spec :family "Noto Color Emoji" :size 24)) ;; 设置emoji字体
       (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Source Han Sans CN" :weight 'normal' :size 24)) ;; 设置中文字体
       (set-fringe-style 16)                      ;; 设置fringe(左右提示符号宽度)
-      (toggle-scroll-bar -1))                    ;; 图形界面时关闭滚动条
-
-  (progn
-    ;; TTY模式下的特殊设置
-    (set-face-attribute 'company-tooltip-selection nil :background "#444759")
-    ;; (set-face-attribute 'hl-line nil :extend t :background "#444759")
-    (set-face-attribute 'ivy-current-match nil :extend t :background "#444759")
-    (set-face-attribute 'lsp-ui-peek-highlight nil
-                        :inherit 'lsp-ui-peek-header :background "pink"
-                        :foreground "purple" :box t)
-    (set-face-attribute 'lsp-ui-peek-list nil :background "black")
-    (set-face-attribute 'lsp-ui-peek-peek nil :background "black")
-    (set-face-attribute 'region nil :extend t :background "#444759")))
+      (toggle-scroll-bar -1)))                   ;; 图形界面时关闭滚动条
 
 (provide 'init)
 ;;; init.el ends here
