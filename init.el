@@ -452,10 +452,10 @@
                      fanyi-longman-provider)))
 
 ;; 关闭鼠标
-(use-package disable-mouse
-  :ensure t
-  :config
-  (global-disable-mouse-mode t))
+;; (use-package disable-mouse
+;;   :ensure t
+;;   :config
+;;   (global-disable-mouse-mode t))
 
 ;; 缩进对齐线
 (use-package highlight-indent-guides
