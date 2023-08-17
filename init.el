@@ -486,6 +486,7 @@
 ;; 跳转到前一个光标位置
 (use-package goto-last-point
   :ensure t
+  :bind (("C-c b" . goto-last-point))
   :config
   (goto-last-point-mode t))
 
