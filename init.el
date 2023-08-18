@@ -533,6 +533,8 @@
 (global-set-key (kbd "C-S-c") 'clipboard-kill-ring-save) ;; 复制到系统剪贴板
 (global-set-key (kbd "C-S-v") 'clipboard-yank)           ;; 从系统剪贴板粘贴
 (global-set-key (kbd "C-S-x") 'clipboard-kill-region)    ;; 剪切到系统剪贴板
+(put 'upcase-region 'disabled nil)                       ;; 开启选区字符转大写快捷键'C-x C-u'
+(put 'downcase-region 'disabled nil)                     ;; 开启选区字符转大写快捷键'C-x C-l'
 
 ;; 显示当前路径到minibuffer, 并将完整路径复制到剪贴板
 (defun show-file-name ()
