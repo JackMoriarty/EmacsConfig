@@ -257,7 +257,8 @@
   ;; 阻止 lsp 重新设置 company-backend 而覆盖我们 yasnippet 的设置
   (setq lsp-completion-provider :none)
   (setq lsp-headerline-breadcrumb-enable t)
-  (setq lsp-headerline-breadcrumb-icons-enable nil))
+  (setq lsp-headerline-breadcrumb-icons-enable nil)
+  (setq lsp-file-watch-threshold nil))
 
 (use-package lsp-ui
   :ensure t
