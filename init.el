@@ -466,12 +466,12 @@
   :hook
   (prog-mode . ws-butler-mode))
 
-;; eaf配置, 需要手动拉取包
-;; 1. git clone --depth=1 -b master https://github.com/emacs-eaf/emacs-application-framework.git ~/.emacs.d/site-lisp/emacs-application-framework/
-;; 2. ./install-eaf.py
+;; eaf配置, 手动执行命令安装包
+;; 1. ./install-eaf.py
 (use-package eaf
-  :if (file-exists-p "~/.emacs.d/site-lisp/emacs-application-framework")
-  :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
+  :straight (eaf :type git :host github
+                 :repo "emacs-eaf/emacs-application-framework"
+                 :files (:defaults "*.json" "*.py" "app" "core" "extension"))
   :custom
   ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
   (eaf-browser-continue-where-left-off t)
