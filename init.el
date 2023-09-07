@@ -1,39 +1,37 @@
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(goto-last-point the-matrix-theme markdown-mode blamer ws-butler company-box highlight-indent-guides dracula-theme disable-mouse ligature all-the-icons doom-themes doom-modeline fanyi super-save highlight-doxygen comment-tags go-translate vline yaml-mode protobuf-mode bazel magit yasnippet yasnippet-snippets vterm-toggle cuda-mode pyvenv vterm undo-tree lsp-treemacs treemacs-projectile treemacs lsp-pyright counsel-projectile projectile lsp-ivy lsp-ui lsp-mode flycheck company rainbow-delimiters highlight-symbol dashboard marginalia which-key good-scroll mwim ace-window amx counsel use-package)))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;;; emacs 配置文件
-;; 配置镜像
-(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-                         ("nongnu" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
-                         ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
-(package-initialize)
+(setq package-enable-at-startup nil)
 
 ;; 插件配置
 ;; 安装use-package
-(package-install 'use-package)
-(eval-when-compile
-  (require 'use-package))
+(straight-use-package 'use-package)
 
 ;; 安装icon, 运行M-x all-the-icons-install-fonts安装字体
 (use-package all-the-icons
   :if (display-graphic-p)
-  :ensure t)
+  :straight t)
 
 ;; 安装dracula主题
 ;; (use-package dracula-theme
-;;   :ensure t
+;;   :straight t
 ;;   :config
 ;;   (load-theme 'dracula t))
 
 ;; 安装doom主题
 ;; 终端下配置环境变量`export COLORTERM=truecolor`
 (use-package doom-themes
-  :ensure t
+  :straight t
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ;; if nil, bold is universally disabled
@@ -52,32 +50,32 @@
 
 ;; 安装doom modeline
 (use-package doom-modeline
-  :ensure t
+  :straight t
   :hook (after-init . doom-modeline-mode))
 
 ;; 安装cuda-mode
 (use-package cuda-mode
-  :ensure t)
+  :straight t)
 
 ;; 安装yaml-mode
 (use-package yaml-mode
-  :ensure t)
+  :straight t)
 
 ;; 安装protobuf-mode
 (use-package protobuf-mode
-  :ensure t)
+  :straight t)
 
 ;; 安装markdown-mode
 (use-package markdown-mode
-  :ensure t)
+  :straight t)
 
 ;; 安装bazel
 (use-package bazel
-  :ensure t)
+  :straight t)
 
 ;; 安装go-translate翻译插件
 (use-package go-translate
-  :ensure t
+  :straight t
   :bind(("C-t" . 'gts-do-translate))
   :config
   (setq gts-buffer-window-config
@@ -101,11 +99,11 @@
 
 ;; 安装vterm
 (use-package vterm
-  :ensure t)
+  :straight t)
 
 ;; 安装vterm-toggle
 (use-package vterm-toggle
-  :ensure t
+  :straight t
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (add-to-list 'display-buffer-alist
@@ -124,10 +122,10 @@
 
 ;; 安装ivy
 (use-package counsel
-  :ensure t)
+  :straight t)
 
 (use-package ivy
-  :ensure t
+  :straight t
   :init
   (ivy-mode 1)
   (counsel-mode 1)
@@ -152,52 +150,52 @@
 
 ;; 命令历史按频率排序
 (use-package amx
-  :ensure t
+  :straight t
   :init (amx-mode))
 
 ;; 窗口切换增强
 (use-package ace-window
-  :ensure t
+  :straight t
   :bind (("C-x o" . 'ace-window)))
 
 ;; 单行光标移动增强，行首/文字开头，行尾/注释前行尾
 (use-package mwim
-  :ensure t
+  :straight t
   :bind
   ("C-a" . mwim-beginning-of-code-or-line)
   ("C-e" . mwim-end-of-code-or-line))
 
 ;; undo-tree
 (use-package undo-tree
-  :ensure t
+  :straight t
   :init (global-undo-tree-mode))
 
 ;; 滚动平滑
 (use-package good-scroll
-  :ensure t
+  :straight t
   :init (good-scroll-mode))
 
 ;; 命令提示
 (use-package which-key
-  :ensure t
+  :straight t
   :init (which-key-mode))
 
 ;; avy
 (use-package avy
-  :ensure t
+  :straight t
   :bind
   (("M-j" . avy-goto-char-timer)))
 
 ;; minibuffer 选项增加注解
 (use-package marginalia
-  :ensure t
+  :straight t
   :init (marginalia-mode)
   :bind (:map minibuffer-local-map
 	      ("M-A" . marginalia-cycle)))
 
 ;; dashboard 更新
 (use-package dashboard
-  :ensure t
+  :straight t
   :config
   (setq dashboard-banner-logo-title "Welcome to Emacs!") ;; 个性签名
   (setq dashboard-projects-backend 'projectile)          ;; 支持projectile
@@ -209,18 +207,18 @@
 
 ;; 高亮光标下相同词语
 (use-package highlight-symbol
-  :ensure t
+  :straight t
   :init (highlight-symbol-mode)
   :bind ("<f3>" . highlight-symbol)) ;; 按下 F3 键就可高亮当前符号
 
 ;; 括号彩虹高亮
 (use-package rainbow-delimiters
-  :ensure t
+  :straight t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; company 自动补全
 (use-package company
-  :ensure t
+  :straight t
   :init (global-company-mode)
   :config
   (setq company-minimum-prefix-length 1) ;; 只需敲 1 个字母就开始进行自动补全
@@ -232,13 +230,13 @@
 
 ;; company 图标
 (use-package company-box
-  :ensure t
+  :straight t
   :if (display-graphic-p)
   :hook (company-mode . company-box-mode))
 
 ;; 语法检查
 (use-package flycheck
-  :ensure t
+  :straight t
   :config
   (setq truncate-lines nil) ;; 如果单行信息很长会自动换行
   :hook
@@ -246,7 +244,7 @@
 
 ;; 代码分析 LSP 前端
 (use-package lsp-mode
-  :ensure t
+  :straight t
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
@@ -261,7 +259,7 @@
   (setq lsp-file-watch-threshold nil))
 
 (use-package lsp-ui
-  :ensure t
+  :straight t
   :config
   ;; lsp-ui-sideline
   ;; (setq lsp-ui-sideline-show-diagnostics t)
@@ -279,7 +277,7 @@
   (setq lsp-ui-doc-show-with-mouse nil))
 
 (use-package lsp-ivy
-  :ensure t
+  :straight t
   :after (lsp-mode))
 
 ;; 代码分析 LSP C/C++后端，需要安装llvm
@@ -293,7 +291,7 @@
 
 ;; 代码分析 LSP Python后端，需要pip安装pyright
 (use-package lsp-pyright
-  :ensure t
+  :straight t
   :config
   :hook
   (python-mode . (lambda ()
@@ -302,19 +300,19 @@
 
 ;; yasnippet 代码片段模板
 (use-package yasnippet
-  :ensure t
-  :init
+  :straight t
+  :config
   (yas-reload-all)
   :hook
   (prog-mode . yas-minor-mode))
 
 (use-package yasnippet-snippets
-  :ensure t
+  :straight t
   :after yasnippet)
 
 ;; ananconda 环境管理
 (use-package pyvenv
-  :ensure t
+  :straight t
   :config
   (setenv "WORKON_HOME" "~/.conda/envs")
   (setq python-shell-interpreter "python3")
@@ -322,20 +320,20 @@
 
 ;; 项目管理
 (use-package projectile
-  :ensure t
+  :straight t
   :bind (("C-c p" . projectile-command-map))
   :config
   (setq projectile-mode-line "Projectile")
   (setq projectile-track-known-projects-automatically nil))
 
 (use-package counsel-projectile
-  :ensure t
+  :straight t
   :after (projectile)
   :init (counsel-projectile-mode))
 
 ;; 工作区管理
 (use-package treemacs
-  :ensure t
+  :straight t
   :defer t
   ;; :config
   ;; (treemacs-tag-follow-mode)
@@ -351,20 +349,20 @@
         ("/" . treemacs-advanced-helpful-hydra)))
 
 (use-package treemacs-projectile
-  :ensure t
+  :straight t
   :after (treemacs projectile))
 
 (use-package lsp-treemacs
-  :ensure t
+  :straight t
   :after (treemacs lsp))
 
 ;; git
 (use-package magit
-  :ensure t)
+  :straight t)
 
 ;; blamer
 (use-package blamer
-  :ensure t
+  :straight t
   :custom
   ;; (blamer-author-formatter "  ✎ %s ")
   ;; (blamer-commit-formatter " ● %s")
@@ -384,33 +382,33 @@
 
 ;; 高亮当前列
 (use-package vline
-  :ensure t
+  :straight t
   :config
   (set-face-attribute 'vline nil :background "dimgray")
   :bind ("<f1>" . vline-mode))
 
 ;; 高亮注释(TODO, FIXME等)
 (use-package comment-tags
-  :ensure t
+  :straight t
   :hook
   (prog-mode . comment-tags-mode))
 
 ;; 高亮doxygen
 (use-package highlight-doxygen
-  :ensure t
+  :straight t
   :hook
   (prog-mode . highlight-doxygen-mode))
 
 ;; 自动保存
 (use-package super-save
-  :ensure t
+  :straight t
   :config
   (super-save-mode +1)
   (setq super-save-auto-save-when-idle t))
 
 ;; 连体字支持
 (use-package ligature
-  :ensure t
+  :straight t
   :config
   ;; Enable the "www" ligature in every possible major mode
   (ligature-set-ligatures 't '("www"))
@@ -437,7 +435,7 @@
 
 ;; 词典
 (use-package fanyi
-  :ensure t
+  :straight t
   :custom
   (fanyi-providers '(;; 海词
                      fanyi-haici-provider
@@ -450,13 +448,13 @@
 
 ;; 关闭鼠标
 ;; (use-package disable-mouse
-;;   :ensure t
+;;   :straight t
 ;;   :config
 ;;   (global-disable-mouse-mode t))
 
 ;; 缩进对齐线
 (use-package highlight-indent-guides
-  :ensure t
+  :straight t
   :config
   (setq highlight-indent-guides-method 'character)
   :hook
@@ -464,7 +462,7 @@
 
 ;; 删除修改行的行尾空格
 (use-package ws-butler
-  :ensure t
+  :straight t
   :hook
   (prog-mode . ws-butler-mode))
 
@@ -486,7 +484,7 @@
 
 ;; 跳转到前一个光标位置
 (use-package goto-last-point
-  :ensure t
+  :straight t
   :bind (("C-c b" . goto-last-point))
   :config
   (goto-last-point-mode t))
