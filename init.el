@@ -362,13 +362,13 @@
 
 ;; blamer
 (use-package blamer
-  :straight t
+  :straight (:host github :repo "Artawower/blamer.el")
   :custom
   ;; (blamer-author-formatter "  ✎ %s ")
   ;; (blamer-commit-formatter " ● %s")
   ;; (blamer-datetime-formatter "[%s]")
   (blamer-entire-formatter "      %s")
-  (blamer-idle-time 0.3)
+  (blamer-idle-time 0.5)
   (blamer-max-commit-message-length 50)
   (blamer-min-offset 6)
   (blamer-self-author-name "You")
