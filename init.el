@@ -554,6 +554,9 @@
       (set-fringe-style 16)                      ;; 设置fringe(左右提示符号宽度)
       (toggle-scroll-bar -1)))                   ;; 图形界面时关闭滚动条
 
+;; only for macos emacs port
+;; (setq mac-option-modifier 'meta)              ;; macos port版本下option键设置为meta
+
 (provide 'init)
 ;;; init.el ends here
 (custom-set-faces
