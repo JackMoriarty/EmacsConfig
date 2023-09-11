@@ -469,6 +469,7 @@
 ;; eaf配置, 手动执行命令安装包
 ;; 1. ./install-eaf.py
 (use-package eaf
+  :if (display-graphic-p)
   :straight (eaf :type git :host github
                  :repo "emacs-eaf/emacs-application-framework"
                  :files (:defaults "*.json" "*.py" "app" "core" "extension"))
