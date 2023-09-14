@@ -103,39 +103,32 @@
          ;; (gts-posframe-pop-render)
          (gts-buffer-render))))
 
-;; ;; 安装vterm
-;; (use-package vterm
-;;   :straight t)
-
-;; ;; 安装vterm-toggle
-;; (use-package vterm-toggle
-;;   :straight t
-;;   :config
-;;   (setq vterm-toggle-fullscreen-p nil)
-;;   (add-to-list 'display-buffer-alist
-;;                '((lambda (buffer-or-name _)
-;;                    (let ((buffer (get-buffer buffer-or-name)))
-;;                      (with-current-buffer buffer
-;;                        (or (equal major-mode 'vterm-mode)
-;;                            (string-prefix-p
-;;                             vterm-buffer-name (buffer-name buffer))))))
-;;                  (display-buffer-reuse-window display-buffer-at-bottom)
-;;                  ;;(display-buffer-reuse-window display-buffer-in-direction)
-;;                  ;;(direction . bottom)
-;;                  (reusable-frames . visible)
-;;                  (window-height . 0.3)))
-;;   :bind(("C-c t" . 'vterm-toggle)))
-
-;; 安装multi-term
-(use-package multi-term
+;; 安装vterm-toggle
+(use-package vterm-toggle
   :straight t
+  :preface
+  (defun create-vterm-in-current-buffer ()
+    (interactive)
+    (vterm "*vterm*"))
   :config
-  (setq multi-term-dedicated-select-after-open-p t)
+  (setq vterm-toggle-fullscreen-p nil)
+  (setq vterm-buffer-name "*vterm-toggle*")
+  (add-to-list 'display-buffer-alist
+               '((lambda (buffer-or-name _)
+                   (let ((buffer (get-buffer buffer-or-name)))
+                     (with-current-buffer buffer
+                       (or (equal major-mode 'vterm-mode)
+                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 ;; (display-buffer-reuse-window display-buffer-in-direction)
+                 ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                 ;; (direction . bottom)
+                 ;;(dedicated . t) ;dedicated is supported in emacs27
+                 (reusable-frames . visible)
+                 (window-height . 0.3)))
   :bind
-  (("C-c t t" . 'multi-term-dedicated-toggle)
-   ("C-c t c" . 'multi-term)
-   ("C-c t p" . 'multi-term-prev)
-   ("C-c t n" . 'multi-term-next)))
+  (("C-c t n" . 'create-vterm-in-current-buffer)
+   ("C-c t t" . 'vterm-toggle)))
 
 ;; 安装ivy
 (use-package counsel
