@@ -360,6 +360,10 @@
 (use-package magit
   :straight t)
 
+(use-package treemacs-magit
+  :straight t
+  :after (treemacs magit))
+
 ;; blamer
 (use-package blamer
   :straight (:host github :repo "Artawower/blamer.el")
