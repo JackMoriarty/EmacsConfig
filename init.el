@@ -55,27 +55,33 @@
 
 ;; 安装cuda-mode
 (use-package cuda-mode
+  :defer t
   :straight t)
 
 ;; 安装yaml-mode
 (use-package yaml-mode
+  :defer t
   :straight t)
 
 ;; 安装protobuf-mode
 (use-package protobuf-mode
+  :defer t
   :straight t)
 
 ;; 安装markdown-mode
 (use-package markdown-mode
+  :defer t
   :straight t)
 
 ;; 安装bazel
 (use-package bazel
+  :defer t
   :straight t)
 
 ;; 安装go-translate翻译插件
 (use-package go-translate
   :straight t
+  :defer t
   :bind(("C-t" . 'gts-do-translate))
   :config
   (setq gts-buffer-window-config
@@ -172,6 +178,7 @@
 ;; 单行光标移动增强，行首/文字开头，行尾/注释前行尾
 (use-package mwim
   :straight t
+  :defer t
   :bind
   ("C-a" . mwim-beginning-of-code-or-line)
   ("C-e" . mwim-end-of-code-or-line))
@@ -179,6 +186,7 @@
 ;; undo-tree
 (use-package undo-tree
   :straight t
+  :defer t
   :init (global-undo-tree-mode))
 
 ;; 滚动平滑
@@ -219,17 +227,20 @@
 ;; 高亮光标下相同词语
 (use-package highlight-symbol
   :straight t
+  :defer t
   :init (highlight-symbol-mode)
   :bind ("<f3>" . highlight-symbol)) ;; 按下 F3 键就可高亮当前符号
 
 ;; 括号彩虹高亮
 (use-package rainbow-delimiters
   :straight t
+  :defer t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; company 自动补全
 (use-package company
   :straight t
+  :defer t
   :init (global-company-mode)
   :config
   (setq company-minimum-prefix-length 1) ;; 只需敲 1 个字母就开始进行自动补全
@@ -242,12 +253,14 @@
 ;; company 图标
 (use-package company-box
   :straight t
+  :defer t
   :if (display-graphic-p)
   :hook (company-mode . company-box-mode))
 
 ;; 语法检查
 (use-package flycheck
   :straight t
+  :defer t
   :config
   (setq truncate-lines nil) ;; 如果单行信息很长会自动换行
   :hook
@@ -256,6 +269,7 @@
 ;; 代码分析 LSP 前端
 (use-package lsp-mode
   :straight t
+  :defer t
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
@@ -271,6 +285,7 @@
 
 (use-package lsp-ui
   :straight t
+  :defer t
   :config
   ;; lsp-ui-sideline
   ;; (setq lsp-ui-sideline-show-diagnostics t)
@@ -289,12 +304,14 @@
 
 (use-package lsp-ivy
   :straight t
+  :defer t
   :after (lsp-mode))
 
 ;; 代码分析 LSP C/C++后端，需要安装llvm
 (use-package c++-mode
   :functions ;; suppress warnings
   c-toggle-hungry-state
+  :defer t
   :hook
   (c-mode . lsp-deferred)
   (c++-mode . lsp-deferred)
@@ -303,6 +320,7 @@
 ;; 代码分析 LSP Python后端，需要pip安装pyright
 (use-package lsp-pyright
   :straight t
+  :defer t
   :config
   :hook
   (python-mode . (lambda ()
@@ -312,6 +330,7 @@
 ;; yasnippet 代码片段模板
 (use-package yasnippet
   :straight t
+  :defer t
   :config
   (yas-reload-all)
   :hook
@@ -319,11 +338,13 @@
 
 (use-package yasnippet-snippets
   :straight t
+  :defer t
   :after yasnippet)
 
 ;; ananconda 环境管理
 (use-package pyvenv
   :straight t
+  :defer t
   :config
   (setenv "WORKON_HOME" "~/.conda/envs")
   (setq python-shell-interpreter "python3")
@@ -365,19 +386,23 @@
 
 (use-package lsp-treemacs
   :straight t
+  :defer t
   :after (treemacs lsp))
 
 ;; git
 (use-package magit
+  :defer t
   :straight t)
 
 (use-package treemacs-magit
   :straight t
+  :defer t
   :after (treemacs magit))
 
 ;; blamer
 (use-package blamer
   :straight (:host github :repo "Artawower/blamer.el")
+  :defer t
   :custom
   ;; (blamer-author-formatter "  ✎ %s ")
   ;; (blamer-commit-formatter " ● %s")
@@ -398,18 +423,21 @@
 ;; 高亮当前列
 (use-package vline
   :straight t
+  :defer t
   :config
   :bind ("<f1>" . vline-mode))
 
 ;; 高亮注释(TODO, FIXME等)
 (use-package comment-tags
   :straight t
+  :defer t
   :hook
   (prog-mode . comment-tags-mode))
 
 ;; 高亮doxygen
 (use-package highlight-doxygen
   :straight t
+  :defer t
   :hook
   (prog-mode . highlight-doxygen-mode))
 
@@ -450,6 +478,7 @@
 ;; 词典
 (use-package fanyi
   :straight t
+  :defer t
   :custom
   (fanyi-providers '(;; 海词
                      fanyi-haici-provider
@@ -469,6 +498,7 @@
 ;; 缩进对齐线
 (use-package highlight-indent-guides
   :straight t
+  :defer t
   :config
   (setq highlight-indent-guides-method 'character)
   :hook
@@ -477,6 +507,7 @@
 ;; 删除修改行的行尾空格
 (use-package ws-butler
   :straight t
+  :defer t
   :hook
   (prog-mode . ws-butler-mode))
 
@@ -484,6 +515,7 @@
 ;; 1. ./install-eaf.py
 (use-package eaf
   :if (display-graphic-p)
+  :defer t
   :straight (eaf :type git :host github
                  :repo "emacs-eaf/emacs-application-framework"
                  :files (:defaults "*.json" "*.py" "app" "core" "extension"))
@@ -500,6 +532,7 @@
 ;; 跳转到前一个光标位置
 (use-package goto-last-point
   :straight t
+  :defer t
   :bind (("C-c b" . goto-last-point))
   :config
   (goto-last-point-mode t))
