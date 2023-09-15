@@ -82,7 +82,6 @@
 (use-package go-translate
   :straight t
   :defer t
-  :bind(("C-t" . 'gts-do-translate))
   :config
   (setq gts-buffer-window-config
         '((display-buffer-reuse-window display-buffer-in-side-window)
