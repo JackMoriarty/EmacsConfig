@@ -533,7 +533,7 @@
 (add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode)   ;; 编程模式下, 光标在括号上时高亮另一个括号
 (add-hook 'prog-mode-hook #'hs-minor-mode)     ;; 编程模式下, 可以折叠代码块
-(add-hook 'prog-mode-hook #'linum-mode)        ;; 编程模式下, 显示行号
+(add-hook 'prog-mode-hook #'display-line-numbers-mode) ;; 编程模式下, 显示行号
 (add-hook 'prog-mode-hook #'whitespace-mode)   ;; 编程模式下显示多余空格
 (setq whitespace-style '(face trailing tabs spaces newline missing-newline-at-eof
                               empty space-after-tab space-before-tab tab-mark))
