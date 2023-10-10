@@ -36,7 +36,7 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ;; if nil, bold is universally disabled
 	doom-themes-enable-italic t) ;; if nil, italics is universally disabled
-  (load-theme 'doom-dracula t)
+  ;; (load-theme 'doom-solarized-light t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -47,6 +47,21 @@
       (doom-themes-treemacs-config)))
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
+
+;; 安装主题定时切换
+(use-package circadian
+  :straight t
+  :after (doom-themes)
+  :config
+  ;; 基于时间
+  ;; (setq circadian-themes '(("8:00" . doom-solarized-light)
+  ;;                          ("19:30" . doom-solarized-dark)))
+  ;; 基于经纬度日出日落
+  (setq calendar-latitude 39.9)
+  (setq calendar-longitude 116.4)
+  (setq circadian-themes '((:sunrise . doom-solarized-light)
+                           (:sunset  . doom-solarized-dark)))
+  (circadian-setup))
 
 ;; 安装doom modeline
 (use-package doom-modeline
