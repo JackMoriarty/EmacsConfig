@@ -544,6 +544,11 @@
   :config
   (goto-last-point-mode t))
 
+;; 调整窗格大小
+(use-package windresize
+  :straight t
+  :defer t)
+
 ;; 编辑器配置
 (add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode)   ;; 编程模式下, 光标在括号上时高亮另一个括号
