@@ -409,7 +409,6 @@
 ;; blamer
 (use-package blamer
   :straight (:host github :repo "Artawower/blamer.el")
-  :defer t
   :custom
   ;; (blamer-author-formatter "  ✎ %s ")
   ;; (blamer-commit-formatter " ● %s")
