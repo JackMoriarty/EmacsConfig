@@ -617,7 +617,8 @@
   )
 
 ;; only for macos emacs port
-;; (setq mac-option-modifier 'meta)              ;; macos port版本下option键设置为meta
+;; 1. 交换外接键盘command和option键位
+;; 2. 交换iterm2中的的command和option映射
 
 (provide 'init)
 ;;; init.el ends here
