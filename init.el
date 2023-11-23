@@ -197,9 +197,9 @@
   :init (global-undo-tree-mode))
 
 ;; 滚动平滑
-(use-package good-scroll
-  :straight t
-  :init (good-scroll-mode))
+;; (use-package good-scroll
+;;   :straight t
+;;   :init (good-scroll-mode))
 
 ;; 命令提示
 (use-package which-key
