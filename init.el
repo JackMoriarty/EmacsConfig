@@ -334,6 +334,11 @@
                    (require 'lsp-pyright)
                    (lsp-deferred))))
 
+;; 安装go-语言插件
+(use-package go-mode
+  :straight t
+  :defer t)
+
 ;; yasnippet 代码片段模板
 (use-package yasnippet
   :straight t
