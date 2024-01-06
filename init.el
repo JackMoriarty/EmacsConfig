@@ -285,6 +285,11 @@
             :build (:not compile))
   :init
   (global-lsp-bridge-mode)
+  :after
+  (yasnippet yasnippet-snippets)
+  :config
+  (setq acm-enable-codeium nil)
+  (setq acm-enable-tabnine nil)
   :bind
   ("M-." . lsp-bridge-find-def)
   ("M-?" . lsp-bridge-find-references))
