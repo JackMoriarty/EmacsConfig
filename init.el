@@ -244,26 +244,6 @@
   :defer t
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;; company 自动补全
-(use-package company
-  :straight t
-  :defer t
-  :init (global-company-mode)
-  :config
-  (setq company-minimum-prefix-length 1) ;; 只需敲 1 个字母就开始进行自动补全
-  (setq company-tooltip-align-annotations t)
-  (setq company-idle-delay 0.0)
-  (setq company-show-numbers t) ;; 给选项编号(按快捷键M-1, M-2等等来进行选择)
-  (setq company-selection-wrap-around t)
-  (setq company-transformers '(company-sort-by-occurrence))) ;; 根据选择的频率进行排序
-
-;; company 图标
-(use-package company-box
-  :straight t
-  :defer t
-  :if (display-graphic-p)
-  :hook (company-mode . company-box-mode))
-
 ;; 语法检查
 (use-package flycheck
   :straight t
@@ -273,66 +253,6 @@
   :hook
   (prog-mode . flycheck-mode))
 
-;; 代码分析 LSP 前端
-(use-package lsp-mode
-  :straight t
-  :defer t
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook
-  (lsp-mode . lsp-enable-which-key-integration) ;; which-key integration
-  :commands (lsp lsp-deferred)
-  :config
-  ;; 阻止 lsp 重新设置 company-backend 而覆盖我们 yasnippet 的设置
-  (setq lsp-completion-provider :none)
-  (setq lsp-headerline-breadcrumb-enable t)
-  (setq lsp-headerline-breadcrumb-icons-enable nil)
-  (setq lsp-file-watch-threshold nil))
-
-(use-package lsp-ui
-  :straight t
-  :defer t
-  :config
-  ;; lsp-ui-sideline
-  ;; (setq lsp-ui-sideline-show-diagnostics t)
-  ;; (setq lsp-ui-sideline-show-hover t)
-  ;; (setq lsp-ui-sideline-show-code-actions t)
-  ;; lsp-ui-peek
-  (define-key lsp-ui-mode-map
-    [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-  (define-key lsp-ui-mode-map
-    [remap xref-find-references] #'lsp-ui-peek-find-references)
-  ;; lsp-ui-doc
-  (setq lsp-ui-doc-position 'at-point)
-  (if (display-graphic-p)
-      (setq lsp-ui-doc-show-with-cursor t))
-  (setq lsp-ui-doc-show-with-mouse nil))
-
-(use-package lsp-ivy
-  :straight t
-  :defer t
-  :after (lsp-mode))
-
-;; 代码分析 LSP C/C++后端，需要安装llvm
-(use-package c++-mode
-  :functions ;; suppress warnings
-  c-toggle-hungry-state
-  :defer t
-  :hook
-  (c-mode . lsp-deferred)
-  (c++-mode . lsp-deferred)
-  (c++-mode . c-toggle-hungry-state))
-
-;; 代码分析 LSP Python后端，需要pip安装pyright
-(use-package lsp-pyright
-  :straight t
-  :defer t
-  :config
-  :hook
-  (python-mode . (lambda ()
-                   (require 'lsp-pyright)
-                   (lsp-deferred))))
 
 ;; 安装cuda-mode
 (use-package cuda-mode
@@ -357,6 +277,17 @@
   :straight t
   :defer t
   :after yasnippet)
+
+;; lsp-bridge 代码分析
+(use-package lsp-bridge
+  :straight '(lsp-bridge :type git :host github :repo "manateelazycat/lsp-bridge"
+            :files (:defaults "*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources")
+            :build (:not compile))
+  :init
+  (global-lsp-bridge-mode)
+  :bind
+  ("M-." . lsp-bridge-find-def)
+  ("M-?" . lsp-bridge-find-references))
 
 ;; ananconda 环境管理
 (use-package pyvenv
@@ -402,11 +333,6 @@
 (use-package treemacs-projectile
   :straight t
   :after (treemacs projectile))
-
-(use-package lsp-treemacs
-  :straight t
-  :defer t
-  :after (treemacs lsp))
 
 ;; git
 (use-package magit
