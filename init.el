@@ -518,7 +518,7 @@
   :straight t
   :defer t
   :config
-  (setq highlight-indent-guides-method 'character)
+  ;; (setq highlight-indent-guides-method 'character)
   :hook
   (prog-mode . highlight-indent-guides-mode))
 
