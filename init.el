@@ -120,10 +120,6 @@
 ;; 安装vterm-toggle
 (use-package vterm-toggle
   :straight t
-  :preface
-  (defun create-vterm-in-current-buffer ()
-    (interactive)
-    (vterm "*vterm*"))
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (setq vterm-buffer-name "*vterm-toggle*")
@@ -140,9 +136,7 @@
                  ;;(dedicated . t) ;dedicated is supported in emacs27
                  (reusable-frames . visible)
                  (window-height . 0.3)))
-  :bind
-  (("C-c t n" . 'create-vterm-in-current-buffer)
-   ("C-c t t" . 'vterm-toggle)))
+  :bind ("C-c t t" . 'vterm-toggle))
 
 ;; 安装ivy
 (use-package counsel
