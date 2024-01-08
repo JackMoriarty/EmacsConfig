@@ -294,6 +294,16 @@
   ("M-." . lsp-bridge-find-def)
   ("M-?" . lsp-bridge-find-references))
 
+;; 终端下lsp-bridge 支持, popon 和 acm-terminal
+(use-package popon
+  :if (not (display-graphic-p))
+  :straight '(popon :type git :repo "https://codeberg.org/akib/emacs-popon.git"))
+
+(use-package acm-terminal
+  :if (not (display-graphic-p))
+  :straight '(acm-terminal :host github :repo "twlz0ne/acm-terminal")
+  :after (lsp-bridge))
+
 ;; ananconda 环境管理
 (use-package pyvenv
   :straight t
