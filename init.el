@@ -244,16 +244,6 @@
   :defer t
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;; 语法检查
-(use-package flycheck
-  :straight t
-  :defer t
-  :config
-  (setq truncate-lines nil) ;; 如果单行信息很长会自动换行
-  :hook
-  (prog-mode . flycheck-mode))
-
-
 ;; 安装cuda-mode
 (use-package cuda-mode
   :defer t
@@ -290,6 +280,7 @@
   :config
   (setq acm-enable-codeium nil)
   (setq acm-enable-tabnine nil)
+  (setq lsp-bridge-enable-hover-diagnostic t)
   :bind
   ("M-." . lsp-bridge-find-def)
   ("M-?" . lsp-bridge-find-references))
