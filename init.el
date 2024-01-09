@@ -22,12 +22,6 @@
   :if (display-graphic-p)
   :straight t)
 
-;; 安装dracula主题
-;; (use-package dracula-theme
-;;   :straight t
-;;   :config
-;;   (load-theme 'dracula t))
-
 ;; 安装doom主题
 ;; 终端下配置环境变量`export COLORTERM=truecolor`
 (use-package doom-themes
@@ -190,11 +184,6 @@
   :straight t
   :defer t
   :init (global-undo-tree-mode))
-
-;; 滚动平滑
-;; (use-package good-scroll
-;;   :straight t
-;;   :init (good-scroll-mode))
 
 ;; 命令提示
 (use-package which-key
