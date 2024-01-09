@@ -460,7 +460,6 @@
 ;; 1. ./install-eaf.py
 (use-package eaf
   :if (display-graphic-p)
-  :defer t
   :straight (eaf :type git :host github
                  :repo "emacs-eaf/emacs-application-framework"
                  :files (:defaults "*.json" "*.py" "app" "core" "extension"))
