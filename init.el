@@ -430,13 +430,11 @@
   (global-disable-mouse-mode t))
 
 ;; 缩进对齐线
-(use-package highlight-indent-guides
+(use-package indent-guide
   :straight t
   :defer t
-  :config
-  ;; (setq highlight-indent-guides-method 'character)
   :hook
-  (prog-mode . highlight-indent-guides-mode))
+  (prog-mode . indent-guide-mode))
 
 ;; 删除修改行的行尾空格
 (use-package ws-butler
