@@ -293,10 +293,10 @@
 ;; ananconda 环境管理
 (use-package pyvenv
   :straight t
-  :defer t
   :config
   (setenv "WORKON_HOME" "~/.conda/envs")
   (setq python-shell-interpreter "python3")
+  ;; (pyvenv-workon "py37") ;; 设置pyvenv默认虚拟环境名
   (pyvenv-mode t))
 
 ;; 项目管理
