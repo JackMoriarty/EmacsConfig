@@ -136,6 +136,7 @@
                  ;;(dedicated . t) ;dedicated is supported in emacs27
                  (reusable-frames . visible)
                  (window-height . 0.3)))
+  (unbind-key "M-0" vterm-mode-map)
   :bind ("C-c t t" . 'vterm-toggle))
 
 ;; 安装ivy
