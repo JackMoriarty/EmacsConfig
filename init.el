@@ -276,7 +276,8 @@
 
 (use-package acm-terminal
   :if (not (display-graphic-p))
-  :straight '(acm-terminal :host github :repo "twlz0ne/acm-terminal")
+  :straight '(acm-terminal :host github :repo "twlz0ne/acm-terminal"
+                           :fork "JackMoriarty")
   :after (lsp-bridge))
 
 ;; ananconda 环境管理
