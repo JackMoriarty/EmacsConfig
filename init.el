@@ -410,18 +410,14 @@
   (global-ligature-mode t))
 
 ;; 词典
-(use-package fanyi
+(use-package bing-dict
   :straight t
   :defer t
-  :custom
-  (fanyi-providers '(;; 海词
-                     fanyi-haici-provider
-                     ;; 有道同义词词典
-                     fanyi-youdao-thesaurus-provider
-                     ;; Etymonline
-                     fanyi-etymon-provider
-                     ;; Longman
-                     fanyi-longman-provider)))
+  :config
+  (setq bing-dict-add-to-kill-ring t)
+  (setq bing-dict-show-thesaurus 'both)
+  :bind
+  ("C-c d" . bing-dict-brief))
 
 ;; 关闭鼠标
 (use-package disable-mouse
