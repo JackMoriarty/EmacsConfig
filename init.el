@@ -351,9 +351,7 @@
   :custom-face
   (blamer-face ((t :foreground "#7a88cf"
                    :background nil
-                   :italic t)))
-  :config
-  (global-blamer-mode 1))
+                   :italic t))))
 
 ;; 高亮当前列
 (use-package vline
