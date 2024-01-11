@@ -62,23 +62,18 @@
   :straight t
   :hook (after-init . doom-modeline-mode))
 
-;; 安装yaml-mode
-(use-package yaml-mode
-  :defer t
-  :straight t)
-
-;; 安装protobuf-mode
-(use-package protobuf-mode
-  :defer t
-  :straight t)
-
-;; 安装markdown-mode
-(use-package markdown-mode
+;; 安装cuda-mode
+(use-package cuda-mode
   :defer t
   :straight t)
 
 ;; 安装dockerfile-mode
 (use-package dockerfile-mode
+  :defer t
+  :straight t)
+
+;; 安装protobuf-mode
+(use-package protobuf-mode
   :defer t
   :straight t)
 
@@ -239,16 +234,6 @@
   :straight t
   :defer t
   :hook (prog-mode . rainbow-delimiters-mode))
-
-;; 安装cuda-mode
-(use-package cuda-mode
-  :defer t
-  :straight t)
-
-;; 安装go-语言插件
-(use-package go-mode
-  :straight t
-  :defer t)
 
 ;; yasnippet 代码片段模板
 (use-package yasnippet
