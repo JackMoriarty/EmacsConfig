@@ -158,6 +158,7 @@
    ("C-x C-SPC" . 'counsel-mark-ring)
    ("C-c g" . 'counsel-git)
    ("C-c j" . 'counsel-git-grep)
+   ("C-c i" . 'counsel-imenu)
    :map minibuffer-local-map
    ("C-r" . counsel-minibuffer-history)))
 
