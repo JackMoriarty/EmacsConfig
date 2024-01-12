@@ -308,7 +308,7 @@
   :straight t
   :defer t
   :config
-  (treemacs-tag-follow-mode)
+  ;; (treemacs-tag-follow-mode)
   (treemacs-follow-mode)
   (setq treemacs-project-follow-cleanup t)
   :bind
