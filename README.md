@@ -52,3 +52,8 @@ pip3 install pyright ruff-lsp
 yay -S clang
 ```
 如果需要其他语言的后端，可在[LSP-Bridge](https://github.com/manateelazycat/lsp-bridge)找到相关配置方法。
+
+9. **(可选)** 安装treesit所有语法包
+```bash
+M-x treesit-auto-install-all
+```

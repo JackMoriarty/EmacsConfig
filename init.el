@@ -82,6 +82,17 @@
   :defer t
   :straight t)
 
+;; 安装treesit
+(use-package treesit-auto
+  :straight t
+  :init
+  (setq treesit-font-lock-level 4)
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
 ;; 安装bazel
 (use-package bazel
   :defer t
