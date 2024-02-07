@@ -440,6 +440,7 @@
                  :files (:defaults "*.json" "*.py" "app" "core" "extension"))
   :custom
   ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
+  (eaf-webengine-default-zoom 2.0)
   (eaf-browser-continue-where-left-off t)
   (eaf-browser-enable-adblocker t)
   (browse-url-browser-function 'eaf-open-browser)
