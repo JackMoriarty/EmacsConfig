@@ -417,12 +417,6 @@
   :bind
   ("C-c d" . bing-dict-brief))
 
-;; 关闭鼠标
-(use-package disable-mouse
-  :straight t
-  :config
-  (global-disable-mouse-mode t))
-
 ;; 缩进对齐线
 (use-package indent-guide
   :straight t
