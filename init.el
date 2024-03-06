@@ -522,6 +522,11 @@
     (setq alpha-list (cdr (append alpha-list (list h))))))
 (global-set-key [(f8)] 'loop-alpha)
 
+;;设置窗口redo和undo
+(when (fboundp 'winner-mode)
+  (winner-mode 1)
+  (global-set-key (kbd "C-x 4 r") 'winner-redo)
+  (global-set-key (kbd "C-x 4 u") 'winner-undo))
 
 (global-set-key (kbd "C-S-c") 'clipboard-kill-ring-save) ;; 复制到系统剪贴板
 (global-set-key (kbd "C-S-v") 'clipboard-yank)           ;; 从系统剪贴板粘贴
