@@ -72,8 +72,18 @@
   :defer t
   :straight t)
 
+;; 安装go-mode
+(use-package go-mode
+  :defer t
+  :straight t)
+
 ;; 安装protobuf-mode
 (use-package protobuf-mode
+  :defer t
+  :straight t)
+
+;; 安装yaml-mode
+(use-package yaml-mode
   :defer t
   :straight t)
 
