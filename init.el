@@ -272,6 +272,10 @@
   (setq acm-enable-codeium nil)
   (setq acm-enable-tabnine nil)
   (setq lsp-bridge-enable-hover-diagnostic t)
+  (setq lsp-bridge-remote-start-automatically t)
+  (setq lsp-bridge-remote-python-command "python3")
+  (setq lsp-bridge-remote-python-file "~/.lsp-bridge/lsp_bridge.py")
+  (setq lsp-bridge-remote-log "~/.lsp-bridge/stdout.log")
   :bind
   ("M-." . lsp-bridge-find-def)
   ("M-?" . lsp-bridge-find-references))

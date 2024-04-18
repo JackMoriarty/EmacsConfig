@@ -6,7 +6,7 @@
 2. python >= 3.7
 
 ## 安装
-1. 下载本项目
+1. 在$HOME目录下下载本项目
 ```bash
 cd $HOME
 git clone https://github.com/JackMoriarty/EmacsConfig .emacs.d
@@ -57,3 +57,25 @@ yay -S clang
 ```bash
 M-x treesit-auto-install-all
 ```
+
+## 远程开发（可选, 在远端开发机进行如下配置）
+1. 在$HOME目录下获取lsp-bridge项目
+```bash
+git clone https://github.com/manateelazycat/lsp-bridge.git .lsp-bridge
+```
+
+2. 安装lsp-bridge项目依赖包
+```bash
+pip3 install epc orjson sexpdata six setuptools paramiko rapidfuzz
+```
+
+3. 安装代码分析和补全后端
+```bash
+# python语言
+pip3 install pyright ruff-lsp
+# C/C++, 需要clangd后端，ArchLinux用户使用以下命令安装
+yay -S clang
+```
+如果需要其他语言的后端，可在[LSP-Bridge](https://github.com/manateelazycat/lsp-bridge)找到相关配置方法。
+
+
