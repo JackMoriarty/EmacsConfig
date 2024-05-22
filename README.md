@@ -16,7 +16,7 @@ git clone https://github.com/JackMoriarty/EmacsConfig .emacs.d
 export COLORTERM=truecolor
 ```
 
-3. 下载并安装[FiraCode](https://github.com/tonsky/FiraCode)字体并安装，如果在终端环境下使用emacs，可将终端字体设置为FireCode。
+3. 下载并安装[FiraCode Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/releases)和[Source Han Sans CN (Region-specific subset OTF)](https://github.com/adobe-fonts/source-han-sans/tree/release)字体并安装，如果在终端环境下使用emacs，可将终端字体设置为FireCode Nerd Font Mono
 
 4. 安装插件依赖的软件包
 ```bash
@@ -30,6 +30,7 @@ pip3 install epc orjson sexpdata six setuptools paramiko rapidfuzz
 
 ```bash
 M-x all-the-icons-install-fonts
+M-x nerd-icons-install-fonts
 ```
 
 7. 配置eaf，安装需要的app, 本配置文件中默认需要以下app，可以根据需要修改。**(终端环境无需配置)**
