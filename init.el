@@ -233,11 +233,14 @@
   (dashboard-setup-startup-hook))
 
 ;; 高亮光标下相同词语
-(use-package highlight-symbol
+(use-package symbol-overlay
   :straight t
-  :defer t
-  :init (highlight-symbol-mode)
-  :bind ("<f3>" . highlight-symbol)) ;; 按下 F3 键就可高亮当前符号
+  :bind
+  ("M-i" . symbol-overlay-put)
+  ("M-n" . symbol-overlay-switch-forward)
+  ("M-p" . symbol-overlay-switch-backward)
+  ("<f7>" . symbol-overlay-mode)
+  ("<f8>" . symbol-overlay-remove-all))
 
 ;; 括号彩虹高亮
 (use-package rainbow-delimiters
@@ -533,7 +536,7 @@
        (add-to-list 'default-frame-alist (cons 'alpha (list a ab))))
      (car h) (car (cdr h)))
     (setq alpha-list (cdr (append alpha-list (list h))))))
-(global-set-key [(f8)] 'loop-alpha)
+(global-set-key (kbd "<f4>") 'loop-alpha)
 
 ;;设置窗口redo和undo
 (when (fboundp 'winner-mode)
