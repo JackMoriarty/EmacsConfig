@@ -108,24 +108,23 @@
   :straight t
   :defer t
   :config
-  (setq gts-buffer-window-config
-        '((display-buffer-reuse-window display-buffer-in-side-window)
-          (side . bottom)))
-  (setq gts-buffer-follow-p t)
-  (setq gts-translate-list '(("en" "zh")))
-  (setq gts-default-translator
-        (gts-translator
-         :picker
-         ;; (gts-prompt-picker)
-         (gts-noprompt-picker)
+  (setq gt-langs '(en zh))
+  (setq gt-taker-text 'word)
+  (setq gt-taker-pick 'paragraph)
+  (setq gt-taker-prompt nil)
+  (setq gt-default-translator
+        (gt-translator
+         :taker
+         (gt-taker :text 'buffer :pick 'paragraph)
          :engines
          (list
-          (gts-google-engine)
-          ;; (gts-google-rpc-engine)
-          (gts-bing-engine))
+          (gt-google-engine)
+          (gt-bing-engine))
          :render
-         ;; (gts-posframe-pop-render)
-         (gts-buffer-render))))
+         (gt-buffer-render
+          :buffer-name "abc"
+          ;; :window-config '((display-buffer-at-bottom))
+          :then (lambda (_) (pop-to-buffer "abc"))))))
 
 ;; 安装vterm-toggle
 (use-package vterm-toggle
