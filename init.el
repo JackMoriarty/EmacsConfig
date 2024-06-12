@@ -138,13 +138,11 @@
                      (with-current-buffer buffer
                        (or (equal major-mode 'vterm-mode)
                            (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-                 (display-buffer-reuse-window display-buffer-at-bottom)
-                 ;; (display-buffer-reuse-window display-buffer-in-direction)
-                 ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-                 ;; (direction . bottom)
-                 ;;(dedicated . t) ;dedicated is supported in emacs27
-                 (reusable-frames . visible)
-                 (window-height . 0.3)))
+                 (display-buffer-reuse-window display-buffer-same-window)
+                 ;; (display-buffer-reuse-window display-buffer-at-bottom)
+                 ;; (reusable-frames . visible)
+                 ;; (window-height . 0.3)
+                 ))
   (unbind-key "M-0" vterm-mode-map)
   :bind ("C-c t t" . 'vterm-toggle))
 
