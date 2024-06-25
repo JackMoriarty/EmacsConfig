@@ -144,7 +144,7 @@
                  ;; (window-height . 0.3)
                  ))
   (unbind-key "M-0" vterm-mode-map)
-  :bind ("C-c t t" . 'vterm-toggle))
+  :bind ("C-c t" . 'vterm-toggle))
 
 ;; 安装ivy
 (use-package counsel
