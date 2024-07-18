@@ -271,6 +271,7 @@
   :config
   (setq acm-enable-codeium nil)
   (setq acm-enable-tabnine nil)
+  (setq acm-backend-lsp-enable-auto-import nil)
   (setq lsp-bridge-enable-hover-diagnostic t)
   (setq lsp-bridge-remote-start-automatically t)
   (setq lsp-bridge-remote-python-command "python3")
