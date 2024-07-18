@@ -432,6 +432,8 @@
 (use-package indent-guide
   :straight t
   :defer t
+  :config
+  (setq indent-guide-recursive t)
   :hook
   (prog-mode . indent-guide-mode))
 
