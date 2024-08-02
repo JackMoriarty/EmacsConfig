@@ -491,7 +491,6 @@
   (browse-url-browser-function 'eaf-open-browser)
   :config
   (require 'eaf-browser)
-  (require 'eaf-jupyter)
   (require 'eaf-markdown-previewer))
 
 ;; 跳转到前一个光标位置
