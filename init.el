@@ -288,6 +288,11 @@
   (prog-mode . flycheck-mode))
 
 ;; 代码分析
+;;; for python
+(use-package lsp-pyright
+  :straight t
+  :defer t)
+
 (use-package lsp-mode
   :straight t
   :init
@@ -307,14 +312,6 @@
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   :bind
   ("C-c l s" . lsp-ivy-workspace-symbol))
-
-(use-package lsp-pyright
-  :straight t
-  :defer t
-  :hook
-  (python-mode . (lambda ()
-                   (require 'lsp-pyright)
-                   (lsp-deferred))))
 
 (use-package lsp-ui
   :straight t
