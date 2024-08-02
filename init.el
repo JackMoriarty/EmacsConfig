@@ -245,6 +245,26 @@
   :defer t
   :hook (prog-mode . rainbow-delimiters-mode))
 
+;; 补全插件
+(use-package company
+  :straight t
+  :defer t
+  :init (global-company-mode)
+  :config
+  (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全
+  (setq company-tooltip-align-annotations t)
+  (setq company-idle-delay 0.0)
+  (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择).
+  (setq company-selection-wrap-around t)
+  (setq company-transformers '(company-sort-by-occurrence))) ; 根据选择的频率进行排序
+
+(use-package company-box
+  :straight t
+  :defer t
+  :if window-system
+  :hook
+  (company-mode . company-box-mode))
+
 ;; yasnippet 代码片段模板
 (use-package yasnippet
   :straight t
@@ -259,34 +279,55 @@
   :defer t
   :after yasnippet)
 
-;; lsp-bridge 代码分析
-(use-package lsp-bridge
-  :straight '(lsp-bridge :type git :host github :repo "manateelazycat/lsp-bridge"
-            :files (:defaults "*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources")
-            :build (:not compile))
-  :init
-  (global-lsp-bridge-mode)
-  :after
-  (yasnippet yasnippet-snippets)
+;; 代码检查
+(use-package flycheck
+  :straight t
   :config
-  (setq acm-enable-codeium nil)
-  (setq acm-enable-tabnine nil)
-  (setq acm-backend-lsp-enable-auto-import nil)
-  (setq lsp-bridge-enable-hover-diagnostic t)
-  (setq lsp-bridge-remote-start-automatically t)
-  (setq lsp-bridge-remote-python-command "python3")
-  (setq lsp-bridge-remote-python-file "~/.lsp-bridge/lsp_bridge.py")
-  (setq lsp-bridge-remote-log "~/.lsp-bridge/stdout.log")
-  :bind
-  ("M-." . lsp-bridge-find-def)
-  ("M-?" . lsp-bridge-find-references))
+  (setq truncate-lines nil) ; 如果单行信息很长会自动换行
+  :hook
+  (prog-mode . flycheck-mode))
 
-;; 终端下lsp-bridge 支持
-(use-package acm-terminal
-  :if (not (display-graphic-p))
-  :straight '(acm-terminal :host github :repo "twlz0ne/acm-terminal"
-                           :fork "JackMoriarty")
-  :after (lsp-bridge))
+;; 代码分析
+(use-package lsp-mode
+  :straight t
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook
+  (prog-mode . lsp-deferred)
+  (lsp-mode . lsp-enable-which-key-integration) ; which-key integration
+  :commands
+  (lsp lsp-deferred)
+  :config
+  (setq lsp-headerline-breadcrumb-enable t)
+  ;; improve performance.
+  (setq lsp-idle-delay 0.500)
+  (setq lsp-log-io nil)
+  (setq gc-cons-threshold 100000000)
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  :bind
+  ("C-c l s" . lsp-ivy-workspace-symbol))
+
+(use-package lsp-pyright
+  :straight t
+  :defer t
+  :hook
+  (python-mode . (lambda ()
+                   (require 'lsp-pyright)
+                   (lsp-deferred))))
+
+(use-package lsp-ui
+  :straight t
+  :defer t
+  :config
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+  (setq lsp-ui-doc-position 'top))
+
+(use-package lsp-ivy
+  :straight t
+  :defer t
+  :after (lsp-mode))
 
 ;; ananconda 环境管理
 (use-package pyvenv
@@ -466,10 +507,10 @@
   :defer t)
 
 ;; breadcrumb
-(use-package breadcrumb
-  :straight t
-  :config
-  (breadcrumb-mode))
+;; (use-package breadcrumb
+;;   :straight t
+;;   :config
+;;   (breadcrumb-mode))
 
 ;; 编辑器配置
 (add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号
