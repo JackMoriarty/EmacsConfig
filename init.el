@@ -294,6 +294,7 @@
   :defer t)
 
 (use-package lsp-mode
+  :defer t
   :straight t
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
