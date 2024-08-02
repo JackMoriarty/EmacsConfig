@@ -428,15 +428,6 @@
   :bind
   ("C-c d" . bing-dict-brief))
 
-;; 缩进对齐线
-(use-package indent-guide
-  :straight t
-  :defer t
-  :config
-  (setq indent-guide-recursive t)
-  :hook
-  (prog-mode . indent-guide-mode))
-
 ;; 删除修改行的行尾空格
 (use-package ws-butler
   :straight t
