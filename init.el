@@ -305,6 +305,7 @@
   :commands
   (lsp lsp-deferred)
   :config
+  (setq lsp-warn-no-matched-clients nil)
   (setq lsp-headerline-breadcrumb-enable t)
   ;; improve performance.
   (setq lsp-idle-delay 0.500)
