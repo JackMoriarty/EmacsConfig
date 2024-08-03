@@ -307,7 +307,9 @@
   :config
   (setq lsp-warn-no-matched-clients nil)
   (setq lsp-keep-workspace-alive nil)
+  (setq lsp-enable-links nil)
   (setq lsp-headerline-breadcrumb-enable t)
+  (setq lsp-headerline-breadcrumb-enable-diagnostics nil)
   ;; improve performance.
   (setq lsp-idle-delay 0.500)
   (setq lsp-log-io nil)
