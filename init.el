@@ -431,8 +431,9 @@
 (use-package super-save
   :straight t
   :config
-  (super-save-mode +1)
-  (setq super-save-auto-save-when-idle t))
+  (setq auto-save-timeout 5)
+  (setq super-save-auto-save-when-idle t)
+  (super-save-mode t))
 
 ;; 连体字支持
 (use-package ligature
