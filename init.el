@@ -14,6 +14,9 @@
 (setq package-enable-at-startup nil)
 
 ;; 插件配置
+;; straight使用ssh 协议下载
+;; (setq straight-vc-git-default-protocol 'ssh)
+
 ;; 安装use-package
 (straight-use-package 'use-package)
 
