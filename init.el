@@ -163,6 +163,7 @@
   (setq search-default-mode #'char-fold-to-regexp)
   (setq ivy-count-format "(%d/%d) ")
   (setq ivy-use-selectable-prompt t)
+  (setq counsel-find-file-ignore-regexp "\\(?:\\`\\|[/\\]\\)\\(?:[#.]\\)")
   :bind
   (("C-s" . 'swiper)
    ("C-x b" . 'ivy-switch-buffer)
