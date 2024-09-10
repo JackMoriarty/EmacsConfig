@@ -436,7 +436,7 @@
   :straight t
   :config
   (setq super-save-silent t)
-  (setq auto-save-timeout 5) ;; 5s
+  (setq super-save-idle-duration 30) ;; 30s
   (setq super-save-auto-save-when-idle t)
   (add-to-list 'super-save-triggers 'ace-window) ;; add integration with ace-window
   (add-to-list 'super-save-hook-triggers 'find-file-hook) ;; save on find-file
