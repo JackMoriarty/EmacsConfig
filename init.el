@@ -56,8 +56,8 @@
   ;; 基于经纬度日出日落
   (setq calendar-latitude 39.9)
   (setq calendar-longitude 116.4)
-  (setq circadian-themes '((:sunrise . doom-one-light)
-                           (:sunset  . doom-one)))
+  (setq circadian-themes '((:sunrise . doom-gruvbox-light)
+                           (:sunset  . doom-gruvbox)))
   (circadian-setup))
 
 ;; 安装doom modeline
