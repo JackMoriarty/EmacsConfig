@@ -144,7 +144,7 @@
                  ;; (display-buffer-reuse-window display-buffer-same-window)
                  (display-buffer-reuse-window display-buffer-at-bottom)
                  (reusable-frames . visible)
-                 (window-height . 0.4)
+                 (window-height . 0.35)
                  ))
   (unbind-key "M-0" vterm-mode-map)
   :bind ("C-c t" . 'vterm-toggle))
