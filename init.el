@@ -516,12 +516,19 @@
   :straight t
   :defer t)
 
-;; 编辑器配置
+;; 语言相关配置
 (add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode)   ;; 编程模式下, 光标在括号上时高亮另一个括号
 (add-hook 'prog-mode-hook #'hs-minor-mode)     ;; 编程模式下, 可以折叠代码块
 (add-hook 'prog-mode-hook #'display-line-numbers-mode) ;; 编程模式下, 显示行号
 (add-hook 'prog-mode-hook #'whitespace-mode)   ;; 编程模式下显示多余空格
+(add-hook 'prog-mode-hook (lambda () (indent-tabs-mode -1))) ;; 编程模式下关闭tab缩进
+;; (add-hook 'c++-mode-hook (lambda () (electric-indent-local-mode -1))) ;; C++ 模式关闭自动缩进
+(setq-default display-fill-column-indicator-column 80)
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
+
+;; 编辑器配置
+(setq show-paren-style 'mixed)                 ;; 匹配括号高亮模式
 (setq whitespace-style '(face trailing tabs spaces newline missing-newline-at-eof
                               empty space-after-tab space-before-tab tab-mark))
 ;; (add-hook 'before-save-hook 'whitespace-cleanup) ;; 保存前删除行尾空格
@@ -533,15 +540,11 @@
 (tool-bar-mode -1)                             ;; 关闭 Tool bar
 (global-set-key (kbd "M-/") 'hippie-expand)    ;; 文本展开
 (savehist-mode 1)                              ;; 打开 Buffer 历史记录保存
-(setq-default display-fill-column-indicator-column 80)
-(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
 (setq display-time-24hr-format t)              ;; 使用24小时制
 ;; (setq display-time-day-and-date t)             ;; 显示日期
 (display-time-mode t)                          ;; 显示时间及CPU负载
 (display-battery-mode t)                       ;; 显示电池电量
 (global-hl-line-mode t)                        ;; 高亮当前行
-(setq show-paren-style 'mixed)                 ;; 匹配括号高亮模式
-(setq-default indent-tabs-mode nil)            ;; 关闭tab缩进
 (setq use-short-answers t)                     ;; 使用简短的确认方式
 (setq confirm-kill-emacs 'yes-or-no-p)         ;; emacs退出前确认
 
