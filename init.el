@@ -24,16 +24,34 @@
 (use-package nerd-icons
   :straight t)
 
-;; dired 显示图标
-(use-package nerd-icons-dired
-  :straight t
-  :hook
-  (dired-mode . nerd-icons-dired-mode))
-
 ;; ibuffer 显示图标
 (use-package nerd-icons-ibuffer
   :straight t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
+
+;; 文件管理器
+(use-package dirvish
+  :straight t
+  :init
+  (dirvish-override-dired-mode)
+  :bind ("C-x d" . dirvish)
+  :config
+  (setq dirvish-mode-line-format
+        '(:left (sort symlink) :right (omit yank index)))
+  (setq dirvish-mode-line-height 10)
+  (setq dirvish-attributes
+        '(nerd-icons file-time file-size collapse subtree-state vc-state git-msg))
+  (setq dirvish-subtree-state-style 'nerd)
+  (setq delete-by-moving-to-trash t)
+  (setq dirvish-path-separators (list
+                                 (format "  %s " (nerd-icons-codicon "nf-cod-home"))
+                                 (format "  %s " (nerd-icons-codicon "nf-cod-root_folder"))
+                                 (format " %s " (nerd-icons-faicon "nf-fa-angle_right"))))
+  (setq dired-listing-switches
+        "-l --almost-all --human-readable --group-directories-first --no-group")
+  (dirvish-peek-mode) ; Preview files in minibuffer
+  (dirvish-side-follow-mode) ; similar to `treemacs-follow-mode'
+)
 
 ;; 安装doom主题
 ;; 终端下配置环境变量`export COLORTERM=truecolor`
