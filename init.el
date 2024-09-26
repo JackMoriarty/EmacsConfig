@@ -20,10 +20,20 @@
 ;; 安装use-package
 (straight-use-package 'use-package)
 
-;; 安装icon, 运行M-x all-the-icons-install-fonts安装字体
-(use-package all-the-icons
-  :if (display-graphic-p)
+;; 安装icon, 运行M-x nerd-icons-install-fonts安装字体
+(use-package nerd-icons
   :straight t)
+
+;; dired 显示图标
+(use-package nerd-icons-dired
+  :straight t
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+
+;; ibuffer 显示图标
+(use-package nerd-icons-ibuffer
+  :straight t
+  :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 ;; 安装doom主题
 ;; 终端下配置环境变量`export COLORTERM=truecolor`
@@ -37,11 +47,6 @@
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
-  ;; for treemacs users
-  (if (display-graphic-p)
-      ;; use "doom-colors" for less minimal icon theme
-      (progn (setq doom-themes-treemacs-theme "doom-colors")
-      (doom-themes-treemacs-config)))
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
@@ -179,6 +184,13 @@
    :map minibuffer-local-map
    ("C-r" . counsel-minibuffer-history)))
 
+;; ivy 显示图标
+(use-package nerd-icons-ivy-rich
+  :straight t
+  :init
+  (nerd-icons-ivy-rich-mode 1)
+  (ivy-rich-mode 1))
+
 ;; 命令历史按频率排序
 (use-package amx
   :straight t
@@ -220,6 +232,14 @@
   :init (marginalia-mode)
   :bind (:map minibuffer-local-map
 	      ("M-A" . marginalia-cycle)))
+
+;; 补全时显示图标
+(use-package nerd-icons-completion
+  :straight t
+  :after marginalia
+  :config
+  (nerd-icons-completion-mode)
+  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 ;; dashboard 更新
 (use-package dashboard
@@ -375,6 +395,11 @@
         ("C-x t M-t" . treemacs-find-tag))
   (:map treemacs-mode-map
         ("/" . treemacs-advanced-helpful-hydra)))
+
+(use-package treemacs-nerd-icons
+  :straight t
+  :config
+  (treemacs-load-theme "nerd-icons"))
 
 (use-package treemacs-projectile
   :straight t
