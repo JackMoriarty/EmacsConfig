@@ -251,14 +251,6 @@
   :bind (:map minibuffer-local-map
 	      ("M-A" . marginalia-cycle)))
 
-;; 补全时显示图标
-(use-package nerd-icons-completion
-  :straight t
-  :after marginalia
-  :config
-  (nerd-icons-completion-mode)
-  (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
-
 ;; dashboard 更新
 (use-package dashboard
   :straight t
