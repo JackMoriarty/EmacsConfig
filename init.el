@@ -49,7 +49,7 @@
                                  (format " %s " (nerd-icons-faicon "nf-fa-angle_right"))))
   (setq dired-listing-switches
         "-l --almost-all --human-readable --group-directories-first --no-group")
-  (dirvish-peek-mode) ; Preview files in minibuffer
+  ;; (dirvish-peek-mode) ; Preview files in minibuffer
   (dirvish-side-follow-mode) ; similar to `treemacs-follow-mode'
 )
 
