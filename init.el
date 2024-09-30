@@ -637,13 +637,11 @@
 (if (display-graphic-p)
     (progn
       ;; GUI模式下的特殊设置
-      (let ((scale 1))
-      (set-face-attribute 'default nil :font (font-spec :family "FiraCode Nerd Font Mono" :weight 'normal':size (* 12 scale))) ;; 设置默认字体
-      (set-fontset-font t 'unicode (font-spec :family "Noto Color Emoji" :size (* 12 scale))) ;; 设置emoji字体
-      (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Source Han Sans CN" :weight 'normal' :size (* 12 scale))) ;; 设置中文字体
-      (set-fringe-style (* 8 scale))                      ;; 设置fringe(左右提示符号宽度)
-      (toggle-scroll-bar -1)))                            ;; 图形界面时关闭滚动条
-  )
+      (set-face-attribute 'default nil :family "FiraCode Nerd Font Mono" :weight 'normal) ;; 设置默认字体
+      (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Source Han Sans CN" :weight 'normal)) ;; 设置中文字体
+      (set-fontset-font t 'unicode (font-spec :family "Noto Color Emoji")) ;; 设置emoji字体
+      (toggle-scroll-bar -1) ;; 图形界面时关闭滚动条
+      ))
 
 ;; only for macos emacs port
 ;; 1. 交换外接键盘command和option键位
