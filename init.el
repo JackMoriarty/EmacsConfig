@@ -522,7 +522,7 @@
   :hook
   (prog-mode . ws-butler-mode))
 
-;; eaf配置, 手动执行命令安装包
+;; eaf配置, 手动执行命令安装包, 并将安装的包名填写到config处，默认安装browser和pdf-viewer
 ;; 1. ./install-eaf.py
 (use-package eaf
   :if (display-graphic-p)
@@ -531,13 +531,19 @@
                  :files (:defaults "*.json" "*.py" "app" "core" "extension"))
   :custom
   ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
-  (eaf-webengine-default-zoom 2.0)
+  ;; (eaf-webengine-default-zoom 2.0)
   (eaf-browser-continue-where-left-off t)
   (eaf-browser-enable-adblocker t)
   (browse-url-browser-function 'eaf-open-browser)
   :config
+  ;;package name
   (require 'eaf-browser)
-  (require 'eaf-markdown-previewer))
+  (require 'eaf-pdf-viewer)
+  ;;other config
+  (defalias 'browse-web #'eaf-open-browser)
+  (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
+  (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
+  (eaf-bind-key nil "M-q" eaf-browser-keybinding)) ;; unbind, see more in the Wiki
 
 ;; 跳转到前一个光标位置
 (use-package goto-last-point
