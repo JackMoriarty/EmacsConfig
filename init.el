@@ -20,6 +20,13 @@
 ;; 安装use-package
 (straight-use-package 'use-package)
 
+;; 启动性能benchmark
+(use-package benchmark-init
+  :straight t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
 ;; 安装icon, 运行M-x nerd-icons-install-fonts安装字体
 (use-package nerd-icons
   :straight t)
