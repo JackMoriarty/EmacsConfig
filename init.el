@@ -577,7 +577,7 @@
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
 
 ;; 编辑器配置
-(setq show-paren-style 'mixed)                 ;; 匹配括号高亮模式
+;; (setq show-paren-style 'mixed)                 ;; 匹配括号高亮模式
 (setq whitespace-style '(face trailing tabs spaces newline missing-newline-at-eof
                               empty space-after-tab space-before-tab tab-mark))
 ;; (add-hook 'before-save-hook 'whitespace-cleanup) ;; 保存前删除行尾空格
@@ -593,10 +593,18 @@
 ;; (setq display-time-day-and-date t)             ;; 显示日期
 (display-time-mode t)                          ;; 显示时间及CPU负载
 (display-battery-mode t)                       ;; 显示电池电量
-(global-hl-line-mode t)                        ;; 高亮当前行
 (setq use-short-answers t)                     ;; 使用简短的确认方式
 (setq confirm-kill-emacs 'yes-or-no-p)         ;; emacs退出前确认
 
+;; 在编程模式下高亮当前行，并在选中区域时关闭高亮当前行
+(add-hook 'prog-mode-hook #'hl-line-mode)
+(defun change-hl-line-mode (val)
+  (if (derived-mode-p 'prog-mode)
+      (hl-line-mode val)))
+(add-hook 'activate-mark-hook (lambda () (change-hl-line-mode -1)))
+(add-hook 'deactivate-mark-hook (lambda () (change-hl-line-mode 1)))
+
+;; 注释当前行
 (defun comment-line-improve (&optional arg)
   (interactive)
   (if (not (region-active-p))
