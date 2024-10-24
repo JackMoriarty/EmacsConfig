@@ -481,9 +481,7 @@
   (setq super-save-idle-duration 30) ;; 30s
   (setq super-save-auto-save-when-idle t)
   (setq auto-save-default nil)
-  (add-to-list 'super-save-triggers 'ace-window) ;; add integration with ace-window
-  (add-to-list 'super-save-hook-triggers 'find-file-hook) ;; save on find-file
-  (super-save-mode t))
+  (super-save-mode +1))
 
 ;; 连体字支持
 (use-package ligature
