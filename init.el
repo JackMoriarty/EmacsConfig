@@ -370,10 +370,12 @@
 (use-package lsp-ui
   :straight t
   :defer t
+  :custom
+  (lsp-ui-sideline-show-diagnostics nil)
+  (lsp-ui-doc-position 'top)
   :config
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-  (setq lsp-ui-doc-position 'top))
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
 
 (use-package lsp-ivy
   :straight t
