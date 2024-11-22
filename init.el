@@ -131,13 +131,14 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
-(use-package indent-bars
-  :straight (indent-bars :type git :host github :repo "jdtsmith/indent-bars")
+;; 缩进线
+(use-package highlight-indent-guides
+  :straight t
   :custom
-  (indent-bars-starting-column 0)
- ;;  (indent-bars-prefer-character t) ;; 在GUI Emacs不支持stipple时启用
+  (highlight-indent-guides-method 'character)
+  (highlight-indent-guides-responsive 'top)
   :hook
-  (prog-mode . indent-bars-mode))
+  (prog-mode . highlight-indent-guides-mode))
 
 ;; 安装bazel
 (use-package bazel
