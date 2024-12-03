@@ -562,6 +562,12 @@
   (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
   (eaf-bind-key nil "M-q" eaf-browser-keybinding)) ;; unbind, see more in the Wiki
 
+;; 大文件
+(use-package vlf
+  :straight t
+  :custom
+  (vlf-application 'dont-ask))
+
 ;; 跳转到前一个光标位置
 (use-package goto-last-point
   :straight t
