@@ -556,6 +556,7 @@
   (require 'eaf-browser)
   (require 'eaf-pdf-viewer)
   (require 'eaf-markdown-previewer)
+  (require 'eaf-org-previewer)
   ;;other config
   (defalias 'browse-web #'eaf-open-browser)
   (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
