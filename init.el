@@ -11,8 +11,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(setq package-enable-at-startup nil)
-
 ;; 插件配置
 ;; straight使用ssh 协议下载
 ;; (setq straight-vc-git-default-protocol 'ssh)
