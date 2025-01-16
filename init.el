@@ -268,6 +268,9 @@
 ;; dashboard 更新
 (use-package dashboard
   :straight t
+  :init
+  (setq dashboard-display-icons-p t)                     ;; display icons on both GUI and terminal
+  (setq dashboard-icon-type 'nerd-icons)                 ;; use `nerd-icons' package
   :config
   (setq dashboard-banner-logo-title "Welcome to Emacs!") ;; 个性签名
   (setq dashboard-projects-backend 'projectile)          ;; 支持projectile
@@ -275,6 +278,11 @@
   (setq dashboard-items '((recents  . 10)                ;; 显示多少个最近文件
                           (bookmarks . 10)               ;; 显示多少个最近书签
                           (projects . 5)))               ;; 显示多少个最近项目
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  (setq dashboard-center-content t)                      ;; Content is not centered by default. To center, set
+  (setq dashboard-vertically-center-content t)           ;; vertically center content
+  (setq dashboard-navigation-cycle t)                    ;; enable cycle navigation between each section
   (dashboard-setup-startup-hook))
 
 ;; 高亮光标下相同词语
