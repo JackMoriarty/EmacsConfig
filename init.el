@@ -283,6 +283,9 @@
   (setq dashboard-center-content t)                      ;; Content is not centered by default. To center, set
   (setq dashboard-vertically-center-content t)           ;; vertically center content
   (setq dashboard-navigation-cycle t)                    ;; enable cycle navigation between each section
+  (add-to-list 'dashboard-items '(agenda) t)
+  (setq dashboard-week-agenda t)
+  (setq dashboard-filter-agenda-entry 'dashboard-no-filter-agenda)
   (dashboard-setup-startup-hook))
 
 ;; 高亮光标下相同词语
