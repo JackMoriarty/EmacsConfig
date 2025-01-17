@@ -280,8 +280,8 @@
                           (projects . 5)))               ;; 显示多少个最近项目
   (setq dashboard-set-heading-icons t)
   (setq dashboard-set-file-icons t)
-  (setq dashboard-center-content t)                      ;; Content is not centered by default. To center, set
-  (setq dashboard-vertically-center-content t)           ;; vertically center content
+  (setq dashboard-center-content t)                      ;; Content is not centered by default.
+  (setq dashboard-vertically-center-content nil)         ;; vertically center content
   (setq dashboard-navigation-cycle t)                    ;; enable cycle navigation between each section
   (add-to-list 'dashboard-items '(agenda) t)
   (setq dashboard-week-agenda t)
