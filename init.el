@@ -84,8 +84,8 @@
   ;; 基于经纬度日出日落
   (setq calendar-latitude 39.9)
   (setq calendar-longitude 116.4)
-  (setq circadian-themes '((:sunrise . doom-material)
-                           (:sunset  . doom-material-dark)))
+  (setq circadian-themes '((:sunrise . doom-solarized-light)
+                           (:sunset  . doom-solarized-dark)))
   (circadian-setup))
 
 ;; 安装doom modeline
@@ -398,7 +398,7 @@
   :config
   (setenv "WORKON_HOME" "~/.conda/envs")
   (setq python-shell-interpreter "python3")
-  ;; (pyvenv-workon "py37") ;; 设置pyvenv默认虚拟环境名
+  ;; (pyvenv-workon "py312") ;; 设置pyvenv默认虚拟环境名
   (pyvenv-mode t))
 
 ;; 项目管理
@@ -548,31 +548,6 @@
   :defer t
   :hook
   (prog-mode . ws-butler-mode))
-
-;; eaf配置, 手动执行命令安装包, 并将安装的包名填写到config处，默认安装browser和pdf-viewer
-;; 1. ./install-eaf.py
-(use-package eaf
-  :if (display-graphic-p)
-  :straight (eaf :type git :host github
-                 :repo "emacs-eaf/emacs-application-framework"
-                 :files (:defaults "*.json" "*.py" "app" "core" "extension"))
-  :custom
-  ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
-  ;; (eaf-webengine-default-zoom 2.0)
-  (eaf-browser-continue-where-left-off t)
-  (eaf-browser-enable-adblocker t)
-  (browse-url-browser-function 'eaf-open-browser)
-  :config
-  ;;package name
-  (require 'eaf-browser)
-  (require 'eaf-pdf-viewer)
-  (require 'eaf-markdown-previewer)
-  (require 'eaf-org-previewer)
-  ;;other config
-  (defalias 'browse-web #'eaf-open-browser)
-  (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
-  (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
-  (eaf-bind-key nil "M-q" eaf-browser-keybinding)) ;; unbind, see more in the Wiki
 
 ;; 大文件
 (use-package vlf

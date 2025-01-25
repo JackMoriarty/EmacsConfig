@@ -3,7 +3,6 @@
 
 ## 前置要求
 1. emacs >= 28
-2. python >= 3.7
 
 ## 安装
 1. 在$HOME目录下下载本项目
@@ -23,23 +22,10 @@ export COLORTERM=truecolor
 5. 安装icon字体 **(终端环境无需配置)**
 
 ```bash
-M-x all-the-icons-install-fonts
 M-x nerd-icons-install-fonts
 ```
 
-6. 配置eaf，安装需要的app, 本配置文件中默认需要以下app，可以根据需要修改。**(终端环境无需配置)**
-
-* eaf-browser
-* eaf-jupyter
-* eaf-markdown-previewer
-
-  执行以下命令，并启用上述软件包。
-```bash
-M-x eaf-install-and-update
-```
-> 关于EAF更多的软件包以及使用用法，可以参见[EAF](https://github.com/emacs-eaf/emacs-application-framework)。
-
-7. **(可选)** 安装treesit所有语法包
+6. **(可选)** 安装treesit所有语法包
 ```bash
 M-x treesit-auto-install-all
 ```
