@@ -369,6 +369,7 @@
   (setq lsp-enable-links nil)
   (setq lsp-headerline-breadcrumb-enable t)
   (setq lsp-headerline-breadcrumb-enable-diagnostics nil)
+  (setq lsp-copilot-enabled nil)
   ;; improve performance.
   (setq lsp-idle-delay 0.500)
   (setq lsp-log-io nil)
