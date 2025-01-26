@@ -310,6 +310,8 @@
   :defer t
   :init (global-company-mode)
   :config
+  ;; unbind <TAB> completion
+  (unbind-key "TAB" company-active-map)
   (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全
   (setq company-tooltip-align-annotations t)
   (setq company-idle-delay 0.0)
@@ -330,6 +332,8 @@
   :defer t
   :config
   (yas-reload-all)
+  ;; unbind <TAB> completion
+  (unbind-key "TAB" yas-minor-mode-map)
   :hook
   (prog-mode . yas-minor-mode))
 
@@ -337,6 +341,42 @@
   :straight t
   :defer t
   :after yasnippet)
+
+;; AI 补全插件， 需要本地部署ollama及代码补全模型
+(use-package minuet
+  :straight (:host github :repo "milanglacier/minuet-ai.el")
+  :defer t
+  :bind
+  (("M-o" . #'minuet-show-suggestion) ;; use overlay for completion
+
+   :map minuet-active-mode-map
+   ;; These keymaps activate only when a minuet suggestion is displayed in the current buffer
+   ("M-p" . #'minuet-previous-suggestion) ;; invoke completion or cycle to next completion
+   ("M-n" . #'minuet-next-suggestion) ;; invoke completion or cycle to previous completion
+   ("TAB" . #'minuet-accept-suggestion) ;; accept whole completion
+   ;; Accept the first line of completion, or N lines with a numeric-prefix:
+   ;; e.g. C-u 2 M-a will accepts 2 lines of completion.
+   ("M-a" . #'minuet-accept-suggestion-line)
+   ("C-g" . #'minuet-dismiss-suggestion))
+
+  :init
+  ;; if you want to enable auto suggestion.
+  ;; Note that you can manually invoke completions without enable minuet-auto-suggestion-mode
+  (add-hook 'prog-mode-hook #'minuet-auto-suggestion-mode)
+
+  :config
+  (setq minuet-provider 'openai-fim-compatible)
+  ;; (setq minuet-request-timeout 5)
+  (setq minuet-n-completions 1) ; recommended for Local LLM for resource saving
+  ;; I recommend you start with a small context window firstly, and gradually increase it based on your local computing power.
+  (setq minuet-context-window 512)
+  (plist-put minuet-openai-fim-compatible-options :end-point "http://localhost:11434/v1/completions")
+  ;; an arbitrary non-null environment variable as placeholder
+  (plist-put minuet-openai-fim-compatible-options :name "Ollama")
+  (plist-put minuet-openai-fim-compatible-options :api-key "TERM")
+  (plist-put minuet-openai-fim-compatible-options :model "qwen2.5-coder:3b")
+  (minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 256)
+  (minuet-set-optional-options minuet-openai-fim-compatible-options :top_p 0.9))
 
 ;; 代码检查
 (use-package flycheck
