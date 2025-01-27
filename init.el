@@ -290,7 +290,7 @@
 (use-package symbol-overlay
   :straight t
   :bind
-  ("M-i" . symbol-overlay-put)
+  ("M-o" . symbol-overlay-put)
   ("M-n" . symbol-overlay-switch-forward)
   ("M-p" . symbol-overlay-switch-backward)
   ("<f7>" . symbol-overlay-mode)
@@ -345,7 +345,7 @@
   :straight (:host github :repo "milanglacier/minuet-ai.el")
   :defer t
   :bind
-  (("M-o" . #'minuet-show-suggestion) ;; use overlay for completion
+  (("M-i" . #'minuet-show-suggestion) ;; use overlay for completion
 
    :map minuet-active-mode-map
    ;; These keymaps activate only when a minuet suggestion is displayed in the current buffer
