@@ -149,16 +149,14 @@
   :defer t
   :config
   (setq gt-langs '(en zh))
-  (setq gt-taker-text 'word)
-  (setq gt-taker-pick 'paragraph)
-  (setq gt-taker-prompt nil)
   (setq gt-default-translator
         (gt-translator
          :taker
-         (gt-taker :text 'buffer :pick 'paragraph)
+         (gt-taker :text 'buffer :pick 'paragraph :prompt t)
          :engines
          (list
           (gt-google-engine)
+          (gt-youdao-dict-engine)
           (gt-bing-engine))
          :render
          (gt-buffer-render
