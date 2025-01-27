@@ -596,13 +596,6 @@
   :custom
   (vlf-application 'dont-ask))
 
-;; 跳转到前一个光标位置
-(use-package goto-last-point
-  :straight t
-  :bind (("C-c b" . goto-last-point))
-  :config
-  (goto-last-point-mode t))
-
 ;; 调整窗格大小
 (use-package windresize
   :straight t
@@ -633,7 +626,8 @@
 (global-set-key (kbd "M-/") 'hippie-expand)    ;; 文本展开
 (savehist-mode 1)                              ;; 打开 Buffer 历史记录保存
 (setq display-time-24hr-format t)              ;; 使用24小时制
-;; (setq display-time-day-and-date t)             ;; 显示日期
+(setq display-time-day-and-date t)             ;; 显示日期
+(setq display-time-default-load-average nil)   ;; 不显示负载
 (display-time-mode t)                          ;; 显示时间及CPU负载
 (display-battery-mode t)                       ;; 显示电池电量
 (setq use-short-answers t)                     ;; 使用简短的确认方式
@@ -707,9 +701,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
