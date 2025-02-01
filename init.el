@@ -164,6 +164,14 @@
           ;; :window-config '((display-buffer-at-bottom))
           :then (lambda (_) (pop-to-buffer "abc"))))))
 
+;; 安装insert-translated-name插件, 需要安装crow-translate或者ollama
+(use-package insert-translated-name
+  :straight (:host github :repo "manateelazycat/insert-translated-name" :files ("*.py" "*.el"))
+  :config
+  ;; 默认使用crow-translate后端，如果想使用本地llm时取消注释
+  ;; (setq insert-translated-name-program "ollama")
+  (setq insert-translated-name-ollama-model-name "qwen2.5:3b"))
+
 ;; 安装vterm-toggle
 (use-package vterm-toggle
   :straight t
