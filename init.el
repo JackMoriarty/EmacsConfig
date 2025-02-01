@@ -149,12 +149,16 @@
   :defer t
   :config
   (setq gt-langs '(en zh))
+  (setq gt-chatgpt-host "localhost:11434")
+  (setq gt-chatgpt-model "qwen2.5:3b")
+  (setq gt-chatgpt-temperature 0.7)
   (setq gt-default-translator
         (gt-translator
          :taker
          (gt-taker :text 'buffer :pick 'paragraph :prompt t)
          :engines
          (list
+          (gt-chatgpt-engine :key "YOUR_KEY")
           (gt-google-engine)
           (gt-youdao-dict-engine)
           (gt-bing-engine))
