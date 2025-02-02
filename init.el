@@ -379,13 +379,13 @@
   ;; (setq minuet-request-timeout 5)
   (setq minuet-n-completions 1) ; recommended for Local LLM for resource saving
   ;; I recommend you start with a small context window firstly, and gradually increase it based on your local computing power.
-  (setq minuet-context-window 512)
+  ;; (setq minuet-context-window 512)
   (plist-put minuet-openai-fim-compatible-options :end-point "http://localhost:11434/v1/completions")
   ;; an arbitrary non-null environment variable as placeholder
   (plist-put minuet-openai-fim-compatible-options :name "Ollama")
   (plist-put minuet-openai-fim-compatible-options :api-key "TERM")
   (plist-put minuet-openai-fim-compatible-options :model "qwen2.5-coder:3b")
-  (minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 256)
+  ;; (minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 256)
   (minuet-set-optional-options minuet-openai-fim-compatible-options :top_p 0.9))
 
 ;; 代码检查
