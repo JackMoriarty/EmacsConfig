@@ -320,8 +320,6 @@
   :defer t
   :init (global-company-mode)
   :config
-  ;; unbind <TAB> completion
-  (unbind-key "TAB" company-active-map)
   (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全
   (setq company-tooltip-align-annotations t)
   (setq company-idle-delay 0.0)
