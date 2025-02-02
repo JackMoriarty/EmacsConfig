@@ -419,7 +419,10 @@
   (setq lsp-enable-links nil)
   (setq lsp-headerline-breadcrumb-enable t)
   (setq lsp-headerline-breadcrumb-enable-diagnostics nil)
+  (setq lsp-enable-on-type-formatting nil)
+  ;; lsp-server configuration.
   (setq lsp-copilot-enabled nil)
+  (setq lsp-clients-clangd-args '("--header-insertion-decorators=0" "--header-insertion=never"))
   ;; improve performance.
   (setq lsp-idle-delay 0.500)
   (setq lsp-log-io nil)
