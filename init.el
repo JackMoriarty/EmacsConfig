@@ -639,15 +639,19 @@
                                       xref-find-definitions
                                       xref-find-references)))
 
+;; 代码折叠
+(use-package yafolding
+  :straight t
+  :hook
+  (prog-mode . (lambda () (yafolding-mode))))
+
 ;; 语言相关配置
 (add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode)   ;; 编程模式下, 光标在括号上时高亮另一个括号
-(add-hook 'prog-mode-hook #'hs-minor-mode)     ;; 编程模式下, 可以折叠代码块
 (add-hook 'prog-mode-hook #'display-line-numbers-mode) ;; 编程模式下, 显示行号
 (add-hook 'prog-mode-hook #'whitespace-mode)   ;; 编程模式下显示多余空格
 (add-hook 'prog-mode-hook (lambda () (indent-tabs-mode -1))) ;; 编程模式下关闭tab缩进
 (add-hook 'prog-mode-hook (lambda () (setq truncate-lines t))) ;; 编程模式下关闭折行
-;; (add-hook 'c++-mode-hook (lambda () (electric-indent-local-mode -1))) ;; C++ 模式关闭自动缩进
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
 
