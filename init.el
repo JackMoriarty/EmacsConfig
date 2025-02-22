@@ -15,6 +15,10 @@
 ;; straight使用ssh 协议下载
 ;; (setq straight-vc-git-default-protocol 'ssh)
 
+;; 用于获取指定机器上指定用户的密码
+(defun get-passwd (host user)
+  (plist-get (car (auth-source-search :host host :user user :require '(:secret))) :secret))
+
 ;; 安装use-package
 (straight-use-package 'use-package)
 
@@ -24,6 +28,9 @@
   :config
   ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
+(use-package llm
+  :straight t)
 
 ;; 安装icon, 运行M-x nerd-icons-install-fonts安装字体
 (use-package nerd-icons
@@ -148,9 +155,15 @@
   :straight t
   :defer t
   :config
+  ;; (setq gt-debug-p t)
   (setq gt-langs '(en zh))
+  ;; Ollama
   (setq gt-chatgpt-host "localhost:11434")
   (setq gt-chatgpt-model "qwen2.5:3b")
+  ;; Online
+  ;; (setq gt-chatgpt-host "https://api.groq.com/openai")
+  ;; (setq gt-chatgpt-model "qwen-2.5-32b")
+  ;; (setq gt-chatgpt-key (get-passwd "api.groq.com" "apikey"))
   (setq gt-chatgpt-temperature 0.7)
   (setq gt-default-translator
         (gt-translator
@@ -158,9 +171,8 @@
          (gt-taker :text 'buffer :pick 'paragraph :prompt t)
          :engines
          (list
-          (gt-chatgpt-engine :key "YOUR_KEY")
+          (gt-chatgpt-engine)
           (gt-google-engine)
-          (gt-youdao-dict-engine)
           (gt-bing-engine))
          :render
          (gt-buffer-render
@@ -170,11 +182,22 @@
 
 ;; 安装insert-translated-name插件, 需要安装crow-translate或者ollama
 (use-package insert-translated-name
-  :straight (:host github :repo "manateelazycat/insert-translated-name" :files ("*.py" "*.el"))
+  :straight (:host github :repo "manateelazycat/insert-translated-name"
+                   :files ("*.py" "*.el"))
+  :after (llm)
   :config
-  ;; 默认使用crow-translate后端，如果想使用本地llm时取消注释
-  ;; (setq insert-translated-name-program "ollama")
-  (setq insert-translated-name-ollama-model-name "qwen2.5:3b"))
+  ;; 默认使用crow后端，本地llm设置为ollama, 在线llm则设置为llm
+  (setq insert-translated-name-program "ollama")
+  ;; 本地模型名称
+  (setq insert-translated-name-ollama-model-name "qwen2.5:3b")
+  ;; 如果使用在线模型，则需要设置provider
+  ;; (require 'llm-openai)
+  ;; (setq insert-translated-name-llm-provider
+  ;;       (make-llm-openai-compatible
+  ;;        :url "https://api.groq.com/openai/v1"
+  ;;        :chat-model "qwen-2.5-32b"
+  ;;        :key (get-passwd "api.groq.com" "apikey")))
+  (setq llm-warn-on-nonfree nil))
 
 ;; 安装vterm-toggle
 (use-package vterm-toggle
@@ -367,24 +390,32 @@
    ("M-a" . #'minuet-accept-suggestion-line)
    ("C-g" . #'minuet-dismiss-suggestion))
 
-  :init
+  ;; :init
   ;; if you want to enable auto suggestion.
   ;; Note that you can manually invoke completions without enable minuet-auto-suggestion-mode
-  (add-hook 'prog-mode-hook #'minuet-auto-suggestion-mode)
+  ;; (add-hook 'prog-mode-hook #'minuet-auto-suggestion-mode)
 
   :config
-  (setq minuet-provider 'openai-fim-compatible)
-  ;; (setq minuet-request-timeout 5)
   (setq minuet-n-completions 1) ; recommended for Local LLM for resource saving
   ;; I recommend you start with a small context window firstly, and gradually increase it based on your local computing power.
   ;; (setq minuet-context-window 512)
+  (setq minuet-provider 'openai-fim-compatible) ;; or openai-compatible
+  ;; llm completion interface
   (plist-put minuet-openai-fim-compatible-options :end-point "http://localhost:11434/v1/completions")
-  ;; an arbitrary non-null environment variable as placeholder
   (plist-put minuet-openai-fim-compatible-options :name "Ollama")
   (plist-put minuet-openai-fim-compatible-options :api-key "TERM")
   (plist-put minuet-openai-fim-compatible-options :model "qwen2.5-coder:3b")
   ;; (minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 256)
-  (minuet-set-optional-options minuet-openai-fim-compatible-options :top_p 0.9))
+  (minuet-set-optional-options minuet-openai-fim-compatible-options :top_p 0.9)
+
+  ;; llm chat completion interface
+  ;; (plist-put minuet-openai-compatible-options :end-point "https://api.groq.com/openai/v1/chat/completions")
+  ;; (plist-put minuet-openai-compatible-options :name "Groq")
+  ;; (plist-put minuet-openai-compatible-options :api-key (get-passwd "api.groq.com" "apikey"))
+  ;; (plist-put minuet-openai-compatible-options :model "qwen-2.5-32b")
+  ;; (minuet-set-optional-options minuet-openai-compatible-options :max_tokens 256)
+  (minuet-set-optional-options minuet-openai-compatible-options :top_p 0.9)
+  (setq minuet-request-timeout 5))
 
 ;; 代码检查
 (use-package flycheck
@@ -644,6 +675,29 @@
   :straight t
   :hook
   (prog-mode . (lambda () (yafolding-mode))))
+
+;; AI Chat Client.
+(use-package gptel
+  :straight t
+  :defer t
+  :config
+  ;; provider注册
+  (setq provider_ollama
+        (gptel-make-ollama "Ollama"
+          :host "localhost:11434"
+          :stream t
+          :models '(qwen2.5:3b)))
+  ;; (setq provider_groq
+  ;;       (gptel-make-openai "Groq"
+  ;;         :host "api.groq.com"
+  ;;         :endpoint "/openai/v1/chat/completions"
+  ;;         :stream t
+  ;;         :key (get-passwd "api.groq.com" "apikey")
+  ;;         :models '(qwen-2.5-32b)))
+  (setq gptel-model 'qwen2.5:3b)
+  (setq gptel-backend provider_ollama)
+  ;; 光标自动移动到下一个prompt
+  (add-hook 'gptel-post-response-functions 'gptel-end-of-response))
 
 ;; 语言相关配置
 (add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号

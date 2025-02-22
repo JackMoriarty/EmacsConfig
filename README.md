@@ -2,7 +2,7 @@
 这是一个简易的emacs配置文件
 
 ## 前置要求
-1. emacs >= 28
+1. emacs >= 29
 
 ## 安装
 1. 在$HOME目录下下载本项目
@@ -29,3 +29,29 @@ M-x nerd-icons-install-fonts
 ```bash
 M-x treesit-auto-install-all
 ```
+
+7. **LLM 插件支持**
+如果只使用本地通过ollama部署的LLM模型，可以根据自身实际需要修改配置文件中相关LLM插件的模型。
+如果使用云厂商提供的LLM API，需要提供API key，API key 需要保存在home目录下的`.authinfo`文件中
+
+```bash
+touch $HOME/.authinfo
+```
+
+该文件的格式为
+```
+machine <host> login <user> password <api_key>
+```
+比如
+```
+machine api.groq.com login apikey password <api_key>
+```
+
+当前配置文件文件中的LLM插件有
+
+| 插件名称               | 功能                           |
+|------------------------|--------------------------------|
+| go-translate           | 翻译                           |
+| gptel                  | gpt chat                       |
+| insert-translated-name | 在插入点将输入的中文转换为英文 |
+| minuet                 | 代码补全                       |
