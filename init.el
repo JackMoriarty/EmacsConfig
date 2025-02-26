@@ -708,6 +708,13 @@
 (add-hook 'prog-mode-hook (lambda () (setq truncate-lines t))) ;; 编程模式下关闭折行
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
+(add-hook 'prog-mode-hook (lambda ()
+                            (local-set-key ":" 'self-insert-command)
+                            (local-set-key ";" 'self-insert-command)
+                            (local-set-key "(" 'self-insert-command)
+                            (local-set-key ")" 'self-insert-command)
+                            (local-set-key "{" 'self-insert-command)
+                            (local-set-key "}" 'self-insert-command)))
 
 ;; 编辑器配置
 ;; (setq show-paren-style 'mixed)                 ;; 匹配括号高亮模式
