@@ -711,6 +711,7 @@
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
 (add-hook 'prog-mode-hook (lambda ()
+                            (local-set-key "," 'self-insert-command)
                             (local-set-key ":" 'self-insert-command)
                             (local-set-key ";" 'self-insert-command)
                             (local-set-key "(" 'self-insert-command)
