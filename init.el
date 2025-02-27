@@ -801,9 +801,10 @@
       (toggle-scroll-bar -1) ;; 图形界面时关闭滚动条
       ))
 
-;; only for macos emacs port
-;; 1. 交换外接键盘command和option键位
-;; 2. 交换iterm2中的的command和option映射
+;; 在mac系统上交换command和option
+(when (and (eq system-type 'darwin) (display-graphic-p))
+  (setq mac-option-modifier nil
+        mac-command-modifier 'meta))
 
 (provide 'init)
 ;;; init.el ends here
