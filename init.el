@@ -797,7 +797,7 @@
 (if (display-graphic-p)
     (progn
       ;; GUI模式下的特殊设置
-      (set-face-attribute 'default nil :family "FiraCode Nerd Font Mono" :weight 'normal) ;; 设置默认字体
+      (set-face-attribute 'default nil :family "Fira Code" :weight 'normal) ;; 设置默认字体
       (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Source Han Sans CN" :weight 'normal)) ;; 设置中文字体
       (toggle-scroll-bar -1) ;; 图形界面时关闭滚动条
       ))
