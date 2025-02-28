@@ -62,7 +62,7 @@
   (setq dired-listing-switches
         "-l --almost-all --human-readable --group-directories-first --no-group")
   ;; (dirvish-peek-mode) ; Preview files in minibuffer
-  (dirvish-side-follow-mode) ; similar to `treemacs-follow-mode'
+  ;; (dirvish-side-follow-mode) ; similar to `treemacs-follow-mode'
 )
 
 ;; 安装doom主题
@@ -72,7 +72,7 @@
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ;; if nil, bold is universally disabled
-	doom-themes-enable-italic t) ;; if nil, italics is universally disabled
+        doom-themes-enable-italic t) ;; if nil, italics is universally disabled
   ;; (load-theme 'doom-solarized-light t)
 
   ;; Enable flashing mode-line on errors
@@ -296,7 +296,7 @@
   :straight t
   :init (marginalia-mode)
   :bind (:map minibuffer-local-map
-	      ("M-A" . marginalia-cycle)))
+              ("M-A" . marginalia-cycle)))
 
 ;; dashboard 更新
 (use-package dashboard
