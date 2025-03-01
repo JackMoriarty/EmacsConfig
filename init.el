@@ -579,16 +579,12 @@
   (prog-mode . highlight-doxygen-mode))
 
 ;; 自动保存
-(use-package super-save
-  :straight t
+(use-package auto-save
+  :straight (:host github :repo "manateelazycat/auto-save")
   :config
-  (setq super-save-silent t)
-  ;; (setq super-save-idle-duration 30) ;; 30s
-  (add-to-list 'super-save-triggers 'ace-window) ;; add integration with ace-window
-  (add-to-list 'super-save-hook-triggers 'find-file-hook) ;; save on find-file
-  (setq super-save-auto-save-when-idle t)
-  (setq auto-save-default nil)
-  (super-save-mode +1))
+  (setq auto-save-silent t)   ; quietly save
+  (setq auto-save-delete-trailing-whitespace nil)  ; automatically delete spaces at the end of the line when saving)
+  (auto-save-enable))
 
 ;; 连体字支持
 (use-package ligature
