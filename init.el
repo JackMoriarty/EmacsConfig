@@ -80,6 +80,13 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+;; 便于区分真实缓冲区
+(use-package solaire-mode
+  :straight t
+  :after (doom-themes)
+  :config
+  (solaire-global-mode +1))
+
 ;; 安装主题定时切换
 (use-package circadian
   :straight t
