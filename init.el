@@ -704,6 +704,14 @@
   ;; 光标自动移动到下一个prompt
   (add-hook 'gptel-post-response-functions 'gptel-end-of-response))
 
+;; 表格中英文对齐
+(use-package valign
+  :straight t
+  :defer t
+  :hook
+  (org-mode . valign-mode)
+  (markdown-mode . valign-mode))
+
 ;; 语言相关配置
 (add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode)   ;; 编程模式下, 光标在括号上时高亮另一个括号
