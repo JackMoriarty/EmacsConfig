@@ -686,6 +686,7 @@
   :straight t
   :defer t
   :config
+  (setq gptel-default-mode 'org-mode)
   ;; provider注册
   (setq provider_ollama
         (gptel-make-ollama "Ollama"
