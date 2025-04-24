@@ -737,11 +737,6 @@
 (tool-bar-mode -1)                             ;; 关闭 Tool bar
 (global-set-key (kbd "M-/") 'hippie-expand)    ;; 文本展开
 (savehist-mode 1)                              ;; 打开 Buffer 历史记录保存
-(setq display-time-24hr-format t)              ;; 使用24小时制
-(setq display-time-day-and-date t)             ;; 显示日期
-(setq display-time-default-load-average nil)   ;; 不显示负载
-(display-time-mode t)                          ;; 显示时间及CPU负载
-(display-battery-mode t)                       ;; 显示电池电量
 (setq use-short-answers t)                     ;; 使用简短的确认方式
 (setq confirm-kill-emacs 'yes-or-no-p)         ;; emacs退出前确认
 
