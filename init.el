@@ -218,10 +218,17 @@
                      (with-current-buffer buffer
                        (or (equal major-mode 'vterm-mode)
                            (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                 ;; 当前窗口
                  ;; (display-buffer-reuse-window display-buffer-same-window)
-                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 ;; side 窗口
+                 (display-buffer-reuse-window display-buffer-in-side-window)
+                 ;; 位于底部
+                 ;; (side . bottom)
+                 ;; (window-height . 0.35)
+                 ;; 位于右侧
+                 (side . right)
+                 (window-width . 0.35)
                  (reusable-frames . visible)
-                 (window-height . 0.35)
                  ))
   (unbind-key "M-0" vterm-mode-map)
   :bind ("C-c t" . 'vterm-toggle))
