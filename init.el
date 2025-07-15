@@ -720,6 +720,11 @@
   (org-mode . valign-mode)
   (markdown-mode . valign-mode))
 
+;; 辅助选择单词, 句子等
+(use-package expand-region
+  :straight t
+  :bind ("C-=" . er/expand-region))
+
 ;; 语言相关配置
 (add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode)   ;; 编程模式下, 光标在括号上时高亮另一个括号
