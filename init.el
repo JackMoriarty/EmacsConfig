@@ -518,7 +518,7 @@
   :config
   ;; (treemacs-tag-follow-mode)
   (treemacs-follow-mode)
-  (setq treemacs-project-follow-cleanup t)
+  ;; (setq treemacs-project-follow-cleanup t)
   :bind
   (:map global-map
         ("M-0"       . treemacs-select-window)
