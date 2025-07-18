@@ -724,7 +724,7 @@
 ;; 辅助选择单词, 句子等
 (use-package expand-region
   :straight t
-  :bind ("C-=" . er/expand-region))
+  :bind ("M-=" . er/expand-region))
 
 ;; 语言相关配置
 (add-hook 'prog-mode-hook #'electric-pair-mode);; 编程模式下自动补全括号
