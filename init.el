@@ -561,14 +561,14 @@
   (blamer-max-commit-message-length 50)
   (blamer-min-offset 6)
   (blamer-self-author-name "You")
-  (blamer-type 'visual)
-  (blamer-smart-background-p nil)
+  (blamer-type 'both)
+  ;; (blamer-smart-background-p nil)
   :custom-face
   (blamer-face ((t :foreground "#7a88cf"
                    :background nil
                    :italic t)))
-  :hook
-  (prog-mode . blamer-mode)
+  ;; :hook
+  ;; (prog-mode . blamer-mode)
   :bind
   ("<f3>" . blamer-mode))
 
