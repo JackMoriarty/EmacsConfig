@@ -133,15 +133,15 @@
   :straight t)
 
 ;; 安装treesit
-(use-package treesit-auto
-  :straight t
-  :init
-  (setq treesit-font-lock-level 4)
-  :custom
-  (treesit-auto-install 'prompt)
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all)
-  (global-treesit-auto-mode))
+;; (use-package treesit-auto
+;;   :straight t
+;;   :init
+;;   (setq treesit-font-lock-level 4)
+;;   :custom
+;;   (treesit-auto-install 'prompt)
+;;   :config
+;;   (treesit-auto-add-to-auto-mode-alist 'all)
+;;   (global-treesit-auto-mode))
 
 ;; 缩进线
 (use-package highlight-indent-guides
