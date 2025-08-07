@@ -562,7 +562,6 @@
   (blamer-min-offset 6)
   (blamer-self-author-name "You")
   (blamer-type 'visual)
-  (blamer-smart-background-p nil)
   :custom-face
   (blamer-face ((t :foreground "#7a88cf"
                    :background nil
