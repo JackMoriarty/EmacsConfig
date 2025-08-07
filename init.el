@@ -753,12 +753,12 @@
 (setq confirm-kill-emacs 'yes-or-no-p)         ;; emacs退出前确认
 
 ;; 在编程模式下高亮当前行，并在选中区域时关闭高亮当前行
-(add-hook 'prog-mode-hook #'hl-line-mode)
-(defun change-hl-line-mode (val)
-  (if (derived-mode-p 'prog-mode)
-      (hl-line-mode val)))
-(add-hook 'activate-mark-hook (lambda () (change-hl-line-mode -1)))
-(add-hook 'deactivate-mark-hook (lambda () (change-hl-line-mode 1)))
+;; (add-hook 'prog-mode-hook #'hl-line-mode)
+;; (defun change-hl-line-mode (val)
+;;   (if (derived-mode-p 'prog-mode)
+;;       (hl-line-mode val)))
+;; (add-hook 'activate-mark-hook (lambda () (change-hl-line-mode -1)))
+;; (add-hook 'deactivate-mark-hook (lambda () (change-hl-line-mode 1)))
 
 ;; 注释当前行
 (defun comment-line-improve (&optional arg)
