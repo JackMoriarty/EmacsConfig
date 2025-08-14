@@ -733,7 +733,7 @@
 (add-hook 'prog-mode-hook (lambda () (indent-tabs-mode -1))) ;; 编程模式下关闭tab缩进
 (add-hook 'prog-mode-hook (lambda () (setq truncate-lines t))) ;; 编程模式下关闭折行
 (setq-default display-fill-column-indicator-column 80)
-;; (c-set-offset 'innamespace 0)
+(add-hook 'c++-mode-hook (lambda () (c-set-offset 'innamespace 0))) ;; c++ namespace级别不缩进
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
 
 ;; 编辑器配置
