@@ -377,6 +377,13 @@
   :defer t
   :config
   (yas-reload-all)
+  ;; add company-yasnippet to company-backends
+  (defun company-mode/backend-with-yas (backend)
+    (if (and (listp backend) (member 'company-yasnippet backend))
+	backend
+      (append (if (consp backend) backend (list backend))
+              '(:with company-yasnippet))))
+  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
   ;; unbind <TAB> completion
   (unbind-key "TAB" yas-minor-mode-map)
   :hook
@@ -463,6 +470,8 @@
   (setq lsp-headerline-breadcrumb-enable t)
   (setq lsp-headerline-breadcrumb-enable-diagnostics nil)
   (setq lsp-enable-on-type-formatting nil)
+  ;; 阻止 lsp 重新设置 company-backend 而覆盖我们 yasnippet 的设置
+  (setq lsp-completion-provider :none)
   ;; lsp-server configuration.
   (setq lsp-copilot-enabled nil)
   (setq lsp-clients-clangd-args '("--header-insertion-decorators=0" "--header-insertion=never"))
