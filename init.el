@@ -288,6 +288,15 @@
   ("C-a" . mwim-beginning-of-code-or-line)
   ("C-e" . mwim-end-of-code-or-line))
 
+;; 多行光标
+(use-package multiple-cursors
+  :straight t
+  :defer t
+  :bind (("C-c m c" . mc/edit-lines)
+         ("C-c m a" . mc/mark-all-like-this)
+         ("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)))
+
 ;; undo-tree
 (use-package undo-tree
   :straight t
