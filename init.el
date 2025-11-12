@@ -770,6 +770,24 @@
 (setq use-short-answers t)                     ;; 使用简短的确认方式
 (setq confirm-kill-emacs 'yes-or-no-p)         ;; emacs退出前确认
 
+;; ansi颜色日志支持
+(define-derived-mode log-ansi-mode fundamental-mode "Log (ANSI)"
+  "Major mode for viewing ANSI-colored log files."
+  ;; 启用自动重载
+  (auto-revert-mode 1)
+  (setq auto-revert-verbose nil)
+  (setq buffer-read-only t)
+
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max)))
+
+  ;; 后续追加内容也高亮（同样需要 inhibit-read-only）
+  (add-hook 'after-change-functions
+            (lambda (beg end _len)
+              (let ((inhibit-read-only t))
+                (ansi-color-apply-on-region beg end)))
+            nil t))
+
 ;; 在编程模式下高亮当前行，并在选中区域时关闭高亮当前行
 ;; (add-hook 'prog-mode-hook #'hl-line-mode)
 ;; (defun change-hl-line-mode (val)
