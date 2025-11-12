@@ -220,14 +220,13 @@
                            (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
                  ;; 当前窗口
                  ;; (display-buffer-reuse-window display-buffer-same-window)
-                 ;; side 窗口
-                 (display-buffer-reuse-window display-buffer-in-side-window)
                  ;; 位于底部
-                 ;; (side . bottom)
-                 ;; (window-height . 0.35)
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 (window-height . 0.35)
                  ;; 位于右侧
-                 (side . right)
-                 (window-width . 0.35)
+                 ;; (display-buffer-reuse-window display-buffer-in-side-window)
+                 ;; (side . right)
+                 ;; (window-width . 0.35)
                  (reusable-frames . visible)
                  ))
   (unbind-key "M-0" vterm-mode-map)
