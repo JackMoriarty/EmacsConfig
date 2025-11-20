@@ -63,7 +63,7 @@
         "-l --almost-all --human-readable --group-directories-first --no-group")
   ;; (dirvish-peek-mode) ; Preview files in minibuffer
   ;; (dirvish-side-follow-mode) ; similar to `treemacs-follow-mode'
-)
+  )
 
 ;; 安装doom主题
 ;; 终端下配置环境变量`export COLORTERM=truecolor`
@@ -496,7 +496,7 @@
   :straight t
   :defer t
   :custom
-  (lsp-ui-sideline-show-diagnostics nil)
+  (lsp-ui-sideline-show-diagnostics t)
   (lsp-ui-doc-position 'at-point)
   (lsp-ui-doc-show-with-cursor t)
   :config
