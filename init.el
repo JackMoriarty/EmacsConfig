@@ -476,7 +476,8 @@
   (setq lsp-keep-workspace-alive nil)
   (setq lsp-enable-links nil)
   (setq lsp-headerline-breadcrumb-enable t)
-  (setq lsp-headerline-breadcrumb-enable-diagnostics nil)
+  (setq lsp-headerline-breadcrumb-enable-symbol-numbers t)
+  (setq lsp-headerline-breadcrumb-enable-diagnostics t)
   (setq lsp-enable-on-type-formatting nil)
   ;; 阻止 lsp 重新设置 company-backend 而覆盖我们 yasnippet 的设置
   (setq lsp-completion-provider :none)
