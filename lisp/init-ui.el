@@ -123,15 +123,15 @@
   ;; per mode with `ligature-mode'.
   (global-ligature-mode t))
 
-
 (column-number-mode t)                         ;; 在 Mode line 上显示列号
 
 ;; GUI 配置
 (if (display-graphic-p)
     (progn
+      (setq-default cursor-type 'bar) ;;光标类型
+      (toggle-scroll-bar -1) ;; 关闭滚动条
       (set-face-attribute 'default nil :family "Fira Code" :weight 'normal) ;; 设置默认字体
-      (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Source Han Sans CN" :weight 'normal)) ;; 设置中文字体
-      (toggle-scroll-bar -1))) ;; 关闭滚动条
+      (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Source Han Sans CN" :weight 'normal)))) ;; 设置中文字体
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

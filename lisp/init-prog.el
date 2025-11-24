@@ -168,8 +168,12 @@
 (add-hook 'prog-mode-hook (lambda () (indent-tabs-mode -1)))    ;; 关闭tab缩进
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
-;; (setq whitespace-style '(face trailing tabs spaces newline missing-newline-at-eof
-;;                               empty space-after-tab space-before-tab tab-mark))
+(setq whitespace-style '(face tabs spaces trailing lines-tail newline empty
+                              indentation indentation::tab indentation::space
+                              big-indent space-after-tab space-after-tab::tab
+                              space-after-tab::space space-before-tab
+                              space-before-tab::tab space-before-tab::space
+                              help-newline))
 ;; (setq show-paren-style 'mixed)                                  ;; 匹配括号高亮模式
 ;; (add-hook 'prog-mode-hook (lambda () (setq truncate-lines t)))  ;; 关闭折行
 
