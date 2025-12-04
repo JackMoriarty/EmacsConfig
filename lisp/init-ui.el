@@ -123,6 +123,13 @@
   ;; per mode with `ligature-mode'.
   (global-ligature-mode t))
 
+(use-package holo-layer
+  :straight (:host github :repo "manateelazycat/holo-layer"
+                   :files ("*.py" "*.el"))
+  :config
+  (setq holo-layer-enable-cursor-animation t)
+  (holo-layer-enable))
+
 (column-number-mode t)                         ;; 在 Mode line 上显示列号
 
 ;; GUI 配置
