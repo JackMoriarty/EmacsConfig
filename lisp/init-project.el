@@ -64,8 +64,8 @@
   (blamer-face ((t :foreground "#7a88cf"
                    :background nil
                    :italic t)))
-  :hook
-  (prog-mode . blamer-mode)
+  ;; :hook
+  ;; (prog-mode . blamer-mode)
   :bind
   ("<f3>" . blamer-mode))
 
