@@ -30,7 +30,12 @@ M-x nerd-icons-install-fonts
 M-x treesit-auto-install-all
 ```
 
-7. **LLM 插件支持**
+7. **(可选)** 安装holo-layer依赖包
+```bash
+pip3 install epc sexpdata six inflect PyQt6 PyQt6-Qt6 PyQt6-sip #Linux: (ArchLinux 请用 pacman 来安装 PyQt6)
+pip3 install epc sexpdata six inflect pyobjc PyQt6 PyQt6-Qt6 PyQt6-sip #MacOS, 仅支持窗口模式
+```
+8. **LLM 插件支持**
 如果只使用本地通过ollama部署的LLM模型，可以根据自身实际需要修改配置文件中相关LLM插件的模型。
 如果使用云厂商提供的LLM API，需要提供API key，API key 需要保存在home目录下的`.authinfo`文件中
 
@@ -47,7 +52,7 @@ machine <host> login <user> password <api_key>
 machine api.groq.com login apikey password <api_key>
 ```
 
-当前配置文件文件中的LLM插件有
+当前配置文件中的LLM插件有
 
 | 插件名称               | 功能                           |
 |------------------------|--------------------------------|
