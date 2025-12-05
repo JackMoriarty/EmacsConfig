@@ -130,6 +130,9 @@
   (setq holo-layer-enable-cursor-animation t)
   (holo-layer-enable))
 
+(setq inhibit-startup-message t)               ;; 关闭启动 Emacs 时的欢迎界面
+(menu-bar-mode -1)                             ;; 关闭菜单栏
+(tool-bar-mode -1)                             ;; 关闭 Tool bar
 (column-number-mode t)                         ;; 在 Mode line 上显示列号
 
 ;; GUI 配置

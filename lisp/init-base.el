@@ -18,9 +18,7 @@
 
 (global-auto-revert-mode t)                    ;; 外部修改文件时，刷新 Buffer
 (delete-selection-mode t)                      ;; 选中后输入进行文本替换
-(setq inhibit-startup-message t)               ;; 关闭启动 Emacs 时的欢迎界面
 (setq make-backup-files nil)                   ;; 关闭文件自动备份
-(tool-bar-mode -1)                             ;; 关闭 Tool bar
 (global-set-key (kbd "M-/") 'hippie-expand)    ;; 文本展开
 (savehist-mode 1)                              ;; 打开 Buffer 历史记录保存
 (setq use-short-answers t)                     ;; 使用简短的确认方式
