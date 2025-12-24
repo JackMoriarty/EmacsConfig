@@ -42,7 +42,7 @@
                  ;; (window-width . 0.35)
                  (reusable-frames . visible)))
   (unbind-key "M-0" vterm-mode-map)
-  :bind ("C-c t" . 'vterm-toggle))
+  :bind ("C-c t t" . 'vterm-toggle))
 
 (use-package counsel
   :straight t)

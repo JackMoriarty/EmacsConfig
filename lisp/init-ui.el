@@ -130,6 +130,41 @@
   (setq holo-layer-enable-cursor-animation t)
   (holo-layer-enable))
 
+(use-package centaur-tabs
+  :straight t
+  :demand
+  :init
+  (setq centaur-tabs-enable-key-bindings t)
+  :config
+  (centaur-tabs-headline-match)
+  (setq centaur-tabs-style "bar")
+  ;; 图标
+  (setq centaur-tabs-set-icons t)
+  (setq centaur-tabs-icon-type 'nerd-icons)
+  (setq centaur-tabs-plain-icons t)
+  (setq centaur-tabs-gray-out-icons 'buffer)
+  ;; (setq centaur-tabs-set-bar 'left)
+  (setq centaur-tabs-set-modified-marker t)
+  (setq centaur-tabs-cycle-scope 'tabs)
+  ;; 标签页重排序
+  (centaur-tabs-enable-buffer-reordering)
+  (setq centaur-tabs-adjust-buffer-order t)
+  (centaur-tabs-group-by-projectile-project)
+  (setq centaur-tabs-set-bar 'under)
+  ;; Note: If you're not using Spacmeacs, in order for the underline to display
+  ;; correctly you must add the following line:
+  (setq x-underline-at-descent-line t)
+  (centaur-tabs-mode t)
+  :hook
+  (dashboard-mode . centaur-tabs-local-mode)
+  (term-mode . centaur-tabs-local-mode)
+  (vterm-mode . centaur-tabs-local-mode)
+  (calendar-mode . centaur-tabs-local-mode)
+  (org-agenda-mode . centaur-tabs-local-mode)
+  :bind
+  ("C-<prior>" . centaur-tabs-backward)
+  ("C-<next>" . centaur-tabs-forward))
+
 (setq inhibit-startup-message t)               ;; 关闭启动 Emacs 时的欢迎界面
 (menu-bar-mode -1)                             ;; 关闭菜单栏
 (tool-bar-mode -1)                             ;; 关闭 Tool bar
