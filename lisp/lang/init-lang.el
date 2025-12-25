@@ -5,6 +5,7 @@
 (require 'init-go)
 (require 'init-protobuf)
 (require 'init-python)
+(require 'init-rust)
 (require 'init-yaml)
 
 (provide 'init-lang)
