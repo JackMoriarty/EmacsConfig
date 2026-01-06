@@ -35,6 +35,7 @@ M-x treesit-auto-install-all
 pip3 install epc sexpdata six inflect PyQt6 PyQt6-Qt6 PyQt6-sip #Linux: (ArchLinux 请用 pacman 来安装 PyQt6)
 pip3 install epc sexpdata six inflect pyobjc PyQt6 PyQt6-Qt6 PyQt6-sip #MacOS, 仅支持窗口模式
 ```
+
 8. **LLM 插件支持**
 如果只使用本地通过ollama部署的LLM模型，可以根据自身实际需要修改配置文件中相关LLM插件的模型。
 如果使用云厂商提供的LLM API，需要提供API key，API key 需要保存在home目录下的`.authinfo`文件中
@@ -54,9 +55,30 @@ machine api.groq.com login apikey password <api_key>
 
 当前配置文件中的LLM插件有
 
-| 插件名称               | 功能                           |
-|------------------------|--------------------------------|
-| go-translate           | 翻译                           |
-| gptel                  | gpt chat                       |
+| 插件名称                | 功能                      |
+|------------------------|--------------------------|
+| go-translate           | 翻译                      |
+| gptel                  | gpt chat                 |
 | insert-translated-name | 在插入点将输入的中文转换为英文 |
-| minuet                 | 代码补全                       |
+| minuet                 | 代码补全                   |
+
+9. **（可选）远程开发**
+通过ssh和rsync实现本地与服务器的文件同步。本机与服务器端都需要安装ssh和rsync。
+对于需要同步的项目，在项目内执行`M-x ppcompile-config-project`命令，根据指引填写配置。
+
+| 命令                  | 作用              |
+|----------------------|-------------------|
+| `M-x ppcompile-ping` | 上传项目到服务器     |
+| `M-x ppcompile-pong` | 在服务器上编译项目   |
+| `M-x ppcompile`      | 上传项目到服务器并编译|
+
+更多配置及使用参见[ppcompile](https://github.com/whatacold/ppcompile)
+
+ssh还需做如下配置
+```
+# ssh连接复用
+Host *
+    ControlMaster auto
+    ControlPath ~/.ssh/control-%r@%h:%p
+    ControlPersist 600
+```

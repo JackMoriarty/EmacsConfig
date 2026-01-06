@@ -69,5 +69,12 @@
   :bind
   ("<f3>" . blamer-mode))
 
+;; 远程开发
+(use-package ppcompile
+  :straight t
+  :config
+  (setq ppcompile-rsync-exclude-list
+        '("*.o" ".git*" ".svn*" "*.~undo-tree~" ".dir-locals.el")))
+
 (provide 'init-project)
 ;;; init-project.el ends here
