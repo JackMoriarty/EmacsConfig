@@ -302,12 +302,5 @@
 (use-package llm
   :straight t)
 
-;; 性能benchmark
-(use-package benchmark-init
-  :straight t
-  :config
-  ;; To disable collection of benchmark data after init is done.
-  (add-hook 'after-init-hook 'benchmark-init/deactivate))
-
 (provide 'init-core)
 ;;; init-core.el ends here

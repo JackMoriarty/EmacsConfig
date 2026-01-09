@@ -17,6 +17,13 @@
 ;; straight使用ssh 协议下载
 ;; (setq straight-vc-git-default-protocol 'ssh)
 
+;; 性能benchmark
+(use-package benchmark-init
+  :straight t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'init-base)
 
