@@ -70,9 +70,9 @@
 ;; 缩进线
 (use-package highlight-indent-guides
   :straight t
-  :custom
-  (highlight-indent-guides-method 'column)
-  (highlight-indent-guides-responsive 'top)
+  ;; :custom
+  ;; (highlight-indent-guides-method 'column)
+  ;; (highlight-indent-guides-responsive 'top)
   :hook
   (prog-mode . highlight-indent-guides-mode))
 
