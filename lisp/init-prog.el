@@ -164,16 +164,21 @@
 (add-hook 'prog-mode-hook #'electric-pair-mode)                 ;; 自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode)                    ;; 高亮配对括号
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)          ;; 显示行号
-(add-hook 'prog-mode-hook #'whitespace-mode)                    ;; 显示多余空格
 ;; (add-hook 'prog-mode-hook (lambda () (indent-tabs-mode -1)))    ;; 关闭tab缩进
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
-(setq whitespace-style '(face tabs spaces trailing lines-tail newline empty
-                              indentation indentation::tab indentation::space
-                              big-indent space-after-tab space-after-tab::tab
-                              space-after-tab::space space-before-tab
-                              space-before-tab::tab space-before-tab::space
-                              help-newline))
+(add-hook 'prog-mode-hook #'whitespace-mode)                    ;; 显示多余空格
+(setq whitespace-style
+      '(face
+	trailing         ; 尾随空格（最重要！）
+        tabs             ; 制表符
+        spaces           ; 所有空格（可能太吵）
+        empty            ; 空行的空格
+        lines-tail       ; 超出列限制的部分
+        space-before-tab ; 制表符前的空格
+        space-after-tab  ; 制表符后的空格
+        indentation      ; 缩进不一致
+        tab-mark))       ; 显示制表符字符
 ;; (setq show-paren-style 'mixed)                                  ;; 匹配括号高亮模式
 ;; (add-hook 'prog-mode-hook (lambda () (setq truncate-lines t)))  ;; 关闭折行
 
