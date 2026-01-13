@@ -165,7 +165,7 @@
 (add-hook 'prog-mode-hook #'show-paren-mode)                    ;; 高亮配对括号
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)          ;; 显示行号
 (add-hook 'prog-mode-hook #'whitespace-mode)                    ;; 显示多余空格
-(add-hook 'prog-mode-hook (lambda () (indent-tabs-mode -1)))    ;; 关闭tab缩进
+;; (add-hook 'prog-mode-hook (lambda () (indent-tabs-mode -1)))    ;; 关闭tab缩进
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
 (setq whitespace-style '(face tabs spaces trailing lines-tail newline empty

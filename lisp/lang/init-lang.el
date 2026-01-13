@@ -1,4 +1,5 @@
 (require 'init-bazel)
+(require 'init-c)
 (require 'init-c++)
 (require 'init-cuda)
 (require 'init-dockerfile)
