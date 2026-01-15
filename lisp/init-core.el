@@ -261,14 +261,6 @@
   :straight t
   :defer t)
 
-;; 表格中英文对齐
-(use-package valign
-  :straight t
-  :defer t
-  :hook
-  (org-mode . valign-mode)
-  (markdown-mode . valign-mode))
-
 ;; 大文件
 (use-package vlf
   :straight t
