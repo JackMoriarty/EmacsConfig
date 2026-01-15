@@ -49,6 +49,7 @@ machine api.groq.com login apikey password <api_key>
 | go-translate           | 翻译                           |
 | gptel                  | gpt chat                       |
 | insert-translated-name | 在插入点将输入的中文转换为英文 |
+| ollama-buddy           | ollama本地模型管理与chat       |
 
 7. **（可选）远程开发**
 通过ssh和rsync实现本地与服务器的文件同步。本机与服务器端都需要安装ssh和rsync。

@@ -299,5 +299,13 @@
 	       :host "api-inference.modelscope.cn"
 	       :user "apikey")))
   (setq llm-warn-on-nonfree nil))
+
+;; ollama模型chat
+(use-package ollama-buddy
+  :straight t
+  :bind
+  ("C-c o" . ollama-buddy-menu)
+  ("C-c O" . ollama-buddy-transient-menu-wrapper))
+
 (provide 'init-core)
 ;;; init-core.el ends here
