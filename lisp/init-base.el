@@ -1,7 +1,3 @@
-;; 用于获取指定机器上指定用户的密码
-(defun get-passwd (host user)
-  (plist-get (car (auth-source-search :host host :user user :require '(:secret))) :secret))
-
 ;; 快捷打开配置文件
 (defun open-init-file()
   (interactive)

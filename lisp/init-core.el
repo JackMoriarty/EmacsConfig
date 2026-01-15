@@ -140,56 +140,6 @@
   ("<f7>" . symbol-overlay-mode)
   ("<f8>" . symbol-overlay-remove-all))
 
-;; 句子翻译
-(use-package go-translate
-  :straight t
-  :defer t
-  :config
-  ;; (setq gt-debug-p t)
-  (setq gt-langs '(en zh))
-  ;; LLM
-  (setq gt-chatgpt-temperature 0.7)
-  ;; Ollama
-  (setq gt-chatgpt-host "localhost:11434")
-  (setq gt-chatgpt-model "qwen2.5:3b")
-  ;; Online
-  ;; (setq gt-chatgpt-host "https://api.groq.com/openai")
-  ;; (setq gt-chatgpt-model "qwen-2.5-32b")
-  ;; (setq gt-chatgpt-key (get-passwd "api.groq.com" "apikey"))
-  (setq gt-default-translator
-        (gt-translator
-         :taker
-         (gt-taker :text 'buffer :pick 'paragraph :prompt t)
-         :engines
-         (list
-          (gt-chatgpt-engine)
-          (gt-google-engine)
-          (gt-bing-engine))
-         :render
-         (gt-buffer-render
-          :buffer-name "abc"
-          ;; :window-config '((display-buffer-at-bottom))
-          :then (lambda (_) (pop-to-buffer "abc"))))))
-
-;; 变量名翻译插件, 需要安装crow-translate或者ollama
-(use-package insert-translated-name
-  :straight (:host github :repo "manateelazycat/insert-translated-name"
-                   :files ("*.py" "*.el"))
-  :after (llm)
-  :config
-  ;; 默认使用crow后端，本地llm设置为ollama, 在线llm则设置为llm
-  (setq insert-translated-name-program "ollama")
-  ;; 本地模型名称
-  (setq insert-translated-name-ollama-model-name "qwen2.5:3b")
-  ;; 如果使用在线模型，则需要设置provider
-  ;; (require 'llm-openai)
-  ;; (setq insert-translated-name-llm-provider
-  ;;       (make-llm-openai-compatible
-  ;;        :url "https://api.groq.com/openai/v1"
-  ;;        :chat-model "qwen-2.5-32b"
-  ;;        :key (get-passwd "api.groq.com" "apikey")))
-  (setq llm-warn-on-nonfree nil))
-
 ;; 词典
 (use-package bing-dict
   :straight t
@@ -267,6 +217,9 @@
   :custom
   (vlf-application 'dont-ask))
 
+(use-package llm
+  :straight t)
+
 ;; AI Chat Client.
 (use-package gptel
   :straight t
@@ -278,21 +231,73 @@
         (gptel-make-ollama "Ollama"
           :host "localhost:11434"
           :stream t
-          :models '(qwen2.5:3b)))
-  ;; (setq provider_groq
-  ;;       (gptel-make-openai "Groq"
-  ;;         :host "api.groq.com"
-  ;;         :endpoint "/openai/v1/chat/completions"
-  ;;         :stream t
-  ;;         :key (get-passwd "api.groq.com" "apikey")
-  ;;         :models '(qwen-2.5-32b)))
-  (setq gptel-model 'qwen2.5:3b)
-  (setq gptel-backend provider_ollama)
+          :models '(qwen2.5:1.5b)))
+  (setq provider_remote
+        (gptel-make-openai "ModelScope"
+          :host "api-inference.modelscope.cn"
+          :endpoint "/v1/chat/completions"
+          :stream t
+	  :key(auth-source-pick-first-password
+	       :host "api-inference.modelscope.cn"
+	       :user "apikey")
+          :models '(Qwen/Qwen3-235B-A22B)))
+  (setq gptel-model 'Qwen/Qwen3-235B-A22B)
+  (setq gptel-backend provider_remote)
   ;; 光标自动移动到下一个prompt
   (add-hook 'gptel-post-response-functions 'gptel-end-of-response))
 
-(use-package llm
-  :straight t)
+;; 句子翻译
+(use-package go-translate
+  :straight t
+  :defer t
+  :config
+  ;; (setq gt-debug-p t)
+  (setq gt-langs '(en zh))
+  ;; LLM
+  (setq gt-chatgpt-temperature 0.7)
+  ;; Ollama
+  (setq gt-chatgpt-host "localhost:11434")
+  (setq gt-chatgpt-model "qwen2.5:1.5b")
+  ;; Online
+  ;; (setq gt-chatgpt-host "https://api-inference.modelscope.cn")
+  ;; (setq gt-chatgpt-model "Qwen/Qwen3-235B-A22B")
+  ;; (setq gt-chatgpt-key (auth-source-pick-first-password
+  ;; 			:host "api-inference.modelscope.cn"
+  ;; 			:user "apikey"))
+  (setq gt-default-translator
+        (gt-translator
+         :taker
+         (gt-taker :text 'buffer :pick 'paragraph :prompt t)
+         :engines
+         (list
+          (gt-chatgpt-engine)
+          (gt-google-engine)
+          (gt-bing-engine))
+         :render
+         (gt-buffer-render
+          :buffer-name "abc"
+          ;; :window-config '((display-buffer-at-bottom))
+          :then (lambda (_) (pop-to-buffer "abc"))))))
 
+;; 变量名翻译插件, 需要安装crow-translate或者ollama
+(use-package insert-translated-name
+  :straight (:host github :repo "manateelazycat/insert-translated-name"
+                   :files ("*.py" "*.el"))
+  :after (llm)
+  :config
+  ;; 默认使用crow后端，本地llm设置为ollama, 在线llm则设置为llm
+  (setq insert-translated-name-program "ollama")
+  ;; 本地模型名称
+  (setq insert-translated-name-ollama-model-name "qwen2.5:1.5b")
+  ;; 如果使用在线模型，则需要设置provider
+  (require 'llm-openai)
+  (setq insert-translated-name-llm-provider
+        (make-llm-openai-compatible
+         :url "api-inference.modelscope.cn/v1"
+         :chat-model "Qwen/Qwen3-235B-A22B"
+         :key (auth-source-pick-first-password
+	       :host "api-inference.modelscope.cn"
+	       :user "apikey")))
+  (setq llm-warn-on-nonfree nil))
 (provide 'init-core)
 ;;; init-core.el ends here
