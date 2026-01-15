@@ -97,17 +97,6 @@
   :hook
   (prog-mode . flycheck-mode))
 
-;; tree-sitter
-;; (use-package treesit-auto
-;;   :straight t
-;;   :init
-;;   (setq treesit-font-lock-level 4)
-;;   :custom
-;;   (treesit-auto-install 'prompt)
-;;   :config
-;;   (treesit-auto-add-to-auto-mode-alist 'all)
-;;   (global-treesit-auto-mode))
-
 ;; 注释当前行
 (defun comment-line-improve (&optional arg)
   (interactive)
