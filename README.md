@@ -15,7 +15,7 @@ git clone https://github.com/JackMoriarty/EmacsConfig .emacs.d
 export COLORTERM=truecolor
 ```
 
-3. 下载并安装[FiraCode Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/releases)和[Source Han Sans CN (Region-specific subset OTF)](https://github.com/adobe-fonts/source-han-sans/tree/release)字体并安装，如果在终端环境下使用emacs，可将终端字体设置为FireCode Nerd Font Mono
+3. 下载并安装[Maple Mono NF CN](https://github.com/subframe7536/maple-font/releases)字体并安装，如果在终端环境下使用emacs，可将终端字体设置为`Maple Mono NF CN`
 
 4. 启动emacs，并等待插件安装完成
 
@@ -49,22 +49,22 @@ machine api.groq.com login apikey password <api_key>
 
 当前配置文件中的LLM插件有
 
-| 插件名称                | 功能                      |
-|------------------------|--------------------------|
-| go-translate           | 翻译                      |
-| gptel                  | gpt chat                 |
+| 插件名称               | 功能                           |
+|------------------------|--------------------------------|
+| go-translate           | 翻译                           |
+| gptel                  | gpt chat                       |
 | insert-translated-name | 在插入点将输入的中文转换为英文 |
-| minuet                 | 代码补全                   |
+| minuet                 | 代码补全                       |
 
 8. **（可选）远程开发**
 通过ssh和rsync实现本地与服务器的文件同步。本机与服务器端都需要安装ssh和rsync。
 对于需要同步的项目，在项目内执行`M-x ppcompile-config-project`命令，根据指引填写配置。
 
-| 命令                  | 作用              |
-|----------------------|-------------------|
-| `M-x ppcompile-ping` | 上传项目到服务器     |
-| `M-x ppcompile-pong` | 在服务器上编译项目   |
-| `M-x ppcompile`      | 上传项目到服务器并编译|
+| 命令                 | 作用                   |
+|----------------------|------------------------|
+| `M-x ppcompile-ping` | 上传项目到服务器       |
+| `M-x ppcompile-pong` | 在服务器上编译项目     |
+| `M-x ppcompile`      | 上传项目到服务器并编译 |
 
 更多配置及使用参见[ppcompile](https://github.com/whatacold/ppcompile)
 

@@ -133,8 +133,10 @@
     (progn
       (setq-default cursor-type 'bar) ;;光标类型
       (toggle-scroll-bar -1) ;; 关闭滚动条
-      (set-face-attribute 'default nil :family "Fira Code" :weight 'normal) ;; 设置默认字体
-      (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Source Han Sans CN" :weight 'normal)))) ;; 设置中文字体
+      (set-face-attribute 'default nil :family "Maple Mono NF CN" :weight 'normal) ;; 设置默认字体
+      ;; (set-face-attribute 'default nil :family "Fira Code" :weight 'normal) ;; 设置默认字体
+      ;; (set-fontset-font t '(#x2ff0 . #x9ffc) (font-spec :family "Source Han Sans CN" :weight 'normal)) ;; 设置中文字体
+      ))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here
