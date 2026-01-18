@@ -231,18 +231,18 @@
         (gptel-make-ollama "Ollama"
           :host "localhost:11434"
           :stream t
-          :models '(qwen2.5:1.5b)))
+          :models '(qwen2.5:3b)))
   (setq provider_remote
-        (gptel-make-openai "ModelScope"
-          :host "api-inference.modelscope.cn"
+        (gptel-make-openai "RemoteService"
+          :host "[RemoteHost]"
           :endpoint "/v1/chat/completions"
           :stream t
-	  :key(auth-source-pick-first-password
-	       :host "api-inference.modelscope.cn"
-	       :user "apikey")
-          :models '(Qwen/Qwen3-235B-A22B)))
-  (setq gptel-model 'Qwen/Qwen3-235B-A22B)
-  (setq gptel-backend provider_remote)
+	  :key (auth-source-pick-first-password
+		:host "[RemoteHost]"
+		:user "apikey")
+          :models '(qwen2.5:3b)))
+  (setq gptel-model 'qwen2.5:3b)
+  (setq gptel-backend provider_ollama)
   ;; 光标自动移动到下一个prompt
   (add-hook 'gptel-post-response-functions 'gptel-end-of-response))
 
@@ -255,15 +255,13 @@
   (setq gt-langs '(en zh))
   ;; LLM
   (setq gt-chatgpt-temperature 0.7)
-  ;; Ollama
+  ;; llm endpoint
   (setq gt-chatgpt-host "localhost:11434")
-  (setq gt-chatgpt-model "qwen2.5:1.5b")
-  ;; Online
-  ;; (setq gt-chatgpt-host "https://api-inference.modelscope.cn")
-  ;; (setq gt-chatgpt-model "Qwen/Qwen3-235B-A22B")
-  ;; (setq gt-chatgpt-key (auth-source-pick-first-password
-  ;; 			:host "api-inference.modelscope.cn"
-  ;; 			:user "apikey"))
+  ;; (setq gt-chatgpt-key
+  ;; 	(auth-source-pick-first-password
+  ;; 	 :host "[RemoteHost]"
+  ;; 	 :user "apikey"))
+  (setq gt-chatgpt-model "qwen2.5:3b")
   (setq gt-default-translator
         (gt-translator
          :taker
@@ -288,16 +286,16 @@
   ;; 默认使用crow后端，本地llm设置为ollama, 在线llm则设置为llm
   (setq insert-translated-name-program "ollama")
   ;; 本地模型名称
-  (setq insert-translated-name-ollama-model-name "qwen2.5:1.5b")
+  (setq insert-translated-name-ollama-model-name "qwen2.5:3b")
   ;; 如果使用在线模型，则需要设置provider
   (require 'llm-openai)
   (setq insert-translated-name-llm-provider
         (make-llm-openai-compatible
-         :url "api-inference.modelscope.cn/v1"
-         :chat-model "Qwen/Qwen3-235B-A22B"
+         :url "[RemoteHostURL]"
          :key (auth-source-pick-first-password
-	       :host "api-inference.modelscope.cn"
-	       :user "apikey")))
+	       :host "[RemoteHost]"
+	       :user "apikey")
+	 :chat-model "qwen2.5:3b"))
   (setq llm-warn-on-nonfree nil))
 
 ;; ollama模型chat

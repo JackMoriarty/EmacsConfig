@@ -35,11 +35,14 @@ touch $HOME/.authinfo
 
 该文件的格式为
 ```
-machine <host> login <user> password <api_key>
+machine [RemoteHost] login <user> password <api_key>
 ```
-比如
-```
-machine api.groq.com login apikey password <api_key>
+
+通过以下代码即可在配置文件中获取<api_key>
+```lisp
+(auth-source-pick-first-password
+	:host "[RemoteHost]"
+	:user "<user>")
 ```
 
 当前配置文件中的LLM插件有
