@@ -1,3 +1,4 @@
+
 (use-package lsp-mode
   :defer t
   :straight t
@@ -46,7 +47,6 @@
   :defer t
   :after (lsp-mode))
 
-
 ;; 代码补全
 (use-package company
   :straight t
@@ -88,6 +88,50 @@
   :straight t
   :defer t
   :after yasnippet)
+
+;; AI 补全
+(use-package minuet
+  :straight (:host github :repo "milanglacier/minuet-ai.el")
+  :defer t
+  :bind
+  (("M-o" . #'minuet-show-suggestion) ;; use overlay for completion
+
+   :map minuet-active-mode-map
+   ;; These keymaps activate only when a minuet suggestion is displayed in the current buffer
+   ("M-p" . #'minuet-previous-suggestion) ;; invoke completion or cycle to next completion
+   ("M-n" . #'minuet-next-suggestion)     ;; invoke completion or cycle to previous completion
+   ("M-a" . #'minuet-accept-suggestion)   ;; accept whole completion
+   ;; Accept the first line of completion, or N lines with a numeric-prefix:
+   ;; e.g. C-u 2 M-a will accepts 2 lines of completion.
+   ("TAB" . #'minuet-accept-suggestion-line)
+   ("C-g" . #'minuet-dismiss-suggestion))
+
+  ;; :init
+  ;; ;; if you want to enable auto suggestion.
+  ;; ;; Note that you can manually invoke completions without enable minuet-auto-suggestion-mode
+  ;; (add-hook 'prog-mode-hook #'minuet-auto-suggestion-mode)
+
+  :config
+  (setq minuet-request-timeout 5)
+  (setq minuet-n-completions 1)                 ;; recommended for Local LLM for resource saving
+  ;; I recommend you start with a small context window firstly, and gradually increase it based on your local computing power.
+  (setq minuet-context-window 512)
+  ;; llm code completion interface (fim model)
+  (setq minuet-provider 'openai-fim-compatible)
+  (plist-put minuet-openai-fim-compatible-options :end-point "http://localhost:11434/v1/completions")
+  (plist-put minuet-openai-fim-compatible-options :name "Ollama")
+  (plist-put minuet-openai-fim-compatible-options :api-key "TERM")
+  (plist-put minuet-openai-fim-compatible-options :model "qwen2.5-coder:3b")
+  (minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 256)
+
+  ;; llm chat completion interface (chat model)
+  ;; (setq minuet-provider 'openai-compatible)
+  ;; (plist-put minuet-openai-compatible-options :end-point "http://localhost:11434/v1/chat/completions")
+  ;; (plist-put minuet-openai-compatible-options :name "Ollama")
+  ;; (plist-put minuet-openai-compatible-options :api-key "TERM")
+  ;; (plist-put minuet-openai-compatible-options :model "qwen2.5:3b")
+  ;; (minuet-set-optional-options minuet-openai-compatible-options :max_tokens 256)
+  )
 
 ;; 代码检查
 (use-package flycheck
