@@ -48,6 +48,13 @@
   :defer t
   :after (treemacs magit))
 
+(use-package diff-hl
+  :straight t
+  :config
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  (diff-hl-flydiff-mode t)
+  (global-diff-hl-mode t))
+
 (use-package blamer
   :straight (:host github :repo "Artawower/blamer.el")
   :custom
