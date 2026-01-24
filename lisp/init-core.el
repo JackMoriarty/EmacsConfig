@@ -305,5 +305,29 @@
   ("C-c o" . ollama-buddy-menu)
   ("C-c O" . ollama-buddy-transient-menu-wrapper))
 
+;; eaf
+(use-package eaf
+  :if (display-graphic-p)
+  :straight (eaf :type git :host github
+                 :repo "emacs-eaf/emacs-application-framework"
+                 :files (:defaults "*.json" "*.py" "app" "core" "extension"))
+  :custom
+  ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
+  ;; (eaf-webengine-default-zoom 1.75)
+  ;; (eaf-browser-auto-import-chrome-cookies t)
+  (eaf-browser-continue-where-left-off t)
+  (eaf-browser-enable-adblocker t)
+  (browse-url-browser-function 'eaf-open-browser)
+  :config
+  ;; package name
+  (require 'eaf-browser)
+  (require 'eaf-pdf-viewer)
+  (require 'eaf-markdown-previewer)
+  ;; other config
+  (defalias 'browse-web #'eaf-open-browser)
+  (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
+  (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
+  (eaf-bind-key nil "M-q" eaf-browser-keybinding)) ;; unbind, see more in the Wiki
+
 (provide 'init-core)
 ;;; init-core.el ends here

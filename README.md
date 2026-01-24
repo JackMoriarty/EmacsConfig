@@ -25,7 +25,7 @@ export COLORTERM=truecolor
 M-x nerd-icons-install-fonts
 ```
 
-6. **LLM 插件支持**
+6. LLM 插件支持
 如果只使用本地通过ollama部署的LLM模型，可以根据自身实际需要修改配置文件中相关LLM插件的模型。
 如果使用云厂商提供的LLM API，需要提供API key，API key 需要保存在home目录下的`.authinfo`文件中
 
@@ -55,7 +55,7 @@ machine [RemoteHost] login <user> password <api_key>
 | ollama-buddy           | ollama本地模型管理与chat       |
 | minuet                 | 代码补全                       |
 
-7. **（可选）远程开发**
+7. 远程开发 **（可选）**
 通过ssh和rsync实现本地与服务器的文件同步。本机与服务器端都需要安装ssh和rsync。
 对于需要同步的项目，在项目内执行`M-x ppcompile-config-project`命令，根据指引填写配置。
 
@@ -75,3 +75,16 @@ Host *
     ControlPath ~/.ssh/control-%r@%h:%p
     ControlPersist 600
 ```
+
+8. EAF **(终端环境无需配置)**
+
+默认配置了以下包
+* eaf-browser
+* eaf-pdf-viewer
+* eaf-markdown-previewer
+
+执行以下命令，安装上述软件包。
+```bash
+M-x eaf-install-and-update
+```
+关于EAF更多的软件包以及用法，可以参见[EAF](https://github.com/emacs-eaf/emacs-application-framework)。
