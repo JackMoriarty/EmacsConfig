@@ -1,4 +1,4 @@
-
+;; 语言服务
 (use-package lsp-mode
   :defer t
   :straight t
@@ -11,6 +11,7 @@
   :commands
   (lsp lsp-deferred)
   :config
+  (setq lsp-inlay-hint-enable t)
   (setq lsp-warn-no-matched-clients nil)
   (setq lsp-keep-workspace-alive nil)
   (setq lsp-enable-links nil)
