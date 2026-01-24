@@ -220,32 +220,6 @@
 (use-package llm
   :straight t)
 
-;; AI Chat Client.
-(use-package gptel
-  :straight t
-  :defer t
-  :config
-  (setq gptel-default-mode 'org-mode)
-  ;; provider注册
-  (setq provider_ollama
-        (gptel-make-ollama "Ollama"
-          :host "localhost:11434"
-          :stream t
-          :models '(qwen2.5:3b)))
-  (setq provider_remote
-        (gptel-make-openai "RemoteService"
-          :host "[RemoteHost]"
-          :endpoint "/v1/chat/completions"
-          :stream t
-	  :key (auth-source-pick-first-password
-		:host "[RemoteHost]"
-		:user "apikey")
-          :models '(qwen2.5:3b)))
-  (setq gptel-model 'qwen2.5:3b)
-  (setq gptel-backend provider_ollama)
-  ;; 光标自动移动到下一个prompt
-  (add-hook 'gptel-post-response-functions 'gptel-end-of-response))
-
 ;; 句子翻译
 (use-package go-translate
   :straight t
@@ -298,12 +272,27 @@
 	 :chat-model "qwen2.5:3b"))
   (setq llm-warn-on-nonfree nil))
 
-;; ollama模型chat
-(use-package ollama-buddy
+;; 本地和远程模型chat
+(use-package ellama
   :straight t
-  :bind
-  ("C-c o" . ollama-buddy-menu)
-  ("C-c O" . ollama-buddy-transient-menu-wrapper))
+  :bind ("C-c e" . ellama)
+  ;; send last message in chat buffer with C-c C-c
+  :hook (org-ctrl-c-ctrl-c-final . ellama-chat-send-last-message)
+  :init
+  (setopt ellama-auto-scroll t)
+  (setopt ellama-providers
+  	  '(("RemoteService" . (make-llm-openai-compatible
+				:url "[RemoteHostURL]"
+				:key (auth-source-pick-first-password
+				      :host "[RemoteHost]"
+				      :user "apikey")
+  				:chat-model "qwen2.5:3b"
+  				:embedding-model "qwen2.5:3b"))))
+  :config
+  ;; show ellama context in header line in all buffers
+  (ellama-context-header-line-global-mode +1)
+  ;; show ellama session id in header line in all buffers
+  (ellama-session-header-line-global-mode +1))
 
 ;; eaf
 (use-package eaf

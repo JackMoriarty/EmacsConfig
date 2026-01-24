@@ -49,10 +49,9 @@ machine [RemoteHost] login <user> password <api_key>
 
 | 插件名称               | 功能                           |
 |------------------------|--------------------------------|
+| ellama                 | 本地/远程大模型Chat            |
 | go-translate           | 翻译                           |
-| gptel                  | gpt chat                       |
 | insert-translated-name | 在插入点将输入的中文转换为英文 |
-| ollama-buddy           | ollama本地模型管理与chat       |
 | minuet                 | 代码补全                       |
 
 7. 远程开发 **（可选）**
