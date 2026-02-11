@@ -51,13 +51,13 @@
   :after (doom-themes)
   :config
   ;; 基于时间
-  ;; (setq circadian-themes '(("8:00" . doom-solarized-light)
-  ;;                          ("19:30" . doom-solarized-dark)))
+  ;; (setq circadian-themes '(("8:00" . doom-gruvbox-light)
+  ;;                          ("19:30" . doom-gruvbox)))
   ;; 基于经纬度日出日落
   (setq calendar-latitude 39.9)
   (setq calendar-longitude 116.4)
-  (setq circadian-themes '((:sunrise . doom-solarized-light)
-                           (:sunset  . doom-solarized-dark)))
+  (setq circadian-themes '((:sunrise . doom-gruvbox-light)
+                           (:sunset  . doom-gruvbox)))
   (circadian-setup))
 
 ;; 高亮工作区buffer
