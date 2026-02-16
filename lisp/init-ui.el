@@ -68,13 +68,12 @@
   (solaire-global-mode +1))
 
 ;; 缩进线
-(use-package highlight-indent-guides
+(use-package indent-bars
   :straight t
   ;; :custom
-  ;; (highlight-indent-guides-method 'column)
-  ;; (highlight-indent-guides-responsive 'top)
+  ;; (indent-bars-prefer-character t)
   :hook
-  (prog-mode . highlight-indent-guides-mode))
+  (prog-mode . indent-bars-mode))
 
 ;; 括号彩虹高亮
 (use-package rainbow-delimiters
