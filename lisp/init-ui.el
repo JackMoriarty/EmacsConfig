@@ -45,20 +45,17 @@
   :straight t
   :hook (after-init . doom-modeline-mode))
 
-;; 主题定时切换
-(use-package circadian
+;; 主题随系统主题更换
+(use-package auto-dark
   :straight t
-  :after (doom-themes)
-  :config
-  ;; 基于时间
-  ;; (setq circadian-themes '(("8:00" . doom-gruvbox-light)
-  ;;                          ("19:30" . doom-gruvbox)))
-  ;; 基于经纬度日出日落
-  (setq calendar-latitude 39.9)
-  (setq calendar-longitude 116.4)
-  (setq circadian-themes '((:sunrise . doom-gruvbox-light)
-                           (:sunset  . doom-gruvbox)))
-  (circadian-setup))
+  :custom
+  (custom-safe-themes t)
+  (auto-dark-themes '((doom-gruvbox) (doom-gruvbox-light)))
+  (auto-dark-polling-interval-seconds 5)
+  (auto-dark-allow-osascript nil)
+  (auto-dark-allow-powershell nil)
+  :init
+  (auto-dark-mode))
 
 ;; 高亮工作区buffer
 (use-package solaire-mode
