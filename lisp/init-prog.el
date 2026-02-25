@@ -137,8 +137,6 @@
 ;; 代码检查
 (use-package flycheck
   :straight t
-  :config
-  (setq truncate-lines nil) ; 如果单行信息很长会自动换行
   :hook
   (prog-mode . flycheck-mode))
 
@@ -170,7 +168,7 @@
         indentation      ; 缩进不一致
         tab-mark))       ; 显示制表符字符
 ;; (setq show-paren-style 'mixed)                                  ;; 匹配括号高亮模式
-;; (add-hook 'prog-mode-hook (lambda () (setq truncate-lines t)))  ;; 关闭折行
+(add-hook 'prog-mode-hook (lambda () (setq truncate-lines t)))  ;; 关闭折行
 
 (provide 'init-prog)
 ;;; init-code.el ends here
