@@ -25,10 +25,11 @@
   (setq lsp-copilot-enabled nil)
   (setq lsp-clients-clangd-args '("--header-insertion-decorators=0" "--header-insertion=never"))
   ;; improve performance.
+  (setq lsp-use-plists t)
   (setq lsp-idle-delay 0.500)
   (setq lsp-log-io nil)
-  (setq gc-cons-threshold 100000000)
-  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  (setq gc-cons-threshold (* 128 1024 1024))
+  (setq read-process-output-max (* 8 1024 1024)) ;; 8mb
   :bind
   ("C-c l s" . lsp-ivy-workspace-symbol))
 
@@ -38,6 +39,7 @@
   :custom
   (lsp-ui-sideline-show-diagnostics t)
   (lsp-ui-doc-position 'at-point)
+  (lsp-ui-doc-show-with-mouse nil)
   (lsp-ui-doc-show-with-cursor nil)
   :config
   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
