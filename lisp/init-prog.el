@@ -1,96 +1,88 @@
 ;; 语言服务
-(use-package lsp-mode
-  :defer t
-  :straight t
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook
-  (prog-mode . lsp-deferred)
-  (lsp-mode . lsp-enable-which-key-integration) ; which-key integration
-  :commands
-  (lsp lsp-deferred)
-  :config
-  (setq lsp-inlay-hint-enable t)
-  (setq lsp-warn-no-matched-clients nil)
-  (setq lsp-keep-workspace-alive nil)
-  (setq lsp-enable-links nil)
-  (setq lsp-headerline-breadcrumb-enable t)
-  (setq lsp-headerline-breadcrumb-enable-symbol-numbers t)
-  (setq lsp-headerline-breadcrumb-enable-diagnostics t)
-  (setq lsp-enable-on-type-formatting nil)
-  ;; 阻止 lsp 重新设置 company-backend 而覆盖我们 yasnippet 的设置
-  (setq lsp-completion-provider :none)
-  ;; lsp-server configuration.
-  (setq lsp-copilot-enabled nil)
-  (setq lsp-clients-clangd-args '("--header-insertion-decorators=0" "--header-insertion=never"))
-  ;; improve performance.
-  (setq lsp-use-plists t)
-  (setq lsp-idle-delay 0.500)
-  (setq lsp-log-io nil)
-  (setq gc-cons-threshold (* 128 1024 1024))
-  (setq read-process-output-max (* 8 1024 1024)) ;; 8mb
-  :bind
-  ("C-c l s" . lsp-ivy-workspace-symbol))
-
-(use-package lsp-ui
+(use-package eglot
   :straight t
   :defer t
   :custom
-  (lsp-ui-sideline-show-diagnostics t)
-  (lsp-ui-doc-position 'at-point)
-  (lsp-ui-doc-show-with-mouse nil)
-  (lsp-ui-doc-show-with-cursor nil)
-  :config
-  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
-
-(use-package lsp-ivy
-  :straight t
-  :defer t
-  :after (lsp-mode))
+  ;; 忽略所有格式化能力
+  (eglot-ignored-server-capabilities '(:documentFormattingProvider
+                                       :documentRangeFormattingProvider
+                                       :documentOnTypeFormattingProvider
+                                       :documentHighlightProvider))
+  :hook
+  (prog-mode . eglot-ensure))
 
 ;; 代码补全
-(use-package company
+(use-package corfu
   :straight t
-  :defer t
-  :init (global-company-mode)
+  :init
+  (global-corfu-mode)
+  (corfu-history-mode)
+  (corfu-popupinfo-mode)
+  :custom
+  (corfu-auto t)                 ;; enable auto completion
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  (corfu-preview-current nil)    ;; Disable current candidate preview
+  (corfu-preselect 'prompt)      ;; Preselect the prompt
+  (corfu-on-exact-match 'insert) ;; Configure handling of exact matches
+  )
+
+;; corfu终端支持
+(use-package corfu-terminal
+  :straight t
+  ;; 仅在终端图形界面未启用时，才启用 corfu-terminal-mode
+  :if (not (display-graphic-p))
   :config
-  (setq company-minimum-prefix-length 1)                     ;; 只需敲 1 个字母就开始进行自动补全
-  (setq company-tooltip-align-annotations t)
-  (setq company-idle-delay 0.0)
-  (setq company-show-numbers t)                              ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择).
-  (setq company-selection-wrap-around t)
-  (setq company-transformers '(company-sort-by-occurrence))) ;; 根据选择的频率进行排序
+  (corfu-terminal-mode +1))
 
-(use-package company-box
+;; corfu中显示图标
+(use-package nerd-icons-corfu
   :straight t
-  :defer t
-  :if window-system
-  :hook
-  (company-mode . company-box-mode))
+  :after (corfu nerd-icons) ;; 确保在 corfu 和 nerd-icons 之后加载
+  :config
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)
+  )
 
-;; 代码补全片段模板
+;; 管理多个补全源
+(use-package cape
+  :straight t
+  :after corfu
+  :init
+  ;; 在这里添加你想要的补全后端
+  (add-hook 'completion-at-point-functions #'cape-file)    ;; 文件路径补全
+  (add-hook 'completion-at-point-functions #'cape-dabbrev) ;; 缓冲区词补全
+  (add-hook 'completion-at-point-functions #'cape-elisp-block) ;; Elisp 代码块
+  )
+
+;; Yasnippet配置
 (use-package yasnippet
   :straight t
   :defer t
   :config
-  (yas-reload-all)
-  ;; add company-yasnippet to company-backends
-  (defun company-mode/backend-with-yas (backend)
-    (if (and (listp backend) (member 'company-yasnippet backend))
-	backend
-      (append (if (consp backend) backend (list backend))
-              '(:with company-yasnippet))))
-  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
-  (unbind-key "TAB" yas-minor-mode-map)
-  :hook
-  (prog-mode . yas-minor-mode))
+  (yas-global-mode 1))
 
 (use-package yasnippet-snippets
   :straight t
   :defer t
   :after yasnippet)
+
+(use-package yasnippet-capf
+  :straight t
+  :defer t
+  :after cape)
+
+;; use the `orderless' completion style.
+(use-package orderless
+  :straight t
+  :defer t
+  :custom
+  ;; (orderless-style-dispatchers '(orderless-affix-dispatch))
+  ;; (orderless-component-separator #'orderless-escapable-split-on-space)
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles partial-completion))))
+  (completion-category-defaults nil) ;; Disable defaults, use our settings
+  (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
 
 ;; AI 补全
 (use-package minuet
