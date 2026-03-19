@@ -74,16 +74,3 @@ Host *
     ControlPath ~/.ssh/control-%r@%h:%p
     ControlPersist 600
 ```
-
-8. EAF **(终端环境无需配置)**
-
-默认配置了以下包
-* eaf-browser
-* eaf-pdf-viewer
-* eaf-markdown-previewer
-
-执行以下命令，安装上述软件包。
-```bash
-M-x eaf-install-and-update
-```
-关于EAF更多的软件包以及用法，可以参见[EAF](https://github.com/emacs-eaf/emacs-application-framework)。
