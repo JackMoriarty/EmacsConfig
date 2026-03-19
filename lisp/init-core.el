@@ -221,35 +221,24 @@
   :straight t)
 
 ;; 句子翻译
-(use-package go-translate
+(use-package gt
   :straight t
   :defer t
   :config
   ;; (setq gt-debug-p t)
-  (setq gt-langs '(en zh))
-  ;; LLM
-  (setq gt-chatgpt-temperature 0.7)
-  ;; llm endpoint
-  (setq gt-chatgpt-host "localhost:11434")
-  ;; (setq gt-chatgpt-key
-  ;; 	(auth-source-pick-first-password
-  ;; 	 :host "[RemoteHost]"
-  ;; 	 :user "apikey"))
-  (setq gt-chatgpt-model "qwen2.5:3b")
   (setq gt-default-translator
         (gt-translator
          :taker
-         (gt-taker :text 'buffer :pick 'paragraph :prompt t)
+         (gt-taker
+	  :langs '(en zh)
+	  :text 'word
+	  :pick 'paragraph)
          :engines
          (list
-          (gt-chatgpt-engine)
           (gt-google-engine)
           (gt-bing-engine))
          :render
-         (gt-buffer-render
-          :buffer-name "abc"
-          ;; :window-config '((display-buffer-at-bottom))
-          :then (lambda (_) (pop-to-buffer "abc"))))))
+         (gt-buffer-render))))
 
 ;; 变量名翻译插件, 需要安装crow-translate或者ollama
 (use-package insert-translated-name
