@@ -134,12 +134,6 @@
   ;; (minuet-set-optional-options minuet-openai-compatible-options :max_tokens 256)
   )
 
-;; 代码检查
-(use-package flycheck
-  :straight t
-  :hook
-  (prog-mode . flycheck-mode))
-
 ;; 注释当前行
 (defun comment-line-improve (&optional arg)
   (interactive)
