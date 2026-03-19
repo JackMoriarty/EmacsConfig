@@ -84,6 +84,12 @@
   (completion-category-defaults nil) ;; Disable defaults, use our settings
   (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
 
+;; 面包屑导航
+(use-package breadcrumb
+  :straight t
+  :config
+  (breadcrumb-mode 1))
+
 ;; AI 补全
 (use-package minuet
   :straight (:host github :repo "milanglacier/minuet-ai.el")
