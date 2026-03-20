@@ -247,7 +247,7 @@
   :after (llm)
   :config
   ;; 默认使用crow后端，本地llm设置为ollama, 在线llm则设置为llm
-  (setq insert-translated-name-program "ollama")
+  ;; (setq insert-translated-name-program "ollama")
   ;; 本地模型名称
   (setq insert-translated-name-ollama-model-name "qwen2.5:3b")
   ;; 如果使用在线模型，则需要设置provider
