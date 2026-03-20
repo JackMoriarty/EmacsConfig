@@ -51,7 +51,6 @@ machine [RemoteHost] login <user> password <api_key>
 |------------------------|--------------------------------|
 | ellama                 | 本地/远程大模型Chat            |
 | insert-translated-name | 在插入点将输入的中文转换为英文 |
-| minuet                 | 代码补全                       |
 
 7. 远程开发 **（可选）**
 通过ssh和rsync实现本地与服务器的文件同步。本机与服务器端都需要安装ssh和rsync。
