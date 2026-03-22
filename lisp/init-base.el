@@ -44,6 +44,7 @@
 (require 'init-prog)
 (require 'init-project)
 (require 'init-os)
+(require 'init-ai)
 
 (provide 'init-base)
 ;;; init-base.el ends here
