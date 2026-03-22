@@ -34,6 +34,10 @@
 (put 'upcase-region 'disabled nil)   ;; 开启选区字符转大写快捷键'C-x C-u'
 (put 'downcase-region 'disabled nil) ;; 开启选区字符转大写快捷键'C-x C-l'
 
+;; 不加载默认输入法
+(setq default-input-method nil)
+(setq current-input-method nil)
+
 (add-to-list 'load-path (expand-file-name "lang" (file-name-directory load-file-name)))
 (add-to-list 'load-path (expand-file-name "mode" (file-name-directory load-file-name)))
 
