@@ -160,12 +160,14 @@
   (pyvenv-mode t))
 
 ;; 自动保存
-(use-package auto-save
-  :straight (:host github :repo "manateelazycat/auto-save")
+(use-package super-save
+  :straight t
   :config
-  (setq auto-save-silent t)   ; quietly save
-  (setq auto-save-delete-trailing-whitespace nil)  ; automatically delete spaces at the end of the line when saving)
-  (auto-save-enable))
+  (setq super-save-auto-save-when-idle t)
+  (setq super-save-all-buffers t)
+  (add-to-list 'super-save-triggers 'ace-window)
+  (add-to-list 'super-save-hook-triggers 'find-file-hook)
+  (super-save-mode +1))
 
 ;; 删除修改行的行尾空格
 (use-package ws-butler
