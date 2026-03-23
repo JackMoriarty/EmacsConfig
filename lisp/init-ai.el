@@ -1,3 +1,6 @@
+(use-package llm
+  :straight t)
+
 ;; 句子翻译
 (use-package gt
   :straight t
@@ -62,20 +65,13 @@
   ;; 				:chat-model "[RemoteChatModel]"))))
 
   ;; 还可以增加更多模型，详见 https://github.com/s-kostyaev/ellama
-  :config
-  ;; show ellama context in header line in all buffers
-  (ellama-context-header-line-global-mode +1)
-  ;; show ellama session id in header line in all buffers
-  (ellama-session-header-line-global-mode +1))
+  )
 
 ;; ai代码补全
 (use-package minuet
   :straight t
   :bind
-  (("M-y" . #'minuet-complete-with-minibuffer) ;; use minibuffer for completion
-   ("M-i" . #'minuet-show-suggestion) ;; use overlay for completion
-   ("C-c m" . #'minuet-configure-provider)
-   :map minuet-active-mode-map
+  (:map minuet-active-mode-map
    ;; These keymaps activate only when a minuet suggestion is displayed in the current buffer
    ("M-p" . #'minuet-previous-suggestion) ;; invoke completion or cycle to next completion
    ("M-n" . #'minuet-next-suggestion) ;; invoke completion or cycle to previous completion
@@ -99,19 +95,10 @@
   ;; (plist-put minuet-openai-fim-compatible-options
   ;; 	     :end-point "[RemoteHostURL]/completions")
   ;; (plist-put minuet-openai-fim-compatible-options
-  ;; 	     :api-key (auth-source-pick-first-password
-  ;; 		       :host "[RemoteHost]"
-  ;; 		       :user "apikey"))
+  ;; 	     :api-key (lambda () (auth-source-pick-first-password
+  ;; 				  :host "[RemoteHost]"
+  ;; 				  :user "apikey")))
   ;; (plist-put minuet-openai-fim-compatible-options :model "[FIMModel]")
-
-  ;; openai-compatible模型
-  ;; (plist-put minuet-openai-compatible-options
-  ;; 	     :end-point "[RemoteHostURL]/chat/completions")
-  ;; (plist-put minuet-openai-compatible-options
-  ;; 	     :api-key (auth-source-pick-first-password
-  ;; 		       :host "[RemoteHost]"
-  ;; 		       :user "apikey"))
-  ;; (plist-put minuet-openai-compatible-options :model "[ChatModel]")
 
   (minuet-set-optional-options minuet-openai-fim-compatible-options :max_tokens 64))
 

@@ -219,8 +219,5 @@
   :custom
   (vlf-application 'dont-ask))
 
-(use-package llm
-  :straight t)
-
 (provide 'init-core)
 ;;; init-core.el ends here
