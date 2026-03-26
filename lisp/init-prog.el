@@ -19,13 +19,13 @@
   (corfu-history-mode)
   (corfu-popupinfo-mode)
   :custom
-  (corfu-auto t)                 ;; enable auto completion
-  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto t)                    ;; enable auto completion
+  (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
   ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
   ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-  (corfu-preselect 'prompt)      ;; Preselect the prompt
-  (corfu-on-exact-match 'insert) ;; Configure handling of exact matches
+  (corfu-preselect 'prompt)         ;; Preselect
+  (corfu-on-exact-match 'insert)    ;; Configure handling of exact matches
   )
 
 ;; corfu终端支持
