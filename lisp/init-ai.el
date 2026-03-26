@@ -48,23 +48,23 @@
   )
 
 ;; 模型chat
-(use-package ellama
+(use-package gptel
   :straight t
-  :bind ("C-c e" . ellama)
-  ;; send last message in chat buffer with C-c C-c
-  :hook (org-ctrl-c-ctrl-c-hook . ellama-chat-send-last-message)
-  :init
-  (setopt ellama-auto-scroll t)
-  ;; 增加在线模型
-  ;; (setopt ellama-providers
-  ;; 	  '(("RemoteService" . (make-llm-openai-compatible
-  ;; 				:url "[RemoteHostURL]" ;; for example "https://api.ai.com/v1/"
-  ;; 				:key (auth-source-pick-first-password
-  ;; 				      :host "[RemoteHost]"
-  ;; 				      :user "apikey")
-  ;; 				:chat-model "[RemoteChatModel]"))))
+  :bind
+  ("C-c e" . gptel-menu)
+  :config
+  (setq gptel-default-mode 'org-mode)
+  (setq gptel-model '[ChatModel])
+  (setq gptel-backend (gptel-make-openai "RemoteService"
+			:host "[RemoteHost]"
+			:endpoint "/[RemoteEndPoint]/chat/completions"
+			:stream t
+			:key (auth-source-pick-first-password
+			      :host "[RemoteHost]"
+			      :user "apikey")
+			:models '([ChatrModel])))
 
-  ;; 还可以增加更多模型，详见 https://github.com/s-kostyaev/ellama
+  ;; 关于更多provider配置，详见https://github.com/karthink/gptel
   )
 
 ;; ai代码补全
