@@ -87,6 +87,8 @@
   (add-hook 'prog-mode-hook #'minuet-auto-suggestion-mode)
 
   :config
+  (add-to-list 'minuet-auto-suggestion-block-predicates
+	       '(lambda () (< (point) (line-end-position))))
   ;; You can use M-x minuet-configure-provider to interactively configure provider and model
   (setq minuet-provider 'openai-fim-compatible)
 
