@@ -71,7 +71,8 @@
 (use-package minuet
   :straight t
   :bind
-  (:map minuet-active-mode-map
+  (("M-o" . #'minuet-complete-with-minibuffer)
+   :map minuet-active-mode-map
    ;; These keymaps activate only when a minuet suggestion is displayed in the current buffer
    ("M-p" . #'minuet-previous-suggestion) ;; invoke completion or cycle to next completion
    ("M-n" . #'minuet-next-suggestion) ;; invoke completion or cycle to previous completion
@@ -81,14 +82,12 @@
    ("M-a" . #'minuet-accept-suggestion-line)
    ("M-e" . #'minuet-dismiss-suggestion))
 
-  :init
-  ;; if you want to enable auto suggestion.
-  ;; Note that you can manually invoke completions without enable minuet-auto-suggestion-mode
-  (add-hook 'prog-mode-hook #'minuet-auto-suggestion-mode)
+  ;; :init
+  ;; ;; if you want to enable auto suggestion.
+  ;; ;; Note that you can manually invoke completions without enable minuet-auto-suggestion-mode
+  ;; (add-hook 'prog-mode-hook #'minuet-auto-suggestion-mode)
 
   :config
-  (add-to-list 'minuet-auto-suggestion-block-predicates
-	       '(lambda () (< (point) (line-end-position))))
   ;; You can use M-x minuet-configure-provider to interactively configure provider and model
   (setq minuet-provider 'openai-fim-compatible)
 
