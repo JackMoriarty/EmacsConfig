@@ -133,6 +133,8 @@
 ;; 高亮光标下相同词语
 (use-package symbol-overlay
   :straight t
+  :config
+  (setq symbol-overlay-priority 100)
   :bind
   ("M-i" . symbol-overlay-put)
   ("M-n" . symbol-overlay-switch-forward)
