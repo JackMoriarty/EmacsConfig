@@ -26,6 +26,7 @@
   ;; (corfu-preview-current nil)    ;; Disable current candidate preview
   (corfu-preselect 'prompt)         ;; Preselect
   (corfu-on-exact-match 'insert)    ;; Configure handling of exact matches
+  (corfu-auto-prefix 1)
   )
 
 ;; corfu终端支持
