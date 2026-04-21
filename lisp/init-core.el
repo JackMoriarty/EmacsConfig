@@ -221,5 +221,10 @@
   :custom
   (vlf-application 'dont-ask))
 
+;; 大文件保护
+(use-package so-long
+  :straight t
+  :config (global-so-long-mode 1))
+
 (provide 'init-core)
 ;;; init-core.el ends here

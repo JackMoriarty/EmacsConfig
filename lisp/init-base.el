@@ -1,3 +1,7 @@
+;; 禁用双向文本支持
+(setq bidi-paragraph-direction 'left-to-right)
+(setq bidi-inhibit-bpa t)
+
 ;; 快捷打开配置文件
 (defun open-init-file()
   (interactive)

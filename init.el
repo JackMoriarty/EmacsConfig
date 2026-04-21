@@ -27,5 +27,19 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'init-base)
 
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq file-name-handler-alist old-file-name-handler-alist)))
+
+;; gc优化
+(use-package gcmh
+  :straight t
+  :config
+  (gcmh-mode 1))
+
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 64 1024 1024)))) ; 启动后恢复为64MB
+
 (provide 'init)
 ;;; init.el ends here

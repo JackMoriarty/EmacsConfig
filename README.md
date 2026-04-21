@@ -74,3 +74,9 @@ Host *
     ControlPath ~/.ssh/control-%r@%h:%p
     ControlPersist 600
 ```
+
+8. 二进制程序依赖
+
+| 程序名称          | 安装说明                                                                                    |
+|-------------------|---------------------------------------------------------------------------------------------|
+| emacs-lsp-booster | [Document](https://github.com/blahgeek/emacs-lsp-booster#obtain-or-build-emacs-lsp-booster) |

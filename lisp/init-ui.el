@@ -67,6 +67,7 @@
 ;; 缩进线
 (use-package indent-bars
   :straight t
+  :defer t
   ;; :custom
   ;; (indent-bars-prefer-character t)
   :hook

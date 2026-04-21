@@ -11,6 +11,17 @@
   :hook
   (prog-mode . eglot-ensure))
 
+;; eglot加速器，需要安装emacs-lsp-booster二进制程序
+(use-package eglot-booster
+  :straight (eglot-booster
+	     :type git
+	     :host nil
+	     :repo "https://github.com/jdtsmith/eglot-booster")
+  :after eglot
+  :config
+  (setq eglot-booster-io-only t)
+  (eglot-booster-mode))
+
 ;; 代码补全
 (use-package corfu
   :straight t
@@ -103,6 +114,7 @@
 (add-hook 'prog-mode-hook #'electric-pair-mode)                 ;; 自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode)                    ;; 高亮配对括号
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)          ;; 显示行号
+(setq display-line-numbers-width-start t) ;; 减少行号计算开销
 ;; (add-hook 'prog-mode-hook (lambda () (indent-tabs-mode -1)))    ;; 关闭tab缩进
 (setq-default display-fill-column-indicator-column 80)
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode) ;; 增加ruler
