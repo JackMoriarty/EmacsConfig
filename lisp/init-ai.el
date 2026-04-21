@@ -29,7 +29,7 @@
 (use-package insert-translated-name
   :straight (:host github :repo "manateelazycat/insert-translated-name"
                    :files ("*.py" "*.el"))
-  :after (llm)
+  :defer t
   :config
   ;; 默认使用crow后端，本地llm设置为ollama, 在线llm则设置为llm
   ;; (setq insert-translated-name-program "ollama")
@@ -50,6 +50,7 @@
 ;; 模型chat
 (use-package gptel
   :straight t
+  :defer t
   :bind
   ("C-c e" . gptel-menu)
   :config
@@ -70,6 +71,7 @@
 ;; ai代码补全
 (use-package minuet
   :straight t
+  :defer t
   :bind
   (("M-o" . #'minuet-complete-with-minibuffer)
    :map minuet-active-mode-map

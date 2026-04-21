@@ -28,6 +28,7 @@
 ;; ibuffer 显示图标
 (use-package nerd-icons-ibuffer
   :straight t
+  :defer t
   :hook (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 ;; doom主题

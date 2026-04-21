@@ -1,6 +1,7 @@
 ;; 项目管理
 (use-package projectile
   :straight t
+  :defer t
   :bind (("C-c p" . projectile-command-map))
   :config
   (setq projectile-mode-line "Projectile")
@@ -8,6 +9,7 @@
 
 (use-package counsel-projectile
   :straight t
+  :defer t
   :after (projectile)
   :init (counsel-projectile-mode))
 
@@ -32,6 +34,7 @@
 
 (use-package treemacs-nerd-icons
   :straight t
+  :after treemacs
   :config
   (treemacs-load-theme "nerd-icons"))
 
@@ -45,7 +48,6 @@
 
 (use-package treemacs-magit
   :straight t
-  :defer t
   :after (treemacs magit))
 
 (use-package diff-hl
@@ -79,6 +81,7 @@
 ;; 远程开发
 (use-package ppcompile
   :straight t
+  :defer t
   :config
   (setq ppcompile-rsync-exclude-list
         '("*.o" ".git*" ".svn*" "*.~undo-tree~" ".dir-locals.el")))

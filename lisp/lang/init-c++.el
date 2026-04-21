@@ -1,6 +1,7 @@
 ;; 安装 google-c-style 包
 (use-package google-c-style
   :straight t
+  :defer t
   :hook
   (c++-mode . google-set-c-style))
 

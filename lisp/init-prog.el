@@ -43,6 +43,7 @@
 ;; corfu终端支持
 (use-package corfu-terminal
   :straight t
+  :after corfu
   ;; 仅在终端图形界面未启用时，才启用 corfu-terminal-mode
   :if (not (display-graphic-p))
   :config
@@ -87,7 +88,7 @@
 ;; use the `orderless' completion style.
 (use-package orderless
   :straight t
-  :defer t
+  :after corfu
   :custom
   ;; (orderless-style-dispatchers '(orderless-affix-dispatch))
   ;; (orderless-component-separator #'orderless-escapable-split-on-space)
@@ -99,8 +100,8 @@
 ;; 面包屑导航
 (use-package breadcrumb
   :straight t
-  :config
-  (breadcrumb-mode 1))
+  :hook
+  (prog-mode . breadcrumb-local-mode))
 
 ;; 注释当前行
 (defun comment-line-improve (&optional arg)

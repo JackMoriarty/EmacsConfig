@@ -1,6 +1,7 @@
 ;; 文件管理器
 (use-package dirvish
   :straight t
+  :defer t
   :init
   (dirvish-override-dired-mode)
   :bind ("C-x d" . dirvish)
@@ -22,6 +23,7 @@
 ;; 终端
 (use-package vterm-toggle
   :straight t
+  :defer t
   :config
   (setq vterm-toggle-fullscreen-p nil)
   (setq vterm-buffer-name "*vterm-toggle*")
@@ -45,7 +47,8 @@
   :bind ("C-c t" . 'vterm-toggle))
 
 (use-package counsel
-  :straight t)
+  :straight t
+  :defer t)
 
 (use-package ivy
   :straight t
@@ -82,11 +85,13 @@
 ;; 命令历史按频率排序
 (use-package amx
   :straight t
+  :defer t
   :init (amx-mode))
 
 ;; 窗口切换增强
 (use-package ace-window
   :straight t
+  :defer t
   :bind (("C-x o" . 'ace-window)))
 
 ;; 单行光标移动增强，行首/文字开头，行尾/注释前行尾
@@ -120,6 +125,7 @@
 ;; 单词跳转
 (use-package avy
   :straight t
+  :defer t
   :bind
   (("M-j" . avy-goto-char-timer)))
 
@@ -133,6 +139,7 @@
 ;; 高亮光标下相同词语
 (use-package symbol-overlay
   :straight t
+  :defer t
   :config
   (setq symbol-overlay-priority 100)
   :bind
@@ -208,6 +215,7 @@
 ;; 辅助选择单词, 句子等
 (use-package expand-region
   :straight t
+  :defer t
   :bind ("M-=" . er/expand-region))
 
 ;; 调整窗格大小
@@ -218,12 +226,14 @@
 ;; 大文件
 (use-package vlf
   :straight t
+  :defer t
   :custom
   (vlf-application 'dont-ask))
 
 ;; 大文件保护
 (use-package so-long
   :straight t
+  :defer t
   :config (global-so-long-mode 1))
 
 (provide 'init-core)
