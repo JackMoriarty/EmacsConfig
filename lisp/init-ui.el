@@ -82,11 +82,11 @@
   :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; 高亮注释(TODO, FIXME等)
-(use-package comment-tags
+(use-package hl-todo
   :straight t
   :defer t
   :hook
-  (prog-mode . comment-tags-mode))
+  (prog-mode . hl-todo-mode))
 
 ;; 高亮doxygen
 (use-package highlight-doxygen
