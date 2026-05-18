@@ -29,7 +29,6 @@
 (use-package insert-translated-name
   :straight (:host github :repo "manateelazycat/insert-translated-name"
                    :files ("*.py" "*.el"))
-  :defer t
   :config
   ;; 默认使用crow后端，本地llm设置为ollama, 在线llm则设置为llm
   ;; (setq insert-translated-name-program "ollama")
@@ -45,27 +44,6 @@
   ;; 	       :host "[RemoteHost]"
   ;; 	       :user "apikey")
   ;; 	 :chat-model "[RemoteModel]"))
-  )
-
-;; 模型chat
-(use-package gptel
-  :straight t
-  :defer t
-  :bind
-  ("C-c e" . gptel-menu)
-  :config
-  (setq gptel-default-mode 'org-mode)
-  (setq gptel-model '[ChatModel])
-  (setq gptel-backend (gptel-make-openai "RemoteService"
-			:host "[RemoteHost]"
-			:endpoint "/[RemoteEndPoint]/chat/completions"
-			:stream t
-			:key (auth-source-pick-first-password
-			      :host "[RemoteHost]"
-			      :user "apikey")
-			:models '([ChatrModel])))
-
-  ;; 关于更多provider配置，详见https://github.com/karthink/gptel
   )
 
 ;; ai代码补全

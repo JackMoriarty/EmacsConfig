@@ -50,7 +50,6 @@ machine [RemoteHost] login <user> password <api_key>
 | 插件名称               | 功能                           |
 |------------------------|--------------------------------|
 | gt                     | 翻译                           |
-| ellama                 | 本地/远程大模型Chat            |
 | insert-translated-name | 在插入点将输入的中文转换为英文 |
 | minuet                 | AI代码补全                     |
 
