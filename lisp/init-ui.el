@@ -134,7 +134,7 @@
        'default nil
        :family "Maple Mono NF CN"
        ;; :height 120
-       :weight 'normal)))
+       :weight 'medium)))
 
 (setq inhibit-startup-message t)               ;; 关闭启动 Emacs 时的欢迎界面
 ;; (menu-bar-mode -1)                             ;; 关闭菜单栏
