@@ -97,12 +97,6 @@
   (completion-category-defaults nil) ;; Disable defaults, use our settings
   (completion-pcm-leading-wildcard t)) ;; Emacs 31: partial-completion behaves like substring
 
-;; 面包屑导航
-(use-package breadcrumb
-  :straight t
-  :hook
-  (prog-mode . breadcrumb-local-mode))
-
 ;; 注释当前行
 (defun comment-line-improve (&optional arg)
   (interactive)
@@ -134,6 +128,7 @@
         tab-mark))       ; 显示制表符字符
 ;; (setq show-paren-style 'mixed)                                  ;; 匹配括号高亮模式
 (add-hook 'prog-mode-hook (lambda () (setq truncate-lines t)))  ;; 关闭折行
+(add-hook 'prog-mode-hook #'which-function-mode)                ;; 在modeline上显示函数信息
 
 (provide 'init-prog)
 ;;; init-code.el ends here
