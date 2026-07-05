@@ -71,11 +71,12 @@
   :defer t
   ;; :custom
   ;; (indent-bars-prefer-character t)
-  :hook
-  (after-change-major-mode .
-			   (lambda ()
-			     (when (derived-mode-p 'prog-mode)
-			       (indent-bars-mode)))))
+  ;; :hook
+  ;; (after-change-major-mode .
+  ;; 			   (lambda ()
+  ;; 			     (when (derived-mode-p 'prog-mode)
+  ;; 			       (indent-bars-mode))))
+  :bind ("<f1>" . indent-bars-mode))
 
 ;; 括号彩虹高亮
 (use-package rainbow-delimiters

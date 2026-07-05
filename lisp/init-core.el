@@ -186,31 +186,14 @@
   (prog-mode . ws-butler-mode))
 
 ;; 记录光标位置
-(use-package dogears
+(use-package better-jumper
   :straight t
-  :hook (after-init . dogears-mode)
-  :bind (:map global-map
-              ("M-g d" . dogears-go)
-              ("M-g M-b" . dogears-back)
-              ("M-g M-f" . dogears-forward)
-              ("M-g M-d" . dogears-list)
-              ("M-g M-D" . dogears-sidebar))
   :config
-  (setq dogears-idle 1
-        dogears-limit 200
-        dogears-position-delta 20)
-  (setq dogears-functions '(find-file recenter-top-bottom
-                                      other-window switch-to-buffer
-                                      aw-select toggle-window-split
-                                      windmove-do-window-select
-                                      pager-page-down pager-page-up
-                                      tab-bar-select-tab
-                                      pop-to-mark-command
-                                      pop-global-mark
-                                      goto-last-change
-                                      xref-go-back
-                                      xref-find-definitions
-                                      xref-find-references)))
+  (global-set-key (kbd "C-x C-o") #'better-jumper-jump-backward)
+  (global-set-key (kbd "C-x C-i") #'better-jumper-jump-forward)
+
+  ;; 自动在跳转前记录位置（可选，配合 consult 或其他跳转命令使用）
+  (better-jumper-mode +1))
 
 ;; 辅助选择单词, 句子等
 (use-package expand-region
