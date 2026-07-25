@@ -121,7 +121,7 @@
         tabs             ; 制表符
         spaces           ; 所有空格（可能太吵）
         empty            ; 空行的空格
-        lines-tail       ; 超出列限制的部分
+        ;; lines-tail       ; 超出列限制的部分
         space-before-tab ; 制表符前的空格
         space-after-tab  ; 制表符后的空格
         indentation      ; 缩进不一致
