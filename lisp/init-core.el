@@ -185,16 +185,6 @@
   :hook
   (prog-mode . ws-butler-mode))
 
-;; 记录光标位置
-(use-package better-jumper
-  :straight t
-  :config
-  (global-set-key (kbd "C-x C-o") #'better-jumper-jump-backward)
-  (global-set-key (kbd "C-x C-i") #'better-jumper-jump-forward)
-
-  ;; 自动在跳转前记录位置（可选，配合 consult 或其他跳转命令使用）
-  (better-jumper-mode +1))
-
 ;; 辅助选择单词, 句子等
 (use-package expand-region
   :straight t
