@@ -41,6 +41,9 @@
   (doom-themes-visual-bell-config)   ;; Enable flashing mode-line on errors
   (doom-themes-org-config))          ;; Corrects (and improves) org-mode's native fontification.
 
+(use-package catppuccin-theme
+  :straight t)
+
 ;; doom modeline
 (use-package doom-modeline
   :straight t
@@ -51,10 +54,23 @@
   :straight t
   :custom
   (custom-safe-themes t)
-  (auto-dark-themes '((doom-gruvbox) (doom-gruvbox-light)))
+  (auto-dark-themes '((catppuccin) (catppuccin)))
   (auto-dark-polling-interval-seconds 5)
   (auto-dark-allow-osascript nil)
   (auto-dark-allow-powershell nil)
+  :hook
+  (auto-dark-dark-mode
+   . (lambda ()
+       ;; something to execute when dark mode is detected
+       (setq catppuccin-flavor 'mocha)
+       (catppuccin-reload)
+       ))
+  (auto-dark-light-mode
+   . (lambda ()
+       ;; something to execute when light mode is detected
+       (setq catppuccin-flavor 'latte)
+       (catppuccin-reload)
+       ))
   :init
   (auto-dark-mode))
 
