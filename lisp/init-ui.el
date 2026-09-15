@@ -71,8 +71,7 @@
        (setq catppuccin-flavor 'latte)
        (catppuccin-reload)
        ))
-  :init
-  (auto-dark-mode))
+  (emacs-startup . auto-dark-mode))
 
 ;; 高亮工作区buffer
 (use-package solaire-mode
